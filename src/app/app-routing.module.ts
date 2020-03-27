@@ -7,8 +7,8 @@ import { AppComponent } from './app.component';
 import { DashboardComponent } from './content/dashboard/dashboard.component';
 
 const routes: Routes = [
-  { path: 'etudiant', component: AllEtudiantComponent },
-  { path: 'etudiant/add', component: CreateEtudiantComponent },
+  { path: 'note', component: AllEtudiantComponent },
+ 
   { path: '', component: DashboardComponent }
 ];
 
