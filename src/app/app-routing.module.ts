@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
 
-import { AppComponent } from './app.component';
 import { DashboardComponent } from './content/dashboard/dashboard.component';
 
 import { AllEtudiantComponent } from './content/etudiant/all-etudiant/all-etudiant.component';
