@@ -50,7 +50,7 @@ import { CreateAbsenceComponent } from './content/absence/create-absence/create-
     DetailClasseComponent,
     AllExamenComponent,
     CreateExamenComponent,
-    DetailExamenComponent
+    DetailExamenComponent,
     DetailNoteComponent,
     AllAbsenceComponent,
     DetailAbsenceComponent,
