@@ -14,6 +14,9 @@ import { DashboardComponent } from './content/dashboard/dashboard.component';
 import { AllClasseComponent } from './content/classe/all-classe/all-classe.component';
 import { CreateClasseComponent } from './content/classe/create-classe/create-classe.component';
 import { DetailClasseComponent } from './content/classe/detail-classe/detail-classe.component';
+import { AllExamenComponent } from './content/examen/all-examen/all-examen.component';
+import { CreateExamenComponent } from './content/examen/create-examen/create-examen.component';
+import { DetailExamenComponent } from './content/examen/detail-examen/detail-examen.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +29,10 @@ import { DetailClasseComponent } from './content/classe/detail-classe/detail-cla
     DashboardComponent,
     AllClasseComponent,
     CreateClasseComponent,
-    DetailClasseComponent
+    DetailClasseComponent,
+    AllExamenComponent,
+    CreateExamenComponent,
+    DetailExamenComponent
   ],
   imports: [
     BrowserModule,
