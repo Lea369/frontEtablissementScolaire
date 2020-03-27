@@ -8,7 +8,7 @@ import { EtudiantsService } from 'src/app/services/etudiant/etudiants.service';
   styleUrls: ['./all-etudiant.component.css']
 })
 export class AllEtudiantComponent implements OnInit {
-
+  
   allEtudiant = new Array<EtudiantUpdateDto>();
 
   constructor(private service: EtudiantsService) { }
@@ -16,6 +16,7 @@ export class AllEtudiantComponent implements OnInit {
   ngOnInit() {
     this.getAll();
   }
+
 
   getAll() {
     this.service.getAll().subscribe(

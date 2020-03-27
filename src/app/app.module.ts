@@ -11,6 +11,8 @@ import { AllEtudiantComponent } from './content/etudiant/all-etudiant/all-etudia
 import { CreateEtudiantComponent } from './content/etudiant/create-etudiant/create-etudiant.component';
 import { AppRoutingModule } from './app-routing.module';
 import { DashboardComponent } from './content/dashboard/dashboard.component';
+
+import { DetailEtudiantsComponent } from './content/etudiant/detail-etudiants/detail-etudiants.component';
 import { AllNoteComponent } from './content/note/all-note/all-note.component';
 import { CreateNoteComponent } from './content/note/create-note/create-note.component';
 import { AllMatiereComponent } from './content/matiere/all-matiere/all-matiere.component';
@@ -20,6 +22,9 @@ import { AllClasseComponent } from './content/classe/all-classe/all-classe.compo
 import { CreateClasseComponent } from './content/classe/create-classe/create-classe.component';
 import { DetailClasseComponent } from './content/classe/detail-classe/detail-classe.component';
 import { DetailNoteComponent } from './content/note/detail-note/detail-note.component';
+import { AllAbsenceComponent } from './content/absence/all-absence/all-absence.component';
+import { DetailAbsenceComponent } from './content/absence/detail-absence/detail-absence.component';
+import { CreateAbsenceComponent } from './content/absence/create-absence/create-absence.component';
 
 
 @NgModule({
@@ -31,6 +36,7 @@ import { DetailNoteComponent } from './content/note/detail-note/detail-note.comp
     AllEtudiantComponent,
     CreateEtudiantComponent,
     DashboardComponent,
+    DetailEtudiantsComponent,
     AllNoteComponent,
     CreateNoteComponent,
     AllMatiereComponent,
@@ -39,7 +45,10 @@ import { DetailNoteComponent } from './content/note/detail-note/detail-note.comp
     AllClasseComponent,
     CreateClasseComponent,
     DetailClasseComponent,
-    DetailNoteComponent
+    DetailNoteComponent,
+    AllAbsenceComponent,
+    DetailAbsenceComponent,
+    CreateAbsenceComponent
   ],
   imports: [
     BrowserModule,
