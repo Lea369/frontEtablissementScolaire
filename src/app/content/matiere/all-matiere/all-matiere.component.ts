@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatiereUpdateDto } from 'src/app/models/matiere-update-dto';
 import { MatiereService } from 'src/app/services/matiere/matiere.service';
+import { MatiereCreateDto } from 'src/app/models/matiere-create-dto';
 
 @Component({
   selector: 'app-all-matiere',
@@ -10,6 +11,7 @@ import { MatiereService } from 'src/app/services/matiere/matiere.service';
 export class AllMatiereComponent implements OnInit {
 
   allMatiere = new Array<MatiereUpdateDto>();
+  matiere = new MatiereCreateDto();
   
   constructor(private service: MatiereService) { }
 
@@ -36,6 +38,18 @@ export class AllMatiereComponent implements OnInit {
           );
         }
       }
+    );
+  }
+
+  create(){
+  
+    this.service.create(this.matiere).subscribe(
+      responseDto => {
+      if (!responseDto.error) {
+      document.location.reload();
+      }
+    }
+      
     );
   }
 

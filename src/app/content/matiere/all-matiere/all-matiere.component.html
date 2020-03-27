@@ -17,6 +17,15 @@
                     <button class="btn btn-danger" (click)="this.delete(m.idMatiere)">Supprimer</button>
                 </td>
             </tr>
+            <tr>
+                <td></td>
+                <td><input type="text" [(ngModel)]="this.matiere.nomMatiere" required></td>
+                <td>
+                    <button class="btn btn-danger" (click)="create()">Ajouter</button>
+                </td>
+            </tr>
         </tbody>
+            
+        
     </table>
 </div>
