@@ -14,6 +14,13 @@ import { DashboardComponent } from './content/dashboard/dashboard.component';
 import { AllNoteComponent } from './content/note/all-note/all-note.component';
 import { CreateNoteComponent } from './content/note/create-note/create-note.component';
 import { UpdateNoteComponent } from './content/note/update-note/update-note.component';
+import { AllMatiereComponent } from './content/matiere/all-matiere/all-matiere.component';
+import { CreateMatiereComponent } from './content/matiere/create-matiere/create-matiere.component';
+import { DetailMatiereComponent } from './content/matiere/detail-matiere/detail-matiere.component';
+import { AllClasseComponent } from './content/classe/all-classe/all-classe.component';
+import { CreateClasseComponent } from './content/classe/create-classe/create-classe.component';
+import { DetailClasseComponent } from './content/classe/detail-classe/detail-classe.component';
+
 
 @NgModule({
   declarations: [
@@ -27,6 +34,12 @@ import { UpdateNoteComponent } from './content/note/update-note/update-note.comp
     AllNoteComponent,
     CreateNoteComponent,
     UpdateNoteComponent,
+    AllMatiereComponent,
+    CreateMatiereComponent,
+    DetailMatiereComponent,
+    AllClasseComponent,
+    CreateClasseComponent,
+    DetailClasseComponent
   ],
   imports: [
     BrowserModule,
