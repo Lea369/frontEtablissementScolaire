@@ -13,7 +13,8 @@
         <tbody>
             <tr *ngFor="let e of this.allExamen">
                 <td>{{e.idExam}}</td>                
-                <td>{{e.matiereExamen}}</td>
+                <td *ngIf="e.matiereExamen !== null; else elseBlock">{{e.matiereExamen.nomMatiere}}</td>
+                <ng-template #elseBlock><td>AUCUNE!</td></ng-template>
                 <td>{{e.dateExamen}}</td>
                 <td>{{e.typeExamen}}</td>
                 <td>{{e.coefExamen}}</td>

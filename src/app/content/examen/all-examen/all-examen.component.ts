@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ExamenUpdateDto } from 'src/app/models/examen-update-dto';
+import { ExamenService } from '../../../services/examen/examen.service';
+import { ResponseDto } from 'src/app/models/response-dto';
 
 @Component({
   selector: 'app-all-examen',
@@ -14,9 +16,12 @@ export class AllExamenComponent implements OnInit {
 
   }
 
-  constructor() { }
+  constructor(private service: ExamenService) { }
 
   ngOnInit(): void {
+    this.service.getAll().subscribe(
+      responseDto => this.allExamen = responseDto.body
+    );
   }
 
 }
