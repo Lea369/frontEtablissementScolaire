@@ -1,0 +1,24 @@
+<div class="container">
+    <h2>Liste des notes :</h2>
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Valeur</th>
+                <th>Email etudiant</th>
+                <th>Id matière</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let e of this.allNote">
+                <td>{{e.id}}</td>
+                <td>{{e.value}}</td>
+                <td>{{e.etudiant}}</td>
+                <td>{{e.examen}}</td>
+                <td>
+                    <button class="btn btn-danger" (click)="this.delete(e.id)">Supprimer</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

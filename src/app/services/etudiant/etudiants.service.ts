@@ -18,6 +18,10 @@ export class EtudiantsService {
     return this.http.get<ResponseDto>(this.URL + '/all');
   }
 
+  getEtudiant(id: number) : Observable<ResponseDto>{
+    return this.http.get<ResponseDto>(this.URL + '?id' + id);
+  }
+
   delete(id: number): Observable<ResponseDto> {
     return this.http.delete<ResponseDto>(this.URL + '?id=' + id);
   }

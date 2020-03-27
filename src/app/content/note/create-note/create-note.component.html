@@ -1,0 +1,26 @@
+<div>
+    <form class="col-lg-3 col-sm-6">
+        <div class="form-group">
+            <label for="valeur">Valeur :</label>
+            <input type="text" class="form-control" [(ngModel)]="this.note.value" placeholder="Valeur" name="valeur" required>
+        </div>
+        <div class="form-group">
+            <label for="examen">Examen :</label>
+            <input type="text" class="form-control" [(ngModel)]="this.note.examen" placeholder="examen" name="examen" required>
+        </div>
+        <div class="form-group">
+            <label for="sel1">Etudiant :</label>
+            <select class="form-control" id="sel1" [(ngModel)]="this.note.etudiant" name="etudiant">
+              <option *ngFor></option>
+            </select>
+        </div>
+
+        <button type="button" class="btn btn-primary" (click)="this.save()">Submit</button>
+
+        <div class="alert alert-success">
+            <strong>Success!</strong> {{this.messageValidation}}
+        </div>
+
+    </form>
+
+</div>

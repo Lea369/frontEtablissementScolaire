@@ -11,6 +11,11 @@ import { AllEtudiantComponent } from './content/etudiant/all-etudiant/all-etudia
 import { CreateEtudiantComponent } from './content/etudiant/create-etudiant/create-etudiant.component';
 import { AppRoutingModule } from './app-routing.module';
 import { DashboardComponent } from './content/dashboard/dashboard.component';
+
+import { DetailEtudiantsComponent } from './content/etudiant/detail-etudiants/detail-etudiants.component';
+import { AllNoteComponent } from './content/note/all-note/all-note.component';
+import { CreateNoteComponent } from './content/note/create-note/create-note.component';
+import { UpdateNoteComponent } from './content/note/update-note/update-note.component';
 import { AllMatiereComponent } from './content/matiere/all-matiere/all-matiere.component';
 import { CreateMatiereComponent } from './content/matiere/create-matiere/create-matiere.component';
 import { DetailMatiereComponent } from './content/matiere/detail-matiere/detail-matiere.component';
@@ -31,6 +36,10 @@ import { CreateAbsenceComponent } from './content/absence/create-absence/create-
     AllEtudiantComponent,
     CreateEtudiantComponent,
     DashboardComponent,
+    DetailEtudiantsComponent
+    AllNoteComponent,
+    CreateNoteComponent,
+    UpdateNoteComponent,
     AllMatiereComponent,
     CreateMatiereComponent,
     DetailMatiereComponent,
