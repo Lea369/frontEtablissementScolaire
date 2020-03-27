@@ -17,6 +17,9 @@ import { DetailMatiereComponent } from './content/matiere/detail-matiere/detail-
 import { AllClasseComponent } from './content/classe/all-classe/all-classe.component';
 import { CreateClasseComponent } from './content/classe/create-classe/create-classe.component';
 import { DetailClasseComponent } from './content/classe/detail-classe/detail-classe.component';
+import { AllAbsenceComponent } from './content/absence/all-absence/all-absence.component';
+import { DetailAbsenceComponent } from './content/absence/detail-absence/detail-absence.component';
+import { CreateAbsenceComponent } from './content/absence/create-absence/create-absence.component';
 
 
 @NgModule({
@@ -33,7 +36,10 @@ import { DetailClasseComponent } from './content/classe/detail-classe/detail-cla
     DetailMatiereComponent,
     AllClasseComponent,
     CreateClasseComponent,
-    DetailClasseComponent
+    DetailClasseComponent,
+    AllAbsenceComponent,
+    DetailAbsenceComponent,
+    CreateAbsenceComponent
   ],
   imports: [
     BrowserModule,
