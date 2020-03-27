@@ -30,7 +30,7 @@ import { DetailClasseComponent } from './content/classe/detail-classe/detail-cla
     DashboardComponent,
     AllMatiereComponent,
     CreateMatiereComponent,
-    DetailMatiereComponent
+    DetailMatiereComponent,
     AllClasseComponent,
     CreateClasseComponent,
     DetailClasseComponent
