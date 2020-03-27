@@ -1,29 +1,28 @@
 import { Component, OnInit } from '@angular/core';
 import { EtudiantUpdateDto } from 'src/app/models/etudiant-update-dto';
-import { EtudiantsService } from 'src/app/services/etudiant/etudiants.service';
+import { NoteUpdateDto } from 'src/app/models/note-update-dto';
+import { NoteService } from 'src/app/services/note/note.service';
 
 @Component({
-  selector: 'app-all-etudiant',
-  templateUrl: './all-etudiant.component.html',
-  styleUrls: ['./all-etudiant.component.css']
+  selector: 'app-all-note',
+  templateUrl: './all-note.component.html',
+  styleUrls: ['./all-note.component.css']
 })
-export class AllEtudiantComponent implements OnInit {
-  
-  allEtudiant = new Array<EtudiantUpdateDto>();
+export class AllNoteComponent implements OnInit {
+  allNote = new Array<NoteUpdateDto>();
 
-  constructor(private service: EtudiantsService) { }
+  constructor(private service: NoteService) { }
 
   ngOnInit() {
     this.getAll();
   }
-
 
   getAll() {
     this.service.getAll().subscribe(
       (responseDto) => {
         console.log('debug responseDto : ', responseDto);
         if (!responseDto.error) {
-          this.allEtudiant = responseDto.body;
+          this.allNote = responseDto.body;
         }
       }
     );
@@ -34,11 +33,11 @@ export class AllEtudiantComponent implements OnInit {
       responseDto => {
         console.log('debug responseDto : ', responseDto);
         if (!responseDto.error) {
-          this.allEtudiant = this.allEtudiant.filter(
-            element =>  element.identifiant !== id
+          this.allNote = this.allNote.filter(
+            element =>  element.id !== id
           );
         }
-        console.log('result after delete: ', this.allEtudiant);
+        console.log('result after delete: ', this.allNote);
       }
     );
   }

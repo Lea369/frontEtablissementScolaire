@@ -11,6 +11,10 @@ import { AllEtudiantComponent } from './content/etudiant/all-etudiant/all-etudia
 import { CreateEtudiantComponent } from './content/etudiant/create-etudiant/create-etudiant.component';
 import { AppRoutingModule } from './app-routing.module';
 import { DashboardComponent } from './content/dashboard/dashboard.component';
+
+import { DetailEtudiantsComponent } from './content/etudiant/detail-etudiants/detail-etudiants.component';
+import { AllNoteComponent } from './content/note/all-note/all-note.component';
+import { CreateNoteComponent } from './content/note/create-note/create-note.component';
 import { AllMatiereComponent } from './content/matiere/all-matiere/all-matiere.component';
 import { CreateMatiereComponent } from './content/matiere/create-matiere/create-matiere.component';
 import { DetailMatiereComponent } from './content/matiere/detail-matiere/detail-matiere.component';
@@ -20,6 +24,10 @@ import { DetailClasseComponent } from './content/classe/detail-classe/detail-cla
 import { AllExamenComponent } from './content/examen/all-examen/all-examen.component';
 import { CreateExamenComponent } from './content/examen/create-examen/create-examen.component';
 import { DetailExamenComponent } from './content/examen/detail-examen/detail-examen.component';
+import { DetailNoteComponent } from './content/note/detail-note/detail-note.component';
+import { AllAbsenceComponent } from './content/absence/all-absence/all-absence.component';
+import { DetailAbsenceComponent } from './content/absence/detail-absence/detail-absence.component';
+import { CreateAbsenceComponent } from './content/absence/create-absence/create-absence.component';
 
 
 @NgModule({
@@ -31,6 +39,9 @@ import { DetailExamenComponent } from './content/examen/detail-examen/detail-exa
     AllEtudiantComponent,
     CreateEtudiantComponent,
     DashboardComponent,
+    DetailEtudiantsComponent,
+    AllNoteComponent,
+    CreateNoteComponent,
     AllMatiereComponent,
     CreateMatiereComponent,
     DetailMatiereComponent,
@@ -40,6 +51,10 @@ import { DetailExamenComponent } from './content/examen/detail-examen/detail-exa
     AllExamenComponent,
     CreateExamenComponent,
     DetailExamenComponent
+    DetailNoteComponent,
+    AllAbsenceComponent,
+    DetailAbsenceComponent,
+    CreateAbsenceComponent
   ],
   imports: [
     BrowserModule,
