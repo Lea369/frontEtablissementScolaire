@@ -12,16 +12,11 @@
         </thead>
         <tbody>
             <tr *ngFor="let e of this.allExamen">
-                <td>{{e.identifiant}}</td>
-                <td>{{e.name}}</td>
-                <td>{{e.surname}}</td>
-                <td>{{e.mail}}</td>
-                <td>{{e.identity}}</td>
-                <td>{{e.phone}}</td>
-                <td>{{e.adress}}</td>
-                <td>{{e.city}}</td>
-                <td>{{e.postalCode}}</td>
-                <td>{{e.s}}</td>
+                <td>{{e.idExam}}</td>                
+                <td>{{e.matiereExamen}}</td>
+                <td>{{e.dateExamen}}</td>
+                <td>{{e.typeExamen}}</td>
+                <td>{{e.coefExamen}}</td>
                 <td>
                     <button class="btn btn-danger" (click)="this.delete(e.identifiant)">Supprimer</button>
                 </td>
