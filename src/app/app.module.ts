@@ -14,6 +14,10 @@ import { DashboardComponent } from './content/dashboard/dashboard.component';
 import { AllMatiereComponent } from './content/matiere/all-matiere/all-matiere.component';
 import { CreateMatiereComponent } from './content/matiere/create-matiere/create-matiere.component';
 import { DetailMatiereComponent } from './content/matiere/detail-matiere/detail-matiere.component';
+import { AllClasseComponent } from './content/classe/all-classe/all-classe.component';
+import { CreateClasseComponent } from './content/classe/create-classe/create-classe.component';
+import { DetailClasseComponent } from './content/classe/detail-classe/detail-classe.component';
+
 
 @NgModule({
   declarations: [
@@ -27,6 +31,9 @@ import { DetailMatiereComponent } from './content/matiere/detail-matiere/detail-
     AllMatiereComponent,
     CreateMatiereComponent,
     DetailMatiereComponent
+    AllClasseComponent,
+    CreateClasseComponent,
+    DetailClasseComponent
   ],
   imports: [
     BrowserModule,
