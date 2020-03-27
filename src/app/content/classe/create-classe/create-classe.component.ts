@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ClassesService } from 'src/app/services/classe/classes.service';
+
 
 @Component({
   selector: 'app-create-classe',
@@ -7,9 +9,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CreateClasseComponent implements OnInit {
 
-  constructor() { }
+
+ 
+  
+  constructor(private service: ClassesService) { }
 
   ngOnInit(): void {
   }
 
+  
 }

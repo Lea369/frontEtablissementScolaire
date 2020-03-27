@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { ClasseUpdateDto } from 'src/app/models/classe-update-dto';
+import { ClassesService } from 'src/app/services/classe/classes.service';
 
 @Component({
   selector: 'app-detail-classe',
@@ -7,9 +9,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DetailClasseComponent implements OnInit {
 
-  constructor() { }
+  @Input() classe: ClasseUpdateDto;
+  constructor(private service : ClassesService) { }
 
   ngOnInit(): void {
+    
   }
+
+ 
 
 }
