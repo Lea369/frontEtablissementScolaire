@@ -1,11 +1,38 @@
+
 <div *ngIf="etudiant">
 
     <h2>{{etudiant.name}} Details</h2>
-    <div><span>id: </span>{{etudiant.id}}</div>
+    <div><span>Id: </span>{{etudiant.identifiant}}</div>
     <div>
-      <label>name:
+      <label>Nom:
         <input [(ngModel)]="etudiant.name" placeholder="name"/>
+    </label>
+    <label>Prénom:
+        <input [(ngModel)]="etudiant.surname" placeholder="surname"/>
+    </label>
+    <label>Email:
+        <input [(ngModel)]="etudiant.mail" placeholder="email"/>
+    </label>
+    <label>CIN:
+        <input [(ngModel)]="etudiant.identity" placeholder="CIN"/>
+    </label>
+    <label>Téléphone:
+        <input [(ngModel)]="etudiant.phone" placeholder="Téléphone"/>
+    </label>
+    <label>Adresse:
+        <input [(ngModel)]="etudiant.adress" placeholder="Adresse"/>
+      </label>
+      <label>Ville:
+        <input [(ngModel)]="etudiant.city" placeholder="Ville"/>
+      </label>
+      <label>CP:
+        <input [(ngModel)]="etudiant.postalCode" placeholder="Code Postal"/>
+      </label>
+      <label>Sexe:
+        <input [(ngModel)]="etudiant.s" placeholder="Sexe"/>
       </label>
     </div>
+    <button (click)="goBack()">go back</button>
+  <button (click)="save()">save</button>
   
   </div>

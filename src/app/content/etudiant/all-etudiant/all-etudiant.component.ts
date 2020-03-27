@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { EtudiantUpdateDto } from 'src/app/models/etudiant-update-dto';
 import { EtudiantsService } from 'src/app/services/etudiant/etudiants.service';
+import { ResponseDto } from 'src/app/models/response-dto';
+
 
 @Component({
   selector: 'app-all-etudiant',
@@ -10,6 +12,8 @@ import { EtudiantsService } from 'src/app/services/etudiant/etudiants.service';
 export class AllEtudiantComponent implements OnInit {
   
   allEtudiant = new Array<EtudiantUpdateDto>();
+
+  etudiant: EtudiantUpdateDto;
 
   constructor(private service: EtudiantsService) { }
 
@@ -42,5 +46,16 @@ export class AllEtudiantComponent implements OnInit {
       }
     );
   }
+
+  getEtudiant(id: number) {
+    this.service.getEtudiant(id).subscribe(
+      responseDto => {
+        console.log('debug responseDto', ResponseDto);
+        if (!responseDto.error) {
+          this.etudiant = responseDto.body;
+        }
+      }
+    );
+    }
 
 }

@@ -1,6 +1,8 @@
+
 <app-create-etudiant></app-create-etudiant>
 <div class="container">
-    <h2>Liste des étudiants :</h2>
+    <h2 id="titre">Liste des étudiants </h2>
+    <br>
     <table class="table table-hover">
         <thead>
             <tr>
@@ -8,7 +10,7 @@
                 <th>Nom</th>
                 <th>Prénom</th>
                 <th>Email</th>
-                <th>Numéro identité</th>
+                <th>CIN</th>
                 <th>Téléphone</th>
                 <th>Adresse</th>
                 <th>Ville</th>
@@ -18,23 +20,25 @@
             </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let e of this.allEtudiant">
-            <!--<a routerLink="etudiant/detail/{{etudiant.identifiant}}" ></a>-->
-                <td>{{e.identifiant}}</td>
-                <td>{{e.name}}</td>
-                <td>{{e.surname}}</td>
-                <td>{{e.mail}}</td>
-                <td>{{e.identity}}</td>
-                <td>{{e.phone}}</td>
-                <td>{{e.adress}}</td>
-                <td>{{e.city}}</td>
-                <td>{{e.postalCode}}</td>
-                <td>{{e.s}}</td>
+            <tr *ngFor="let etudiant of this.allEtudiant">
+                <td>{{etudiant.identifiant}}</td>
+                <td>{{etudiant.name}}</td>
+                <td>{{etudiant.surname}}</td>
+                <td>{{etudiant.mail}}</td>
+                <td>{{etudiant.identity}}</td>
+                <td>{{etudiant.phone}}</td>
+                <td>{{etudiant.adress}}</td>
+                <td>{{etudiant.city}}</td>
+                <td>{{etudiant.postalCode}}</td>
+                <td>{{etudiant.s}}</td>
                 <td>
-                    <button class="btn btn-danger" (click)="this.delete(e.identifiant)">Supprimer</button>
-                    <button class="btn btn-info" (click)="this.get(e.identifiant)">Details</button>
+                    <button class="btn btn-danger" (click)="this.delete(etudiant.identifiant)">Supprimer</button>
+                    <a routerLink="detail/{{etudiant.identifiant}}">
+                    <button class="btn btn-info"  role="button" (click)="this.getEtudiant(etudiant.identifiant)">Details</button>
+                    </a>
                 </td>
             </tr>
         </tbody>
     </table>
+
 </div>

@@ -4,6 +4,7 @@ import { ResponseDto } from 'src/app/models/response-dto';
 import { Observable } from 'rxjs';
 import { EtudiantCreateDto } from 'src/app/models/etudiant-create-dto';
 import {environment} from 'src/environments/environment';
+import { EtudiantUpdateDto } from 'src/app/models/etudiant-update-dto';
 
 @Injectable({
   providedIn: 'root'
@@ -28,5 +29,9 @@ export class EtudiantsService {
 
   create(etudiant: EtudiantCreateDto): Observable<ResponseDto> {
     return this.http.post<ResponseDto>(this.URL, etudiant);
+  }
+
+  updateEtudiant (etudiant: EtudiantUpdateDto): Observable<any> {
+    return this.http.put<ResponseDto>(this.URL, etudiant);
   }
 }

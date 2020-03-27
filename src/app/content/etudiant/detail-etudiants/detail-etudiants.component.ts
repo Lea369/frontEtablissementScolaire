@@ -18,7 +18,7 @@ export class DetailEtudiantsComponent implements OnInit {
   
   constructor(
     private route: ActivatedRoute,
-    private EtudiantsService: EtudiantsService,
+    private service: EtudiantsService,
     private location: Location) { }
 
   ngOnInit(): void {
@@ -27,7 +27,7 @@ export class DetailEtudiantsComponent implements OnInit {
 
   getEtudiant(): void {
     const id = +this.route.snapshot.paramMap.get('id');
-    this.EtudiantsService.getEtudiant(id).subscribe(
+    this.service.getEtudiant(id).subscribe(
       (responseDto) => {
         console.log('debug responseDto : ', responseDto);
         if (!responseDto.error) {
@@ -37,5 +37,14 @@ export class DetailEtudiantsComponent implements OnInit {
     );
   }
 
+
+  goBack(): void {
+    this.location.back();
+  }
+
+  save(): void {
+    this.service.updateEtudiant(this.etudiant)
+      .subscribe(() => this.goBack());
+  }
 
 }

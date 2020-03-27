@@ -1,0 +1,17 @@
+div {
+    
+    margin: 0 auto 0 auto;
+    width:730px;
+    
+}
+
+#form {
+    border: 1px solid ;
+    width:760px;
+}
+
+#titre {
+text-align: center;
+font-family: 'Times New Roman', Times, serif;
+}
+
