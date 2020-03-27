@@ -1,7 +1,5 @@
-export interface ResponseDto {
-
+export class ResponseDto {
+    body?: any;
     message: string;
-    body: object;
     error: boolean;
-
 }

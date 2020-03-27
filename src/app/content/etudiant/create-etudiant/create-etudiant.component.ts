@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { EtudiantCreateDto } from 'src/app/models/etudiant-create-dto';
+import { EtudiantsService } from 'src/app/services/etudiant/etudiants.service';
 
 @Component({
   selector: 'app-create-etudiant',
@@ -7,9 +9,23 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CreateEtudiantComponent implements OnInit {
 
-  constructor() { }
+  etudiant = new EtudiantCreateDto();
+  messageValidation = '';
 
-  ngOnInit(): void {
+  constructor(private service: EtudiantsService) { }
+
+  ngOnInit() {
+  }
+
+  save() {
+    this.service.create(this.etudiant).subscribe(
+      (responseDto) => {
+        console.log('debug responseDto : ', responseDto);
+        if (!responseDto.error) {
+          this.messageValidation = responseDto.message;
+        }
+      }
+    );
   }
 
 }
