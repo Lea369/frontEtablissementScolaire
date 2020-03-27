@@ -1,0 +1,22 @@
+<div class="container">
+    <h2>Liste des Matières :</h2>
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nom</th>
+                
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let m of this.allMatiere">
+                <td>{{m.idMatiere}}</td>
+                <td>{{m.nomMatiere}}</td>
+               
+                <td>
+                    <button class="btn btn-danger" (click)="this.delete(m.idMatiere)">Supprimer</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
