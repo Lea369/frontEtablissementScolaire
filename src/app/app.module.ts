@@ -15,13 +15,16 @@ import { DashboardComponent } from './content/dashboard/dashboard.component';
 import { DetailEtudiantsComponent } from './content/etudiant/detail-etudiants/detail-etudiants.component';
 import { AllNoteComponent } from './content/note/all-note/all-note.component';
 import { CreateNoteComponent } from './content/note/create-note/create-note.component';
-import { UpdateNoteComponent } from './content/note/update-note/update-note.component';
 import { AllMatiereComponent } from './content/matiere/all-matiere/all-matiere.component';
 import { CreateMatiereComponent } from './content/matiere/create-matiere/create-matiere.component';
 import { DetailMatiereComponent } from './content/matiere/detail-matiere/detail-matiere.component';
 import { AllClasseComponent } from './content/classe/all-classe/all-classe.component';
 import { CreateClasseComponent } from './content/classe/create-classe/create-classe.component';
 import { DetailClasseComponent } from './content/classe/detail-classe/detail-classe.component';
+import { DetailNoteComponent } from './content/note/detail-note/detail-note.component';
+import { AllAbsenceComponent } from './content/absence/all-absence/all-absence.component';
+import { DetailAbsenceComponent } from './content/absence/detail-absence/detail-absence.component';
+import { CreateAbsenceComponent } from './content/absence/create-absence/create-absence.component';
 
 
 @NgModule({
@@ -33,16 +36,19 @@ import { DetailClasseComponent } from './content/classe/detail-classe/detail-cla
     AllEtudiantComponent,
     CreateEtudiantComponent,
     DashboardComponent,
-    DetailEtudiantsComponent
+    DetailEtudiantsComponent,
     AllNoteComponent,
     CreateNoteComponent,
-    UpdateNoteComponent,
     AllMatiereComponent,
     CreateMatiereComponent,
     DetailMatiereComponent,
     AllClasseComponent,
     CreateClasseComponent,
-    DetailClasseComponent
+    DetailClasseComponent,
+    DetailNoteComponent,
+    AllAbsenceComponent,
+    DetailAbsenceComponent,
+    CreateAbsenceComponent
   ],
   imports: [
     BrowserModule,

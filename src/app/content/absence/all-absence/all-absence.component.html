@@ -1,0 +1,32 @@
+<div class="container">
+    <h2>Liste des Matières :</h2>
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nom</th>
+                <th>Date début</th>
+                <th>Date fin</th>
+                <th>Justificatif</th>
+                <th>Description</th>
+                <th>Etudiant</th>
+                
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let a of this.allAbsence">
+                <td>{{a.identifiant}}</td>
+                <td>{{a.nom}}</td>
+                <td>{{a.dateStart}}</td>
+                <td>{{a.dateEnd}}</td>
+                <td>{{a.justif}}</td>
+                <td>{{a.descript}}</td>
+                <td>{{a.etudiant}}</td>
+               
+                <td>
+                    <button class="btn btn-danger" (click)="this.delete(a.identifiant)">Supprimer</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
