@@ -18,5 +18,9 @@ export class ExamenService {
       return this.http.get<ResponseDto>(this.URL + '/all');
   } 
 
+  delete(id: number): Observable<ResponseDto> {
+    return this.http.delete<ResponseDto>(this.URL + '?id=' + id);
+  }
+
   constructor(private http: HttpClient) { }
 }
