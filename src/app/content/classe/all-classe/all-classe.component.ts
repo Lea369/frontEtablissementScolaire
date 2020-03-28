@@ -36,6 +36,8 @@ export class AllClasseComponent implements OnInit {
       responseDto => {
         if (!responseDto.error) {
           this.allClasse = this.allClasse.filter(element =>  element.id !== id);
+          this.messageValidation = 'Suppression reussie';
+          document.location.reload();
         }
       }
     );
@@ -54,6 +56,7 @@ export class AllClasseComponent implements OnInit {
       (responseDtoError) => {
         if (responseDtoError.error) {
           this.messageEchec = 'Erreur de création';
+          document.location.reload();
         }
       }
     );

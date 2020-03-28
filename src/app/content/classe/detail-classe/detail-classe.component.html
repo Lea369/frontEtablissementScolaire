@@ -14,6 +14,9 @@
     </div>
     <br>
     <button class="btn btn-info" (click)="update()">Mettre à jour</button>
+    &nbsp;&nbsp;
+    <span class="alert alert-success" *ngIf = "messageValidation">{{messageValidation}}</span>
+    <span class="alert alert-danger" *ngIf = "messageEchec">{{messageEchec}}</span>
     <br><br><br>
 </div>
 

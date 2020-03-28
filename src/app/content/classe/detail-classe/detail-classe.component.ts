@@ -51,6 +51,7 @@ export class DetailClasseComponent implements OnInit {
       (responseDtoError) => {
         if (responseDtoError.error) {
           this.messageEchec = 'Erreur de mise à jour';
+          document.location.reload();
         }
       }
     );
