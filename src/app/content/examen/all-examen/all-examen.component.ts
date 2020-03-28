@@ -20,7 +20,13 @@ export class AllExamenComponent implements OnInit {
   }
 
   delete(id : number) {
-
+    this.service.delete(id).subscribe(
+      responseDto => {
+        this.allExamen = this.allExamen.filter(
+          exam => exam.idExam !== id
+        )
+      }
+    );
   }
 
   constructor(private service: ExamenService) { }
