@@ -1,11 +1,20 @@
-<div *ngIf="classe">
-
-    <h2>{{classe.name | uppercase}} Details</h2>
-    <div><span>id: </span>{{classe.id}}</div>
+<div *ngIf="classe" class="container">
+    <br><br><br>
+    <h2>Détails de la classe :</h2>
+    <div><span>ID : </span>{{classe.id}}</div>
+    <div><span>Nom : </span>{{classe.name}}</div>
+    <br>
+    <button class="btn btn-info" (click)="goBack()">Retour</button>
+    <br><br><br>
+    <h2>Mettre à jour les informations ?</h2>
     <div>
-      <label>name:
-        <input [(ngModel)]="classe.name" placeholder="name"/>
-      </label>
+    <label>Nouveau nom :
+        <input [(ngModel)]="classe.name" placeholder="Nouveau nom"/>
+    </label>
     </div>
-  
-  </div>
+    <br>
+    <button class="btn btn-info" (click)="update()">Mettre à jour</button>
+    <br><br><br>
+</div>
+
+

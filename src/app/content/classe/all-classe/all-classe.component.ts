@@ -24,11 +24,9 @@ export class AllClasseComponent implements OnInit {
   getAll() {
     this.service.getAll().subscribe(
       (responseDto) => {
-        console.log('debug responseDto : ', responseDto);
         if (!responseDto.error) {
           this.allClasse = responseDto.body;
         }
-        
       }
     );
   }
@@ -36,13 +34,9 @@ export class AllClasseComponent implements OnInit {
   delete(id: number) {
     this.service.delete(id).subscribe(
       responseDto => {
-        console.log('debug responseDto : ', responseDto);
         if (!responseDto.error) {
-          this.allClasse = this.allClasse.filter(
-            element =>  element.id !== id
-          );
+          this.allClasse = this.allClasse.filter(element =>  element.id !== id);
         }
-        console.log('result after delete: ', this.allClasse);
       }
     );
   }
