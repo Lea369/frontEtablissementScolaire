@@ -20,7 +20,7 @@ export class EtudiantsService {
   }
 
   getEtudiant(id: number) : Observable<ResponseDto>{
-    return this.http.get<ResponseDto>(this.URL + '?id' + id);
+    return this.http.get<ResponseDto>(this.URL + '?id=' + id);
   }
 
   delete(id: number): Observable<ResponseDto> {

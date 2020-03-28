@@ -13,7 +13,9 @@ import { ResponseDto } from 'src/app/models/response-dto';
 })
 export class DetailEtudiantsComponent implements OnInit {
 
-  @Input() etudiant: EtudiantUpdateDto;
+  //@Input() etudiant: EtudiantUpdateDto;
+
+  etudiant: EtudiantUpdateDto;
   
   
   constructor(
