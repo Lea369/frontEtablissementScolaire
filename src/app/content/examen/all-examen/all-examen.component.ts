@@ -37,7 +37,8 @@ export class AllExamenComponent implements OnInit {
       this.service.create(this.newExam).subscribe(
         responseDto => {
           if (!responseDto.error) {
-            location.reload();
+            this.getAllExamens();
+            this.showCreate = false;
           }
         },
 
@@ -46,7 +47,7 @@ export class AllExamenComponent implements OnInit {
           this.messageEchec = "Erreur " + responseError.status + ".";
 
           if (responseError.status === 400) {
-            this.messageEchec += " Veuillez verifier que tous les champs sont remplis."
+            this.messageEchec += " Veuillez verifier les valeurs dans le formulaire."
           }
 
         }
@@ -69,13 +70,20 @@ export class AllExamenComponent implements OnInit {
   constructor(private service: ExamenService, private matService: MatiereService) { }
 
   ngOnInit(): void {
+    this.getAllExamens();
+    this.getAllMatieres();
+  }
+
+  private getAllExamens(): void {
     this.service.getAll().subscribe(
       responseDto => this.allExamen = responseDto.body
     );
+  }
+
+  private getAllMatieres(): void {
     this.matService.getAll().subscribe(
       responseDto => this.allMatiere = responseDto.body
     );
-    console.log("allMatiere:" + this.allMatiere);
   }
 
 }
