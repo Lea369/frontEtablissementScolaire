@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ExamenUpdateDto } from 'src/app/models/examen-update-dto';
 import { ExamenService } from '../../../services/examen/examen.service';
 import { ResponseDto } from 'src/app/models/response-dto';
+import { ExamenCreateDto } from 'src/app/models/examen-create-dto';
 
 @Component({
   selector: 'app-all-examen',
@@ -11,6 +12,12 @@ import { ResponseDto } from 'src/app/models/response-dto';
 export class AllExamenComponent implements OnInit {
 
   allExamen = new Array<ExamenUpdateDto>();
+
+  newExam: ExamenCreateDto;
+
+  create() {
+    
+  }
 
   delete(id : number) {
 

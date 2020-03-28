@@ -11,9 +11,19 @@
             </tr>
         </thead>
         <tbody>
+            <tr>
+                <td></td>                
+                <td>Matiere</td>
+                <td>Date</td>
+                <td>Type</td>
+                <td><input type="text" [(ngModel)]="this.newExam.coefExamen"></td>
+                <td>
+                    <button class="btn btn-success" (click)="this.create()">Ajouter</button>
+                </td>
+            </tr>
             <tr *ngFor="let e of this.allExamen">
                 <td>{{e.idExam}}</td>                
-                <td *ngIf="e.matiereExamen !== null; else elseBlock">{{e.matiereExamen.nomMatiere}}</td>
+                <td *ngIf="e.matiereExamen !== null; else elseBlock"><a routerLink="/matiere/detail/{{e.matiereExamen.idMatiere}}">{{e.matiereExamen.nomMatiere}}</a></td>
                 <ng-template #elseBlock><td>AUCUNE!</td></ng-template>
                 <td>{{e.dateExamen}}</td>
                 <td>{{e.typeExamen}}</td>
