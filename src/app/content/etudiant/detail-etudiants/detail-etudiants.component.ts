@@ -35,6 +35,9 @@ export class DetailEtudiantsComponent implements OnInit {
         if (!responseDto.error) {
           this.etudiant = responseDto.body;
         }
+      },
+      respError => {
+        console.log(respError);
       }
     );
   }
