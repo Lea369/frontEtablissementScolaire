@@ -3,7 +3,7 @@ import { Observable } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from '../../../environments/environment';
 
-import { ExamenUpdateDto } from 'src/app/models/examen-update-dto';
+import { ExamenCreateDto } from 'src/app/models/examen-create-dto';
 import { ResponseDto } from 'src/app/models/response-dto';
 
 
@@ -20,6 +20,10 @@ export class ExamenService {
 
   delete(id: number): Observable<ResponseDto> {
     return this.http.delete<ResponseDto>(this.URL + '?id=' + id);
+  }
+
+  create(exam: ExamenCreateDto): Observable<ResponseDto> {
+    return this.http.post<ResponseDto>(this.URL, exam);
   }
 
   constructor(private http: HttpClient) { }
