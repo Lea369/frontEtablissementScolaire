@@ -1,1 +1,45 @@
-<p>detail-examen works!</p>
+<div class="alert alert-danger" *ngIf="errMessage">{{errMessage}}</div>
+
+
+
+
+<div class="container" *ngIf="this.examen">
+    <h2>Details de l'examen</h2>
+
+    <div *ngIf="!editMode; else editBlock">
+        <div>ID: {{this.examen.idExam}}</div>
+        <div>Matiere: <a
+                routerLink="/matiere/detail/{{this.examen.matiereExamen.idMatiere}}">{{this.examen.matiereExamen.nomMatiere}}</a>
+        </div>
+        <div>Date: {{this.examen.dateExamen}}</div>
+        <div>Type: {{this.examen.typeExamen}}</div>
+        <div>Coefficient: {{this.examen.coefExamen}}</div>
+        <div><button class="btn btn-primary" style="margin-top: 1rem; margin-bottom: 1rem;"
+                (click)="toggle()">Modifier</button></div>
+    </div>
+    <ng-template #editBlock>
+        <div *ngIf="editMode" class="col-lg-3 col-sm-6">
+            <div>ID: {{this.examen.idExam}}</div>
+            <div>Matiere: ({{this.examen.matiereExamen.nomMatiere}})
+                <select class="form-control" [(ngModel)]="this.examen.matiereExamen">
+                    <option *ngFor="let m of this.allMatiere" [ngValue]="m" >{{m.nomMatiere}}</option>
+                </select>
+            </div>
+            <div>Date: <input class="form-control" type="date" [(ngModel)]="this.examen.dateExamen"> </div>
+            <div>Type:
+                <select class="form-control" id="sel1" [(ngModel)]="this.examen.typeExamen" name="type">
+                    <option>CC</option>
+                    <option>DS</option>
+                    <option>TEST</option>
+                    <option>EXAMEN</option>
+                </select>
+            </div>
+            <div>Coefficient: <input type="text" class="form-control" [(ngModel)]="this.examen.coefExamen"
+                    style="width: 3rem;"></div>
+            <div><button class="btn btn-success" style="margin-top: 1rem; margin-bottom: 1rem; margin-right: 1rem;"
+                    (click)="update()">Enregistrer</button>
+                <button class="btn btn-primary" style="margin-top: 1rem; margin-bottom: 1rem;"
+                    (click)="toggle()">Annuler</button></div>
+        </div>
+    </ng-template>
+</div>
