@@ -1,4 +1,5 @@
 import { SexeEnum } from '../enums/sexe-enum.enum';
+import { ClasseUpdateDto } from './classe-update-dto';
 
 export class EtudiantCreateDto {
     adress: string;
@@ -10,4 +11,5 @@ export class EtudiantCreateDto {
     postalCode: number;
     s: SexeEnum;
     surname: string;
+    classe: ClasseUpdateDto;
 }

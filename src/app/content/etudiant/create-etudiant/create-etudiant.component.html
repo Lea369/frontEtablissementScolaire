@@ -1,51 +1,47 @@
 <br>
-<div id="form">
+
     <h2 id="titre">Ajouter un Etudiant </h2>
     <hr>
-    <form class="col-lg-3 col-sm-6" >
+    <div id="form">
+    <form class="col-lg-3 col-sm-6">
         <div class="form-group">
             <label for="nom">Nom :</label>
-            <input type="text" class="form-control" [(ngModel)]="this.etudiant.name" placeholder="Nom" name="nom" required>
+            <input type="text" class="form-control" [(ngModel)]="this.etudiant.name" placeholder="Nom" name="nom"
+                required>
         </div>
         <hr>
         <div class="form-group">
             <label for="prenom">Prénom :</label>
-            <input type="text" class="form-control" [(ngModel)]="this.etudiant.surname" placeholder="Prénom" name="prenom" required>
+            <input type="text" class="form-control" [(ngModel)]="this.etudiant.surname" placeholder="Prénom"
+                name="prenom" required>
         </div>
         <hr>
         <div class="form-group">
-            <label for="email">Email address:</label>
-            <input type="email" class="form-control" [(ngModel)]="this.etudiant.mail" placeholder="Enter email" name="email" required>
+            <label for="email">Email :</label>
+            <input type="email" class="form-control" [(ngModel)]="this.etudiant.mail" placeholder="Email"
+                name="email" required>
         </div>
         <hr>
         <div class="form-group">
-            <label for="cin">CIN</label>
-            <input type="text" class="form-control" [(ngModel)]="this.etudiant.identity" placeholder="Votre num de carte d'identité" name="cin" required>
+            <label for="cin">CIN :</label>
+            <input type="text" class="form-control" [(ngModel)]="this.etudiant.identity"
+                placeholder="Votre num de carte d'identité" name="cin" required>
         </div>
         <hr>
         <div class="form-group">
             <label for="sel1">Sexe :</label>
             <select class="form-control" id="sel1" [(ngModel)]="this.etudiant.s" name="sexe">
-              <option class="selected">F</option>
-              <option>M</option>
-              <option>A</option>
-            </select>
-        </div>
-        <hr>
-        <div class="form-group">
-            <label for="sel1">Classe :</label>
-            <select class="form-control" id="sel1" [(ngModel)]="this.etudiant.s" name="classe">
-              <option class="selected">5ème</option>
-              <option>4ème</option>
-              <option>3ème</option>
+                <option class="selected">F</option>
+                <option>M</option>
+                <option>A</option>
             </select>
         </div>
         <hr>
         <button type="button" class="btn btn-primary" (click)="this.save()">Submit</button>
         <br>
-        <div class="alert alert-success">
-            <strong>Success!</strong> {{this.messageValidation}}
-        </div>
+        <br>
+        <div class="alert alert-success" *ngIf="messageValidation">{{messageValidation}}</div>
+        <div class="alert alert-danger" *ngIf="messageEchec">{{messageEchec}}</div>
 
     </form>
 </div>

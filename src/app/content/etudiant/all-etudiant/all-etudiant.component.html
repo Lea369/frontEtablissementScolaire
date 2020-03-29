@@ -1,25 +1,70 @@
-
 <app-create-etudiant></app-create-etudiant>
-<div class="container">
-    <h2 id="titre">Liste des étudiants </h2>
-    <br>
+
+
+<h2 id="titre">Liste des étudiants </h2>
+<br>
+<div class="row">
+
     <table class="table table-hover">
+
         <thead>
             <tr>
-                <th>ID</th>
-                <th>Nom</th>
+                <th>
+                    ID
+                </th>
+                <th>
+                    Nom
+                </th>
                 <th>Prénom</th>
-                <th>Email</th>
+                <th>
+                    Email
+                </th>
                 <th>CIN</th>
                 <th>Téléphone</th>
                 <th>Adresse</th>
                 <th>Ville</th>
                 <th>Code Postal.</th>
                 <th>Sexe</th>
+                <th>Classe</th>
                 <th>Actions</th>
             </tr>
         </thead>
         <tbody>
+
+            <tr>
+
+                <td></td>
+                <td><input type="text" class="form-control" [(ngModel)]="this.etudiantcreate.name" name="nom" required>
+                </td>
+                <td><input type="text" class="form-control" [(ngModel)]="this.etudiantcreate.surname" name="prenom"
+                        required></td>
+                <td><input type="email" class="form-control" [(ngModel)]="this.etudiantcreate.mail" name="email"
+                        required></td>
+                <td><input type="text" class="form-control" [(ngModel)]="this.etudiantcreate.identity" name="cin"
+                        required></td>
+                <td><input type="text" class="form-control" [(ngModel)]="this.etudiantcreate.phone" name="phone"
+                        required></td>
+
+                <td><input type="text" class="form-control" [(ngModel)]="this.etudiantcreate.adress" name="adresse"
+                        required>
+
+                </td>
+
+                <td><input type="text" class="form-control" [(ngModel)]="this.etudiantcreate.city" name="ville"
+                        required></td>
+                <td><input type="text" class="form-control" [(ngModel)]="this.etudiantcreate.postalCode"
+                        name="codepostal" required>
+                </td>
+                <td><select class="form-control" id="sel1" [(ngModel)]="this.etudiantcreate.s" name="sexe">
+                        <option class="selected">F</option>
+                        <option>M</option>
+                        <option>A</option>
+                    </select></td>
+                <td>{{etudiantcreate.classe}}</td>
+                <td>
+                    <button type="button" class="btn btn-primary" (click)="this.save()">Ajouter</button>
+                </td>
+            </tr>
             <tr *ngFor="let etudiant of this.allEtudiant">
                 <td>{{etudiant.identifiant}}</td>
                 <td>{{etudiant.name}}</td>
@@ -31,15 +76,17 @@
                 <td>{{etudiant.city}}</td>
                 <td>{{etudiant.postalCode}}</td>
                 <td>{{etudiant.s}}</td>
+                <td>{{etudiant.classe}}</td>
                 <td>
                     <button class="btn btn-danger" (click)="this.delete(etudiant.identifiant)">Supprimer</button>
-                    <a routerLink="detail/{{etudiant.identifiant}}">
-                    <!-- <button class="btn btn-info"  role="button" (click)="this.getEtudiant(etudiant.identifiant)">Details</button> -->
-                    <button class="btn btn-info"  role="button">Details</button>
-                    </a>
+                    <a routerLink="/etudiant/detail/{{etudiant.identifiant}}" class="btn btn-info"
+                        role="button">Details</a>
                 </td>
             </tr>
+
         </tbody>
+
+
     </table>
 
 </div>

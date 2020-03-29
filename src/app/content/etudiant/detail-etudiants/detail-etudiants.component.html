@@ -1,38 +1,112 @@
+<br>
+<div *ngIf="etudiant" class="container">
+  <h2> Details de l'Etudiant numéro <b>{{etudiant.identifiant}} : {{etudiant.surname}}</b></h2>
+  <hr>
+  <div class="row">
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Nom</th>
+          <th>Prénom</th>
+          <th>Email</th>
+          <th>CIN</th>
+          <th>Téléphone</th>
+          <th>Adresse</th>
+          <th>Ville</th>
+          <th>Code Postal.</th>
+          <th>Sexe</th>
+          <th>Classe</th>
+        </tr>
+      </thead>
+      <tbody>
 
-<div *ngIf="etudiant">
+        <tr>
 
-    <h2>{{etudiant.name}} Details</h2>
-    <div><span>Id: </span>{{etudiant.identifiant}}</div>
-    <div>
-      <label>Nom:
-        <input [(ngModel)]="etudiant.name" placeholder="name"/>
-    </label>
-    <label>Prénom:
-        <input [(ngModel)]="etudiant.surname" placeholder="surname"/>
-    </label>
-    <label>Email:
-        <input [(ngModel)]="etudiant.mail" placeholder="email"/>
-    </label>
-    <label>CIN:
-        <input [(ngModel)]="etudiant.identity" placeholder="CIN"/>
-    </label>
-    <label>Téléphone:
-        <input [(ngModel)]="etudiant.phone" placeholder="Téléphone"/>
-    </label>
-    <label>Adresse:
-        <input [(ngModel)]="etudiant.adress" placeholder="Adresse"/>
-      </label>
-      <label>Ville:
-        <input [(ngModel)]="etudiant.city" placeholder="Ville"/>
-      </label>
-      <label>CP:
-        <input [(ngModel)]="etudiant.postalCode" placeholder="Code Postal"/>
-      </label>
-      <label>Sexe:
-        <input [(ngModel)]="etudiant.s" placeholder="Sexe"/>
-      </label>
-    </div>
-    <button (click)="goBack()">go back</button>
-  <button (click)="save()">save</button>
-  
+          <tr>
+            <td>{{etudiant.identifiant}}</td>
+            <td>{{etudiant.name}}</td>
+            <td>{{etudiant.surname}}</td>
+            <td>{{etudiant.mail}}</td>
+            <td>{{etudiant.identity}}</td>
+            <td>{{etudiant.phone}}</td>
+            <td>{{etudiant.adress}}</td>
+            <td>{{etudiant.city}}</td>
+            <td>{{etudiant.postalCode}}</td>
+            <td>{{etudiant.s}}</td>
+            <td>{{etudiant.classe}}</td>
+        </tr>
+      </tbody>
+    </table>
   </div>
+  <hr>
+  <h2> Modifier l'Etudiant numéro <b>{{etudiant.identifiant}} : {{etudiant.surname}}</b></h2>
+  
+
+  <form class="col-lg-3 col-sm-6">
+    <div class="form-group">
+      <div>
+        <label for="id">Id :</label>
+        <input type="text" class="form-control" [(ngModel)]="this.etudiant.identifiant" placeholder="Id" name="id"
+          required>
+      </div>
+      <hr>
+      <div>
+        <label for="nom">Nom :</label>
+        <input type="text" class="form-control" [(ngModel)]="this.etudiant.name" placeholder="Nom" name="nom" required>
+      </div>
+      <hr>
+      <div class="form-group">
+        <label for="prenom">Prénom :</label>
+        <input type="text" class="form-control" [(ngModel)]="this.etudiant.surname" placeholder="Prénom" name="prenom"
+          required>
+      </div>
+      <hr>
+      <div class="form-group">
+        <label for="email">Email :</label>
+        <input type="email" class="form-control" [(ngModel)]="this.etudiant.mail" placeholder="Enter email" name="email"
+          required>
+      </div>
+      <hr>
+      <div class="form-group">
+        <label for="cin">CIN :</label>
+        <input type="text" class="form-control" [(ngModel)]="this.etudiant.identity"
+          placeholder="Votre num de carte d'identité" name="cin" required>
+      </div>
+      <div class="form-group">
+        <label for="cin">Téléphone :</label>
+        <input type="text" class="form-control" [(ngModel)]="this.etudiant.phone" name="phone" required>
+      </div>
+      <div class="form-group">
+        <label for="cin">Adresse :</label>
+        <input type="text" class="form-control" [(ngModel)]="this.etudiant.adress" name="adresse" required>
+      </div>
+      <div class="form-group">
+        <label for="cin">Ville :</label>
+        <input type="text" class="form-control" [(ngModel)]="this.etudiant.city" name="ville" required>
+      </div>
+      <div class="form-group">
+        <label for="cin">CP :</label>
+        <input type="text" class="form-control" [(ngModel)]="this.etudiant.postalCode" name="cp" required>
+      </div>
+      <hr>
+      <div class="form-group">
+        <label for="sel1">Sexe :</label>
+        <select class="form-control" id="sel1" [(ngModel)]="this.etudiant.s" name="sexe">
+          <option class="selected">F</option>
+          <option>M</option>
+          <option>A</option>
+        </select>
+        <hr>
+
+
+
+        <button (click)="goBack()" class="btn btn-info">Go Back</button>
+        <button (click)="save()" class="btn btn-primary">Submit</button>
+        <br>
+        <br>
+
+      </div>
+    </div>
+  </form>
+</div>

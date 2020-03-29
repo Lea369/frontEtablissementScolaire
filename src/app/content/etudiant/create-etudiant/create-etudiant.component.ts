@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { EtudiantCreateDto } from 'src/app/models/etudiant-create-dto';
 import { EtudiantsService } from 'src/app/services/etudiant/etudiants.service';
+import { ResponseDto } from 'src/app/models/response-dto';
+import { ClasseUpdateDto } from 'src/app/models/classe-update-dto';
 
 @Component({
   selector: 'app-create-etudiant',
@@ -10,7 +12,8 @@ import { EtudiantsService } from 'src/app/services/etudiant/etudiants.service';
 export class CreateEtudiantComponent implements OnInit {
 
   etudiant = new EtudiantCreateDto();
-  messageValidation = '';
+  messageValidation: string;
+  messageEchec: string;
 
   constructor(private service: EtudiantsService) { }
 
@@ -20,9 +23,15 @@ export class CreateEtudiantComponent implements OnInit {
   save() {
     this.service.create(this.etudiant).subscribe(
       (responseDto) => {
-        console.log('debug responseDto : ', responseDto);
         if (!responseDto.error) {
-          this.messageValidation = responseDto.message;
+          this.messageValidation = 'Creation reussie';
+          document.location.reload();
+        }
+      },
+      (responseDtoError) => {
+        if (responseDtoError.error) {
+          this.messageEchec = 'Erreur de création';
+          document.location.reload();
         }
       }
     );
