@@ -8,3 +8,12 @@ h1 {
     background-color: lavender;
     
 }
+
+
+table {
+    align-content: center;
+    width: 1000px;
+}
+img {
+    width: 500px;
+}
