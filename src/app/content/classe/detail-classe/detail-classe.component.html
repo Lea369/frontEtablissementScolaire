@@ -1,1 +1,23 @@
-<p>detail-classe works!</p>
+<div *ngIf="classe" class="container">
+    <br><br><br>
+    <h2>Détails de la classe :</h2>
+    <div><span>ID : </span>{{classe.id}}</div>
+    <div><span>Nom : </span>{{classe.name}}</div>
+    <br>
+    <button class="btn btn-info" (click)="goBack()">Retour</button>
+    <br><br><br>
+    <h2>Mettre à jour les informations ?</h2>
+    <div>
+    <label>Nouveau nom :
+        <input [(ngModel)]="classe.name" placeholder="Nouveau nom"/>
+    </label>
+    </div>
+    <br>
+    <button class="btn btn-info" (click)="update()">Mettre à jour</button>
+    &nbsp;&nbsp;
+    <span class="alert alert-success" *ngIf = "messageValidation">{{messageValidation}}</span>
+    <span class="alert alert-danger" *ngIf = "messageEchec">{{messageEchec}}</span>
+    <br><br><br>
+</div>
+
+

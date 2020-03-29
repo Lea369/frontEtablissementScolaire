@@ -1,1 +1,32 @@
-<p>all-classe works!</p>
+<div class="container">
+    <br><br><br>
+    <h2>Liste des classes :</h2>
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nom</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let classe of this.allClasse">
+                <td>{{classe.id}}</td>
+                <td>{{classe.name}}</td>
+                <td>
+                    <button class="btn btn-danger" (click)="this.delete(classe.id)">Supprimer</button>
+                    &nbsp;
+                    <a routerLink="/classe/detail/{{classe.id}}" class="btn btn-info" role="button">Voir details</a>
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td><input type="text" class="form-control" [(ngModel)]="this.classe.name" placeholder="Nom de la classe à ajouter" name="nom" required></td>
+                <td><button type="button" class="btn btn-info" (click)="this.save()">Ajouter</button></td>
+            </tr>
+        </tbody>
+    </table>
+    <div class="alert alert-success" *ngIf = "messageValidation">{{messageValidation}}</div>
+    <div class="alert alert-danger" *ngIf = "messageEchec">{{messageEchec}}</div>
+    <br><br>
+</div>

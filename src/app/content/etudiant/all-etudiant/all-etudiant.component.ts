@@ -47,6 +47,9 @@ export class AllEtudiantComponent implements OnInit {
     );
   }
 
+ // TODO: Je ne crois pas que cette fonction est utile dans all-etudiant
+ // Potentiellement à supprimer - G
+ /*
   getEtudiant(id: number) {
     this.service.getEtudiant(id).subscribe(
       responseDto => {
@@ -57,5 +60,6 @@ export class AllEtudiantComponent implements OnInit {
       }
     );
     }
+    */
 
 }
