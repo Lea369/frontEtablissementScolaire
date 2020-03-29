@@ -4,3 +4,13 @@ h1 {
     font-family: 'Times New Roman', Times, serif;
 }
 
+
+table {
+    align-content: center;
+    width: 1000px;
+}
+img {
+    width: 500px;
+}
+
+

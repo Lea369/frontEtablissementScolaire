@@ -30,6 +30,7 @@ import { DetailAbsenceComponent } from './content/absence/detail-absence/detail-
 import { CreateAbsenceComponent } from './content/absence/create-absence/create-absence.component';
 
 
+
 @NgModule({
   declarations: [
     AppComponent,
