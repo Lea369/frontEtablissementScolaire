@@ -21,6 +21,8 @@ export class DetailMatiereComponent implements OnInit {
   emptyListe: boolean = false;
   listeEtudiant = new Array<EtudiantUpdateDto>();
   listeNewEtudiant = new Array<EtudiantUpdateDto>();
+  montrerAjout: boolean = false;
+  modifNom: boolean = false;
 
   constructor(
     private route : ActivatedRoute,
@@ -31,10 +33,28 @@ export class DetailMatiereComponent implements OnInit {
 
   ngOnInit(): void {
     this.getMatiere();
-    this.getEtudiants();
+  
   }
   goBack(): void {
     this.location.back();
+  }
+
+  toggle(): void {
+    if(this.montrerAjout){
+      window.location.reload()
+    } else {
+      this.getEtudiants();
+      this.montrerAjout = true;
+    }
+  }
+
+  toggleNom(): void {
+    if(this.modifNom){
+      this.update();
+      window.location.reload();
+    } else {
+      this.modifNom = true;
+    }
   }
 
   getMatiere(): void{
@@ -59,6 +79,7 @@ export class DetailMatiereComponent implements OnInit {
     this.serviceEtudiant.getAll().subscribe(
       responseDto => {
         if(!responseDto.error){
+          this.montrerAjout=true;
           this.listeEtudiant = responseDto.body;
           this.matiere.listeEtudiant.forEach(element => {
            this.listeEtudiant.forEach(e => {
@@ -71,7 +92,7 @@ export class DetailMatiereComponent implements OnInit {
       }
     )
   }
-  
+
   ajoutEtudiant():void{
 
     this.listeNewEtudiant.forEach(element => {

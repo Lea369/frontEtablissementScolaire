@@ -2,9 +2,21 @@
     <br><br><br>
     <h2>Détails de la matière :</h2>
     <div><span>ID : </span>{{matiere.idMatiere}}</div>
-    <div><span>Nom : </span>{{matiere.nomMatiere}}</div>
+    <div><span>Nom : </span>{{matiere.nomMatiere}} 
+        <button class="btn btn-info" (click)="this.toggleNom()">
+            <span *ngIf="!modifNom; else elseBlock" > Modifier le nom
+            </span> 
+            <ng-template #elseBlock>Mettre à jour</ng-template>
+        </button>
+        <div *ngIf="modifNom">
+            <label>Nouveau nom :
+                <input [(ngModel)]="matiere.nomMatiere" placeholder="Nouveau nom"/>
+            </label>
+            </div>
+    </div> 
     <div><span>Elèves : 
-
+    <button class="btn btn-info" (click)="this.toggle()"><span *ngIf="!montrerAjout; else elseBlock" > Ajouter des étudiants</span> <ng-template #elseBlock>Cacher le formulaire</ng-template></button>
+    
     </span>
         <p *ngIf="emptyListe;">Aucun étudiant n'est inscrit à cette matière</p>
         <table *ngIf="!emptyListe;"><thead>
@@ -28,7 +40,7 @@
         </tr>
        
     </tbody></table>
-    <div>
+    <div *ngIf="montrerAjout;">
         <td><select multiple class="form-control" [(ngModel)]="this.listeNewEtudiant" >
             <option *ngFor="let e of this.listeEtudiant"[ngValue]="e">{{e.name}}</option>
           </select></td>
@@ -39,16 +51,7 @@
 </div>
     <br>
     <button class="btn btn-info" (click)="goBack()">Retour</button>
-    <br><br><br>
-    <h2>Mettre à jour les informations ?</h2>
-    <div>
-    <label>Nouveau nom :
-        <input [(ngModel)]="matiere.nomMatiere" placeholder="Nouveau nom"/>
-    </label>
-    </div>
-    <br>
-    <button class="btn btn-info" (click)="update()">Mettre à jour</button>
-    &nbsp;&nbsp;
+ 
     <span class="alert alert-success" *ngIf = "messageValidation">{{messageValidation}}</span>
     <span class="alert alert-danger" *ngIf = "messageEchec">{{messageEchec}}</span>
     <br><br><br>
