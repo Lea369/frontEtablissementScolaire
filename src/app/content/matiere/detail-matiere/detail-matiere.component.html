@@ -1,1 +1,55 @@
-<p>detail-matiere works!</p>
+<div *ngIf="this.matiere" class="container">
+    <br><br><br>
+    <h2>Détails de la matière :</h2>
+    <div><span>ID : </span>{{matiere.idMatiere}}</div>
+    <div><span>Nom : </span>{{matiere.nomMatiere}}</div>
+    <div><span>Elèves : 
+
+    </span>
+        <p *ngIf="emptyListe;">Aucun étudiant n'est inscrit à cette matière</p>
+        <table *ngIf="!emptyListe;"><thead>
+        <tr>
+            <th>ID</th>
+            <th>Nom</th>
+            <th>Prénom</th>
+            <th>Email</th>
+            
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let e of this.matiere.listeEtudiant">
+            <td>{{e.identifiant}}</td>
+            <td>{{e.name}}</td>
+            <td>{{e.surname}}</td>
+            <td>{{e.mail}}</td>
+            <td>
+                <button class="btn btn-danger" (click)="this.desinscrit(e)">Désinscrire</button>
+            </td>
+        </tr>
+       
+    </tbody></table>
+    <div>
+        <td><select multiple class="form-control" [(ngModel)]="this.listeNewEtudiant" >
+            <option *ngFor="let e of this.listeEtudiant"[ngValue]="e">{{e.name}}</option>
+          </select></td>
+        <td>
+            <button class="btn btn-danger" (click)="ajoutEtudiant()">Ajouter</button>
+        </td>
+    </div>
+</div>
+    <br>
+    <button class="btn btn-info" (click)="goBack()">Retour</button>
+    <br><br><br>
+    <h2>Mettre à jour les informations ?</h2>
+    <div>
+    <label>Nouveau nom :
+        <input [(ngModel)]="matiere.nomMatiere" placeholder="Nouveau nom"/>
+    </label>
+    </div>
+    <br>
+    <button class="btn btn-info" (click)="update()">Mettre à jour</button>
+    &nbsp;&nbsp;
+    <span class="alert alert-success" *ngIf = "messageValidation">{{messageValidation}}</span>
+    <span class="alert alert-danger" *ngIf = "messageEchec">{{messageEchec}}</span>
+    <br><br><br>
+</div>

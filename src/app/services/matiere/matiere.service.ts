@@ -4,6 +4,7 @@ import { ResponseDto } from 'src/app/models/response-dto';
 import { Observable } from 'rxjs';
 import { MatiereCreateDto } from 'src/app/models/matiere-create-dto';
 import {environment} from 'src/environments/environment';
+import { MatiereUpdateDto } from 'src/app/models/matiere-update-dto';
 
 
 @Injectable({
@@ -27,4 +28,11 @@ export class MatiereService {
     return this.http.post<ResponseDto>(this.URL, matiere);
   }
 
+  getMatiere(id: number): Observable<ResponseDto>{
+    return this.http.get<ResponseDto>(this.URL + '/one?id=' + id);
+  } 
+
+  update(matiere: MatiereUpdateDto): Observable<ResponseDto>{
+    return this.http.put<ResponseDto>(this.URL , matiere);
+  }
 }

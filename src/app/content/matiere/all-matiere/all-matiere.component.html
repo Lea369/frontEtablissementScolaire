@@ -1,29 +1,42 @@
 <div class="container">
     <h2>Liste des Matières :</h2>
+    <div class="alert alert-danger" *ngIf="messageEchec">{{messageEchec}}</div>
     <table class="table table-hover">
         <thead>
             <tr>
                 <th>ID</th>
                 <th>Nom</th>
+                <th><button class="btn btn-info" (click)="this.toggle()"><span
+                    *ngIf="!this.showCreate; else elseBlock">Ajouter un element</span>
+                <ng-template #elseBlock>Cacher le formulaire</ng-template>
+            </button></th>
                 
             </tr>
         </thead>
         <tbody>
+            <tr *ngIf="this.showCreate">
+                <td>*</td>
+                <td><input type="text" [(ngModel)]="this.matiere.nomMatiere" required></td>
+
+                <td><select multiple class="form-control" [(ngModel)]="this.matiere.listeEtudiant" name="classe">
+                    <option *ngFor="let e of this.allEtudiant"[ngValue]="e">{{e.name}}</option>
+                  </select></td>
+                <td>
+                    <button class="btn btn-danger" (click)="create()">Ajouter</button>
+                </td>
+            </tr>
             <tr *ngFor="let m of this.allMatiere">
                 <td>{{m.idMatiere}}</td>
                 <td>{{m.nomMatiere}}</td>
+                <td><a routerLink="/matiere/detail/{{m.idMatiere}}">
+                    <button class="btn btn-info">Details</button>
+                </a></td>
                
                 <td>
                     <button class="btn btn-danger" (click)="this.delete(m.idMatiere)">Supprimer</button>
                 </td>
             </tr>
-            <tr>
-                <td></td>
-                <td><input type="text" [(ngModel)]="this.matiere.nomMatiere" required></td>
-                <td>
-                    <button class="btn btn-danger" (click)="create()">Ajouter</button>
-                </td>
-            </tr>
+            
         </tbody>
             
         
