@@ -60,7 +60,11 @@
                         <option>M</option>
                         <option>A</option>
                     </select></td>
-                <td>{{etudiantcreate.classe}}</td>
+                    <td><select class="form-control" id="sel2" [(ngModel)]="this.etudiantcreate.classe" name="classe">
+                        <option class="selected">{{this.classe.id}}</option>
+                        <option>5ème</option>
+                        <option>A</option>
+                    </select></td>
                 <td>
                     <button type="button" class="btn btn-primary" (click)="this.save()">Ajouter</button>
                 </td>
