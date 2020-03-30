@@ -1,30 +1,56 @@
 <div class="container">
-    <h2>Liste des Matières :</h2>
+    <div class="alert alert-danger" *ngIf="messageEchec">{{messageEchec}}</div>
+
+    <h2>Liste des absences :</h2>
     <table class="table table-hover">
         <thead>
             <tr>
                 <th>ID</th>
-                <th>Nom</th>
-                <th>Date début</th>
-                <th>Date fin</th>
-                <th>Justificatif</th>
+                <th>Date de début</th>
+                <th>Date de fin</th>
+                <th>Justification</th>
                 <th>Description</th>
                 <th>Etudiant</th>
-                
+                <th><button class="btn btn-info" (click)="this.toggle()"><span
+                            *ngIf="!this.showCreate; else elseBlock">Ajouter une absence</span>
+                        <ng-template #elseBlock>Cacher le formulaire</ng-template>
+                    </button></th>
             </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let a of this.allAbsence">
-                <td>{{a.identifiant}}</td>
-                <td>{{a.nom}}</td>
-                <td>{{a.dateStart}}</td>
-                <td>{{a.dateEnd}}</td>
-                <td>{{a.justif}}</td>
-                <td>{{a.descript}}</td>
-                <td>{{a.etudiant}}</td>
-               
+            <tr *ngIf="this.showCreate">
+                <td>*</td>
+
+                <td><input class="form-control" type="date" [(ngModel)]="this.newAbsence.dateStart"></td>
+                <td><input class="form-control" type="date" [(ngModel)]="this.newAbsence.dateEnd"></td>
+                <td><input class="form-control" type="text" [(ngModel)]="this.newAbsence.justif" style="width: 3rem;">
+                <td><input class="form-control" type="text" [(ngModel)]="this.newAbsence.descript" style="width: 3rem;">
                 <td>
-                    <button class="btn btn-danger" (click)="this.delete(a.identifiant)">Supprimer</button>
+                    <select class="form-control" [(ngModel)]="this.newAbsence.etudiant">
+                        <option *ngFor="let m of this.allEtudiant" [ngValue]="m">{{m.name}}</option>
+                    </select>
+                </td>
+                <td>
+                    <button class="btn btn-success" (click)="this.create()">Enregistrer</button>
+                </td>
+            </tr>
+            <tr *ngFor="let e of this.allAbsence">
+                <td>{{e.identifiant}}</td>
+                <td>{{e.dateStart}}</td>
+                <td>{{e.dateEnd}}</td>
+                <td>{{e.justif}}</td>
+                <td>{{e.descript}}</td>
+                <td *ngIf="e.etudiant.name !== null; else elseBlock"><a
+                        routerLink="/etudiant/detail/{{e.etudiant.identifiant}}">{{e.etudiant.name}}</a>
+                </td>
+                <ng-template #elseBlock>
+                    <td>AUCUNE!</td>
+                </ng-template>
+                <td>
+                    <a routerLink="/absence/detail/{{e.identifiant}}">
+                        <button class="btn btn-info">Details</button>
+                    </a>
+                    <button class="btn btn-danger" (click)="this.delete(e.identifiant)">Supprimer</button>
                 </td>
             </tr>
         </tbody>

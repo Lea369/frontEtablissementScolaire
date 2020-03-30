@@ -28,10 +28,12 @@ export class DetailEtudiantsComponent implements OnInit {
   montrerModif: boolean = false;
   
   constructor(
+
     private route: ActivatedRoute,
     private service: EtudiantsService,
     private serviceclasse : ClassesService,
     private location: Location) { }
+
 
   ngOnInit(): void {
     this.getEtudiant();
