@@ -17,8 +17,6 @@ export class AllEtudiantComponent implements OnInit {
 
   etudiant: EtudiantUpdateDto;
 
-  classe = new ClasseUpdateDto();
-
   etudiantcreate = new EtudiantCreateDto();
 
   messageValidation: string;
