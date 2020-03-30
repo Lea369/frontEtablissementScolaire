@@ -1,18 +1,18 @@
-<h2>Bulletin</h2>
+<h2>Absences</h2>
 <div>
     <table class="table table-hover">
         <thead>
             <tr>
-                <th>Matière</th>
-                <th>Coefficient</th>
-                <th>Note</th> 
+                <th>Date de début</th>
+                <th>Date de fin</th>
+                <th>Justificatif</th> 
             </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let n of this.allNotes">
-                <td>{{n.examen.matiereExamen.nomMatiere}}</td>
-                <td>{{n.examen.coefExamen}}</td>
-                <td>{{n.value}}</td>
+            <tr *ngFor="let a of this.allAbs">
+                <td>{{a.dateStart}}</td>
+                <td>{{a.dateEnd}}</td>
+                <td>{{a.justif}}</td>
     
             </tr>
             <tr >

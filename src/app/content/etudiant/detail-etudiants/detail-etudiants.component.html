@@ -1,8 +1,10 @@
 
 <br>
 
-<app-note-etudiant></app-note-etudiant>
+
 <div *ngIf="etudiant" class="container">
+  <app-note-etudiant [email]="this.etudiant.mail"></app-note-etudiant>
+  <app-absence-etudiant [email]="this.etudiant.mail"></app-absence-etudiant>
   <h2> Details de l'Etudiant numéro <b>{{etudiant.identifiant}} : {{etudiant.surname}}</b></h2>
   <hr>
   <div class="row">

@@ -29,6 +29,7 @@ import { AllAbsenceComponent } from './content/absence/all-absence/all-absence.c
 import { DetailAbsenceComponent } from './content/absence/detail-absence/detail-absence.component';
 import { CreateAbsenceComponent } from './content/absence/create-absence/create-absence.component';
 import { NoteEtudiantComponent } from './content/etudiant/note-etudiant/note-etudiant.component';
+import { AbsenceEtudiantComponent } from './content/etudiant/absence-etudiant/absence-etudiant.component';
 
 
 
@@ -57,7 +58,8 @@ import { NoteEtudiantComponent } from './content/etudiant/note-etudiant/note-etu
     AllAbsenceComponent,
     DetailAbsenceComponent,
     CreateAbsenceComponent,
-    NoteEtudiantComponent
+    NoteEtudiantComponent,
+    AbsenceEtudiantComponent
   ],
   imports: [
     BrowserModule,
