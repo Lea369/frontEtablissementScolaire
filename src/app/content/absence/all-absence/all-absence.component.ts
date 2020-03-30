@@ -1,11 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { ExamenUpdateDto } from 'src/app/models/examen-update-dto';
-import { ExamenService } from '../../../services/examen/examen.service';
-import { ResponseDto } from 'src/app/models/response-dto';
-import { ExamenCreateDto } from 'src/app/models/examen-create-dto';
-import { MatiereService } from 'src/app/services/matiere/matiere.service';
-import { MatiereUpdateDto } from 'src/app/models/matiere-update-dto';
-import { TypeEnum } from 'src/app/enums/type-enum.enum';
 import { AbsenceUpdateDto } from 'src/app/models/absence-update-dto';
 import { AbsenceCreateDto } from 'src/app/models/absence-create-dto';
 import { EtudiantsService } from 'src/app/services/etudiant/etudiants.service';

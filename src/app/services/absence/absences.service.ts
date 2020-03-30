@@ -4,7 +4,6 @@ import { ResponseDto } from 'src/app/models/response-dto';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { AbsenceCreateDto } from 'src/app/models/absence-create-dto';
-import { EtudiantUpdateDto } from 'src/app/models/etudiant-update-dto';
 import { AbsenceUpdateDto } from 'src/app/models/absence-update-dto';
 
 @Injectable({
