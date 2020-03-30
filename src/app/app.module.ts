@@ -32,8 +32,6 @@ import { CreateAbsenceComponent } from './content/absence/create-absence/create-
 import { NoteEtudiantComponent } from './content/etudiant/note-etudiant/note-etudiant.component';
 import { AbsenceEtudiantComponent } from './content/etudiant/absence-etudiant/absence-etudiant.component';
 
-
-
 @NgModule({
   declarations: [
     AppComponent,
