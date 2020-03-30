@@ -21,7 +21,7 @@ export class DetailClasseComponent implements OnInit {
   etudiant: EtudiantUpdateDto;
   emptyliste: boolean = false;
   modification: boolean = false;
-
+  
   constructor(
     private route: ActivatedRoute,
     private service: ClassesService,
@@ -33,6 +33,7 @@ export class DetailClasseComponent implements OnInit {
     this.getClasse();
     this.getEtudiantsParClasse();
     this.getEtudiants();
+    
   }
 
   getClasse(): void {

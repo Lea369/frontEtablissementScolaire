@@ -19,14 +19,12 @@
     <h2>Mettre à jour le nom ?</h2>
     <div>
     <label>Nouveau nom :
-        <input [(ngModel)]="classe.name" placeholder="Nouveau nom"/>
+        <input type="text" class="form-control" id="name" name="name" [(ngModel)]="classe.name" placeholder="Nouveau nom" required/>
     </label>
     </div>
     <br>
     <button class="btn btn-info" (click)="update()">Valider</button>
     &nbsp;&nbsp;
-    <span class="alert alert-success" *ngIf = "messageValidation">{{messageValidation}}</span>
-    <span class="alert alert-danger" *ngIf = "messageEchec">{{messageEchec}}</span>
     <br><br>
     <h2>Ajouter des étudiants ?</h2>
     <table class="table">

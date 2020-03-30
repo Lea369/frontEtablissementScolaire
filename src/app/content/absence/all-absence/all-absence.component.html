@@ -2,6 +2,20 @@
     <div class="alert alert-danger" *ngIf="messageEchec">{{messageEchec}}</div>
 
     <h2>Liste des absences :</h2>
+
+
+    <div *ngIf="absenceForm.get('descript').invalid && (absenceForm.get('descript').dirty || absenceForm.get('descript').touched)" class="
+        alert alert-danger">
+
+        <div *ngIf="absenceForm.get('descript').errors.required">
+            Name is required.
+        </div>
+        <div *ngIf="absenceForm.get('descript').errors.minlength">
+            Name must be at least 4 characters long.
+        </div>
+
+    </div>
+    <form [formGroup]="absenceForm" (ngSubmit)="this.create()">
     <table class="table table-hover">
         <thead>
             <tr>
@@ -18,22 +32,34 @@
             </tr>
         </thead>
         <tbody>
-            <tr *ngIf="this.showCreate">
-                <td>*</td>
+            
+                <tr *ngIf="this.showCreate">
+                    <td>*</td>
 
-                <td><input class="form-control" type="date" [(ngModel)]="this.newAbsence.dateStart"></td>
-                <td><input class="form-control" type="date" [(ngModel)]="this.newAbsence.dateEnd"></td>
-                <td><input class="form-control" type="text" [(ngModel)]="this.newAbsence.justif" style="width: 3rem;">
-                <td><input class="form-control" type="text" [(ngModel)]="this.newAbsence.descript" style="width: 3rem;">
-                <td>
-                    <select class="form-control" [(ngModel)]="this.newAbsence.etudiant">
-                        <option *ngFor="let m of this.allEtudiant" [ngValue]="m">{{m.name}}</option>
-                    </select>
-                </td>
-                <td>
-                    <button class="btn btn-success" (click)="this.create()">Enregistrer</button>
-                </td>
-            </tr>
+                    <td>
+                        <input class="form-control" type="date" formControlName="dateStart" name="dateStart" required>
+                    </td>
+                    <td>
+                        <input class="form-control" type="date" formControlName="dateEnd" name="dateEnd" required>
+                    </td>
+                    <td>
+                        <input class="form-control" type="text" formControlName="justif" style="width: 3rem;"
+                            name="justif" required>
+                    </td>
+                    <td>
+                        <input class="form-control" type="text" formControlName="descript" style="width: 3rem;"
+                            name="descript" required>
+                    </td>
+                    <td>
+                        <select class="form-control" formControlName="etudiant" name="etudiant">
+                            <option *ngFor="let m of this.allEtudiant" [ngValue]="m">{{m.name}}</option>
+                        </select>
+                    </td>
+                    <td>
+                        <button class="btn btn-success" type="submit">Enregistrer</button>
+                    </td>
+                </tr>
+            
             <tr *ngFor="let e of this.allAbsence">
                 <td>{{e.identifiant}}</td>
                 <td>{{e.dateStart}}</td>
@@ -55,4 +81,5 @@
             </tr>
         </tbody>
     </table>
+</form>
 </div>

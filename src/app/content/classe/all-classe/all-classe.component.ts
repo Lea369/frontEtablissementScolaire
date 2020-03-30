@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ClasseUpdateDto } from 'src/app/models/classe-update-dto';
 import { ClassesService } from 'src/app/services/classe/classes.service';
 import { ClasseCreateDto } from 'src/app/models/classe-create-dto';
+import { FormGroup, Validators, FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-all-classe',
@@ -14,10 +15,18 @@ export class AllClasseComponent implements OnInit {
   messageValidation: string;
   messageEchec: string;
   classe = new ClasseCreateDto();
+  classForm: FormGroup;
   
   constructor(private service: ClassesService) {}
 
   ngOnInit() {
+    
+  this.classForm = new FormGroup({
+    'name': new FormControl(this.classe.name, [
+      Validators.required,
+      Validators.minLength(4)
+    ])
+  });
     this.getAll();
   }
 

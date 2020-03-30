@@ -4,6 +4,7 @@ import { AbsenceCreateDto } from 'src/app/models/absence-create-dto';
 import { EtudiantsService } from 'src/app/services/etudiant/etudiants.service';
 import { AbsencesService } from 'src/app/services/absence/absences.service';
 import { EtudiantCreateDto } from 'src/app/models/etudiant-create-dto';
+import { FormGroup, Validators, FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-all-absence',
@@ -20,6 +21,8 @@ export class AllAbsenceComponent implements OnInit {
 
   newAbsence = new AbsenceCreateDto();
   newEtudiant = new EtudiantCreateDto();
+
+  absenceForm: FormGroup;
 
   toggle() {
     if (this.showCreate) {
@@ -69,6 +72,23 @@ export class AllAbsenceComponent implements OnInit {
   constructor(private service: AbsencesService, private etuService: EtudiantsService) { }
 
   ngOnInit(): void {
+    this.absenceForm = new FormGroup({
+      'descript': new FormControl(this.newAbsence.descript, [
+        Validators.required
+      ]),
+      'dateStart': new FormControl(this.newAbsence.dateStart, [
+        Validators.required
+      ]),
+      'dateEnd': new FormControl(this.newAbsence.dateEnd, [
+        Validators.required
+      ]),
+      'justif': new FormControl(this.newAbsence.justif, [
+        Validators.required
+      ]),
+      'etudiant': new FormControl(this.newAbsence.etudiant, [
+        Validators.required
+      ]),
+    });
     this.getAllAbsences();
     this.getAllEtudiants();
   }
