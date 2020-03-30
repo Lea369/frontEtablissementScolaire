@@ -14,6 +14,8 @@ export class NoteEtudiantComponent implements  OnInit {
   
   @Input() email: string;
   allNotes = new Array<NoteUpdateDto>();
+  moyenne: number=0;
+  somCoef: number=0;
 
   constructor(protected route: ActivatedRoute,
     protected service: EtudiantsService,
@@ -28,9 +30,18 @@ export class NoteEtudiantComponent implements  OnInit {
 
   getNotes(): void {
     this.service.notes(this.email).subscribe(
+     
       (responseDto) => {
         if(!responseDto.error && responseDto.body != null){
           this.allNotes = responseDto.body;
+         
+          this.allNotes.forEach(e => {
+           
+           this.moyenne = (+this.moyenne) + (+e.examen.coefExamen)*(+e.value);
+            this.somCoef = (+this.somCoef) + (+e.examen.coefExamen);
+          });
+
+          this.moyenne = (this.moyenne)/(this.somCoef);
         }
       }
     );
