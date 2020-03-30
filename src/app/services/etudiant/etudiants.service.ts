@@ -10,6 +10,7 @@ import { EtudiantUpdateDto } from 'src/app/models/etudiant-update-dto';
   providedIn: 'root'
 })
 export class EtudiantsService {
+ 
 
   private URL = environment.baseUrl + 'etudiant';
 
@@ -33,5 +34,9 @@ export class EtudiantsService {
 
   updateEtudiant (etudiant: EtudiantUpdateDto): Observable<any> {
     return this.http.put<ResponseDto>(this.URL, etudiant);
+  }
+
+  notes(etudiant: EtudiantUpdateDto): Observable<ResponseDto> {
+    return this.http.get<ResponseDto>(this.URL + '/note');
   }
 }

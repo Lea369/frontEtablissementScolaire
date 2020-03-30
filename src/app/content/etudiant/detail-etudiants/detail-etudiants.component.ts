@@ -19,9 +19,9 @@ export class DetailEtudiantsComponent implements OnInit {
   
   
   constructor(
-    private route: ActivatedRoute,
-    private service: EtudiantsService,
-    private location: Location) { }
+    protected route: ActivatedRoute,
+    protected service: EtudiantsService,
+    protected location: Location) { }
 
   ngOnInit(): void {
     this.getEtudiant();

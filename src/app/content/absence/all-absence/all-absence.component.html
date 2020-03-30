@@ -27,7 +27,7 @@
                 <td><input class="form-control" type="text" [(ngModel)]="this.newAbsence.descript" style="width: 3rem;">
                 <td>
                     <select class="form-control" [(ngModel)]="this.newAbsence.etudiant">
-                        <option *ngFor="let m of this.allEtudiant" [ngValue]="m">{{m.etudiant.name}}</option>
+                        <option *ngFor="let m of this.allEtudiant" [ngValue]="m">{{m.name}}</option>
                     </select>
                 </td>
                 <td>
