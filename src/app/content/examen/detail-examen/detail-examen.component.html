@@ -42,4 +42,37 @@
                     (click)="toggle()">Annuler</button></div>
         </div>
     </ng-template>
+
+
+    <!--
+
+    <div>
+        Notes:
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Note</th>
+                    <th>Etudiant</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let n of this.NotesForExam">
+                    <td>{{n.id}}</td>
+                    <td>{{n.value}}</td>
+                    <td>{{n.etudiant.mail}}</td>
+                    <td>
+                        <a routerLink="/examen/detail/{{e.idExam}}">
+                            <button class="btn btn-info">Details</button>
+                        </a>
+                        <button class="btn btn-danger" (click)="this.delete(e.idExam)">Supprimer</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <app-create-note [exam] = "examen"  *ngIf="dispNoteCreate"></app-create-note>
+-->
+
 </div>

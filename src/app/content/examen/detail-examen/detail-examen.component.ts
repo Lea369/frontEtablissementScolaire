@@ -6,6 +6,8 @@ import { ExamenService } from 'src/app/services/examen/examen.service';
 import { ExamenUpdateDto } from 'src/app/models/examen-update-dto';
 import { MatiereUpdateDto } from 'src/app/models/matiere-update-dto';
 import { MatiereService } from 'src/app/services/matiere/matiere.service';
+import { NoteUpdateDto } from 'src/app/models/note-update-dto';
+import { NoteService } from 'src/app/services/note/note.service';
 
 @Component({
   selector: 'app-detail-examen',
@@ -15,6 +17,7 @@ import { MatiereService } from 'src/app/services/matiere/matiere.service';
 export class DetailExamenComponent implements OnInit {
 
   examen: ExamenUpdateDto;
+  notesForExam = new Array<NoteUpdateDto>();
 
   allMatiere = new Array<MatiereUpdateDto>();
 
@@ -49,19 +52,22 @@ export class DetailExamenComponent implements OnInit {
     private route: ActivatedRoute,
     private location: Location,
     private service: ExamenService,
-    private matService: MatiereService
+    private matService: MatiereService,
+    private noteService: NoteService
   ) { }
 
   ngOnInit(): void {
     this.getExamen();
   }
 
-  getExamen(): void {
+  private getExamen(): void {
     const id = +this.route.snapshot.paramMap.get('id');
     this.service.getExamen(id).subscribe(
       responseDto => {
         if (!responseDto.error) {
           this.examen = responseDto.body;
+          // Si un exam existe, chercher les notes associés
+          this.getNotes();
         }
       },
       responseError => {
@@ -73,6 +79,21 @@ export class DetailExamenComponent implements OnInit {
           }
       }
     );
+  }
+
+  private getNotes(){
+    this.noteService.getAll().subscribe(
+      responseDto => {
+        this.notesForExam = responseDto.body.filter(
+          note => {
+              note.examen.idExam === this.examen.idExam;
+          },
+          noteErr => {
+            console.log(noteErr);
+          }
+        )
+      }
+    )
   }
 
   private getAllMatieres(): void {
