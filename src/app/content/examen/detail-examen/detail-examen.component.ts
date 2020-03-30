@@ -18,7 +18,9 @@ import { NoteCreateDto } from 'src/app/models/note-create-dto';
 export class DetailExamenComponent implements OnInit {
 
   examen: ExamenUpdateDto;
-  newNote: NoteCreateDto;
+  newNote = new NoteCreateDto();
+
+  moyenne: number;
 
   notesForExam = new Array<NoteUpdateDto>();
   allMatiere = new Array<MatiereUpdateDto>();
@@ -41,6 +43,7 @@ export class DetailExamenComponent implements OnInit {
       this.showCreate = false;
     } else {
       this.showCreate = true;
+      console.log(this.newNote);
     }
   }
 
@@ -51,7 +54,7 @@ export class DetailExamenComponent implements OnInit {
     this.noteService.create(this.newNote).subscribe(
       responseDto => {
         if (!responseDto.error) {
-          window.location.reload();
+          this.getNotes();
         }
       },
 
@@ -145,6 +148,14 @@ export class DetailExamenComponent implements OnInit {
     this.matService.getAll().subscribe(
       responseDto => this.allMatiere = responseDto.body
     );
+  }
+
+  private calcMoyenne(){
+
+    var tempMoyenne = 0;
+
+    
+
   }
 
 }

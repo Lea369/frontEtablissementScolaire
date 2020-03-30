@@ -54,17 +54,24 @@
                     <th>ID</th>
                     <th>Note</th>
                     <th>Etudiant</th>
+                    <th>
+                        <button class="btn btn-info" (click)="this.toggleCreate()"><span
+                                *ngIf="!this.showCreate; else elseBlock">Ajouter une note</span>
+                            <ng-template #elseBlock>Cacher le formulaire</ng-template>
+                        </button>
+                    </th>
                 </tr>
             </thead>
             <tbody>
                 <tr *ngIf="this.showCreate">
                     <td>*</td>
                     <td>
-                        <input type="text" class="form-control" [(ngModel)]="this.newNote.value">
+                        <input type="text" class="form-control" [(ngModel)]="this.newNote.value" style="width: 3rem;">
                     </td>
                     <td>
                         <select class="form-control" [(ngModel)]="this.newNote.etudiant">
-                            <option *ngFor="let e of this.examen.matiereExamen.listeEtudiant" [ngValue]="e">{{e.mail}}</option>
+                            <option *ngFor="let e of this.examen.matiereExamen.listeEtudiant" [ngValue]="e">{{e.mail}}
+                            </option>
                         </select>
                     </td>
                     <td>
