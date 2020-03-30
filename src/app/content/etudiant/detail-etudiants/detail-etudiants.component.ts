@@ -4,6 +4,8 @@ import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 import { EtudiantsService } from 'src/app/services/etudiant/etudiants.service';
 import { ResponseDto } from 'src/app/models/response-dto';
+import { ClasseUpdateDto } from 'src/app/models/classe-update-dto';
+import { ClassesService } from 'src/app/services/classe/classes.service';
 
 
 @Component({
@@ -16,12 +18,22 @@ export class DetailEtudiantsComponent implements OnInit {
   //@Input() etudiant: EtudiantUpdateDto;
 
   etudiant: EtudiantUpdateDto;
-  
+
+  messageValidation: string;
+  messageEchec: string;
+  emptyListe: boolean = false;
+  listeClasse = new Array<ClasseUpdateDto>();  
+  listeNewClasse = new Array<ClasseUpdateDto>();
+  montrerAjout: boolean = false;
+  montrerModif: boolean = false;
   
   constructor(
-    protected route: ActivatedRoute,
-    protected service: EtudiantsService,
-    protected location: Location) { }
+
+    private route: ActivatedRoute,
+    private service: EtudiantsService,
+    private serviceclasse : ClassesService,
+    private location: Location) { }
+
 
   ngOnInit(): void {
     this.getEtudiant();
@@ -51,5 +63,83 @@ export class DetailEtudiantsComponent implements OnInit {
     this.service.updateEtudiant(this.etudiant)
       .subscribe(() => this.goBack());
   }
+
+  toggle(): void {
+    if(this.montrerModif){
+      window.location.reload()
+    } else {
+      this.getClasse();
+      this.montrerModif = true;
+    }
+  }
+
+
+  desinscrit(classe: ClasseUpdateDto): void {
+    const index: number = this.etudiant.listclasse.indexOf(classe);
+    if(index!=-1){
+    this.etudiant.listclasse.splice(index, 1);
+    }
+    this.service.updateEtudiant(this.etudiant).subscribe(
+      responseDto => {
+        if(!responseDto.error){
+          this.messageValidation = "mise à jour réussie."
+          document.location.reload();
+        }
+      },
+        responseDtoError => {
+          if(responseDtoError.error) {
+            this.messageEchec = 'Erreur de la mise à jour';
+            document.location.reload();
+          }
+        }
+      
+      );
+  }
+
+
+  getClasse(): void{
+    this.serviceclasse.getAll().subscribe(
+      responseDto => {
+        if(!responseDto.error){
+          this.montrerAjout=true;
+          this.listeClasse = responseDto.body;
+          this.etudiant.listclasse.forEach(element => {
+           this.listeClasse.forEach(e => {
+             if(element.id==e.id){
+               this.listeClasse.splice(this.listeClasse.indexOf(e), 1);
+             }
+           });
+          });
+        }
+      }
+    )
+  }
+
+  ajoutClasse():void{
+
+    this.listeNewClasse.forEach(element => {
+      this.etudiant.listclasse.push(element);
+    });
+    this.service.updateEtudiant(this.etudiant).subscribe(
+      responseDto => {
+        if(!responseDto.error){
+          this.messageValidation = "mise à jour réussie."
+          document.location.reload();
+        }
+      },
+        responseDtoError => {
+          if(responseDtoError.error) {
+            this.messageEchec = 'Erreur de la mise à jour';
+            document.location.reload();
+          }
+        }
+      
+    );
+
+  }
+
+
+
+
 
 }

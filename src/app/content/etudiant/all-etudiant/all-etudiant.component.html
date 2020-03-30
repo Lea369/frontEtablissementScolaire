@@ -58,11 +58,12 @@
                         <option>M</option>
                         <option>A</option>
                     </select></td>
-                <td><select class="form-control" id="sel2" [(ngModel)]="this.etudiantcreate.classe" name="classe">
-                        <option class="selected"></option>
-                        <option>B</option>
-                        <option>A</option>
+                    <td><select class="form-control" id="sel1" [(ngModel)]="this.etudiantcreate.listclasse" name="classe">
+                        <option class="selected">{{listeClasse}}</option>
+                        <option>{{listeClasse}}</option>
+                        
                     </select></td>
+
                 <td>
                     <button type="button" class="btn btn-primary" (click)="this.save()">Ajouter</button>
                 </td>
@@ -79,6 +80,7 @@
                 <td>{{etudiant.postalCode}}</td>
                 <td>{{etudiant.s}}</td>
                 <td>{{etudiant.classe}}</td>
+
                 <td>
                     <button class="btn btn-danger" (click)="this.delete(etudiant.identifiant)">Supprimer</button>
                     <a routerLink="/etudiant/detail/{{etudiant.identifiant}}" class="btn btn-info"

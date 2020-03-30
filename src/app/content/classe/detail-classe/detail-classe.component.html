@@ -3,20 +3,60 @@
     <h2>Détails de la classe :</h2>
     <div><span>ID : </span>{{classe.id}}</div>
     <div><span>Nom : </span>{{classe.name}}</div>
+    <div><span>Liste des etudiants : </span></div>
+        <p *ngIf = "emptyliste"><i>Il n'y a pas d'etudiants dans cette classe</i></p>
+        <div *ngIf = "!emptyliste">
+        <li  *ngFor="let e of etudiantsParClasse">
+            ID : {{e.identifiant}} | {{e.name}} {{e.surname}} 
+        </li>
+        </div>
     <br>
     <button class="btn btn-info" (click)="goBack()">Retour</button>
+    &nbsp;&nbsp;
+    <button class="btn btn-info" (click)="afficherModification()">Mettre à jour les informations</button>
     <br><br><br>
-    <h2>Mettre à jour les informations ?</h2>
+    <div *ngIf="modification">
+    <h2>Mettre à jour le nom ?</h2>
     <div>
     <label>Nouveau nom :
         <input [(ngModel)]="classe.name" placeholder="Nouveau nom"/>
     </label>
     </div>
     <br>
-    <button class="btn btn-info" (click)="update()">Mettre à jour</button>
+    <button class="btn btn-info" (click)="update()">Valider</button>
     &nbsp;&nbsp;
     <span class="alert alert-success" *ngIf = "messageValidation">{{messageValidation}}</span>
     <span class="alert alert-danger" *ngIf = "messageEchec">{{messageEchec}}</span>
+    <br><br>
+    <h2>Ajouter des étudiants ?</h2>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nom</th>
+                <th>Prenom</th>
+                <th>CIN</th>
+                <th>Email</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let etudiant of etudiants">
+                <td>{{etudiant.identifiant}}</td>
+                <td>{{etudiant.name}}</td>
+                <td>{{etudiant.surname}}</td>
+                <td>{{etudiant.identity}}</td>
+                <td>{{etudiant.mail}}</td>
+                <td>
+                    <button class="btn btn-info" (click)="this.addToClasse(etudiant.identifiant)">Ajouter à la classe</button>
+                    &nbsp;
+                    <button class="btn btn-info" (click)="this.removeFromClasse(etudiant.identifiant)">Retirer de la classe</button>
+                </td>
+            </tr>
+       </tbody>
+    </table>
+
+    </div>
     <br><br><br>
 </div>
 
