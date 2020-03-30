@@ -11,5 +11,5 @@ export class EtudiantCreateDto {
     postalCode: number;
     s: SexeEnum;
     surname: string;
-    listclasse = new Array<ClasseUpdateDto>();
+    classe: ClasseUpdateDto;
 }

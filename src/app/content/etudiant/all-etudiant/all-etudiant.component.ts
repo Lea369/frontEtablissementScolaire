@@ -20,7 +20,7 @@ export class AllEtudiantComponent implements OnInit {
 
   etudiantcreate = new EtudiantCreateDto();
 
-  listeClasse = new Array<ClasseUpdateDto>(); 
+  listeClasse = new Array<ClasseUpdateDto>();
 
   messageValidation: string;
   messageEchec: string;
@@ -29,8 +29,18 @@ export class AllEtudiantComponent implements OnInit {
 
   ngOnInit() {
     this.getAll();
+    this.getClasse();
   }
 
+  getClasse(): void{
+    this.serviceClasse.getAll().subscribe(
+      responseDto => {
+        if(!responseDto.error){
+          this.listeClasse = responseDto.body;
+        }
+      }
+    );
+  }
 
   getAll() {
     this.service.getAll().subscribe(
@@ -73,27 +83,7 @@ export class AllEtudiantComponent implements OnInit {
   }
 
 
-  desinscrit(classe: ClasseUpdateDto): void {
-    const index: number = this.etudiant.listclasse.indexOf(classe);
-    if(index!=-1){
-    this.etudiant.listclasse.splice(index, 1);
-    }
-    this.service.updateEtudiant(this.etudiant).subscribe(
-      responseDto => {
-        if(!responseDto.error){
-          this.messageValidation = "mise à jour réussie."
-          document.location.reload();
-        }
-      },
-        responseDtoError => {
-          if(responseDtoError.error) {
-            this.messageEchec = 'Erreur de la mise à jour';
-            document.location.reload();
-          }
-        }
-      
-      );
-  }
+
 
  // TODO: Je ne crois pas que cette fonction est utile dans all-etudiant
  // Potentiellement à supprimer - G
