@@ -3,6 +3,7 @@ import { AbsenceUpdateDto } from 'src/app/models/absence-update-dto';
 import { ActivatedRoute } from '@angular/router';
 import { EtudiantsService } from 'src/app/services/etudiant/etudiants.service';
 import { Location} from '@angular/common';
+import { AbsencesService } from 'src/app/services/absence/absences.service';
 
 @Component({
   selector: 'app-absence-etudiant',
@@ -12,9 +13,11 @@ import { Location} from '@angular/common';
 export class AbsenceEtudiantComponent implements OnInit {
   @Input() email: string;
   allAbs = new Array<AbsenceUpdateDto>();
+  activeAbs: AbsenceUpdateDto;
 
   constructor(protected route: ActivatedRoute,
     protected service: EtudiantsService,
+    protected serviceAbsence: AbsencesService,
     protected location: Location) {
   }
 
@@ -31,5 +34,7 @@ export class AbsenceEtudiantComponent implements OnInit {
       }
     );
   }
+
+  
 
 }
