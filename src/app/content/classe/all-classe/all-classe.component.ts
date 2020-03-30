@@ -51,19 +51,24 @@ export class AllClasseComponent implements OnInit {
   }
 
   save() {
+    console.log("DEBUG Save started");
     this.service.create(this.classe).subscribe(
       //SUCCESS ==> 200
       (responseDto) => {
+        console.log("responseDto: ");
+        console.log(responseDto);
         if (!responseDto.error) {
           this.messageValidation = 'Creation reussie';
-          document.location.reload();
+          //document.location.reload();
         }
       },
       //FAIL ==> 400, 404, 500...
       (responseDtoError) => {
+        console.log("erreur: ");
+        console.log(responseDtoError);
         if (responseDtoError.error) {
           this.messageEchec = 'Erreur de création';
-          document.location.reload();
+          //document.location.reload(); //en comm pour laisser messages d'erreur
         }
       }
     );

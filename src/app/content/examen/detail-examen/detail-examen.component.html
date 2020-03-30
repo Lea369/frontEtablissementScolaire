@@ -51,9 +51,8 @@
         <table class="table table-hover">
             <thead>
                 <tr>
-                    <th>ID</th>
-                    <th>Note</th>
                     <th>Etudiant</th>
+                    <th>Note</th>                    
                     <th>
                         <button class="btn btn-info" (click)="this.toggleCreate()"><span
                                 *ngIf="!this.showCreate; else elseBlock">Ajouter une note</span>
@@ -64,10 +63,6 @@
             </thead>
             <tbody>
                 <tr *ngIf="this.showCreate">
-                    <td>*</td>
-                    <td>
-                        <input type="text" class="form-control" [(ngModel)]="this.newNote.value" style="width: 3rem;">
-                    </td>
                     <td>
                         <select class="form-control" [(ngModel)]="this.newNote.etudiant">
                             <option *ngFor="let e of this.examen.matiereExamen.listeEtudiant" [ngValue]="e">{{e.mail}}
@@ -75,13 +70,15 @@
                         </select>
                     </td>
                     <td>
+                        <input type="text" class="form-control" [(ngModel)]="this.newNote.value" style="width: 3rem;">
+                    </td>
+                    <td>
                         <button class="btn btn-success" (click)="this.create()">Enregistrer</button>
                     </td>
                 </tr>
                 <tr *ngFor="let n of this.notesForExam">
-                    <td>{{n.id}}</td>
-                    <td>{{n.value}}</td>
                     <td>{{n.etudiant.mail}}</td>
+                    <td>{{n.value}}</td>
                     <td>
                         <button class="btn btn-danger" (click)="this.deleteNote(n.id)">Supprimer</button>
                     </td>

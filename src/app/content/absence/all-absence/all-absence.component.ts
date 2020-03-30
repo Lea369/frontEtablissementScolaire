@@ -33,9 +33,6 @@ export class AllAbsenceComponent implements OnInit {
   }
 
   create() {
-
-    if (this.newAbsence.dateStart && this.newAbsence.dateEnd && this.newAbsence.etudiant && this.newAbsence.justif && this.newAbsence.descript) {
-
       this.service.create(this.newAbsence).subscribe(
         responseDto => {
           if (!responseDto.error) {
@@ -54,9 +51,7 @@ export class AllAbsenceComponent implements OnInit {
 
         }
       );
-    } else {
-      this.messageEchec = "Veuillez remplir tous les champs pour enregistrer l'absence'."
-    }
+
   }
 
   delete(id: number) {

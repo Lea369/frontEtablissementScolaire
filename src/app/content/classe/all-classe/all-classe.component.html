@@ -1,6 +1,7 @@
 <div class="container">
     <br><br><br>
     <h2>Liste des classes :</h2>
+    <!--
     <form [formGroup]="classForm" (ngSubmit)="this.save()">
     <table class="table table-hover">
         <thead>
@@ -22,12 +23,20 @@
             </tr>
             <tr>
                 <td></td>
-                <td><input id="name" name="name" class="form-control" placeholder="Nom de la classe à ajouter" formControlName="name" required></td>                    
+                <td><input id="name" class="form-control" placeholder="Nom de la classe à ajouter" formControlName="name" required></td>                    
                 <td><button type="submit" class="btn btn-info">Ajouter</button></td>
             </tr>
        </tbody>
     </table>
     </form>
+    {{this.classe.name}}
+-->
+    <form [formGroup]="classForm" (ngSubmit)="this.save()">
+        <input id="name" class="form-control" placeholder="Nom de la classe à ajouter" formControlName="name" required>
+        <br>
+                        <button type="submit" class="btn btn-info">Ajouter</button>
+        </form>
+        {{this.classe.name}}
     <div *ngIf="name.invalid && (name.dirty || name.touched)" class="alert alert-danger">
         <div *ngIf="name.errors.required">Le champ nom est obligatoire.</div></div>
     <br><br>
