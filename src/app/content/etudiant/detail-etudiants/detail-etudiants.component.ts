@@ -23,8 +23,6 @@ export class DetailEtudiantsComponent implements OnInit {
   messageEchec: string;
 
   listeClasse = new Array<ClasseUpdateDto>();  
-  listeNewClasse = new Array<ClasseUpdateDto>();
-  montrerAjout: boolean = false;
   montrerModif: boolean = false;
   
   constructor(
@@ -37,6 +35,17 @@ export class DetailEtudiantsComponent implements OnInit {
 
   ngOnInit(): void {
     this.getEtudiant();
+    this.getClasse();
+  }
+
+  getClasse(): void{
+    this.serviceclasse.getAll().subscribe(
+      responseDto => {
+        if(!responseDto.error){
+          this.listeClasse = responseDto.body;
+        }
+      }
+    );
   }
 
   getEtudiant(): void {
@@ -65,12 +74,14 @@ export class DetailEtudiantsComponent implements OnInit {
   }
 
   toggle(): void {
-    if(this.montrerAjout){
+    if(this.montrerModif){
       window.location.reload()
     } else {
-      this.montrerAjout = true;
+      this.getEtudiant();
+      this.montrerModif = true;
     }
   }
+
 
 
 

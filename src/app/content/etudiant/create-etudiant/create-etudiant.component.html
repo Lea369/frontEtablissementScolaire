@@ -1,12 +1,13 @@
 <br>
 
+
     <h2 id="titre">Ajouter un Etudiant </h2>
     <hr>
     <div id="form">
-    <form class="col-lg-3 col-sm-6">
+    <form class="col-lg-3 col-sm-6" [formGroup]="etuForm">
         <div class="form-group">
             <label for="nom">Nom :</label>
-            <input type="text" class="form-control" [(ngModel)]="this.etudiant.name" placeholder="Nom" name="nom"
+            <input id="name" name="name" class="form-control" placeholder="Nom" formControlName="name"
                 required>
         </div>
         <hr>
@@ -44,6 +45,8 @@
         <div class="alert alert-danger" *ngIf="messageEchec">{{messageEchec}}</div>
 
     </form>
+    <div *ngIf="name.invalid && (name.dirty || name.touched)" class="alert alert-danger">
+        <div *ngIf="name.errors.required">Le champ nom est obligatoire.</div></div>
 </div>
 <br>
 <br>

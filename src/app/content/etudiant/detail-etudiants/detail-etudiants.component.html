@@ -1,12 +1,8 @@
-
 <br>
 
-
-<div *ngIf="etudiant" class="container">
-  <app-note-etudiant [email]="this.etudiant.mail"></app-note-etudiant>
-  <app-absence-etudiant [email]="this.etudiant.mail"></app-absence-etudiant>
-  <h2> Details de l'Etudiant numéro <b>{{etudiant.identifiant}} : {{etudiant.surname}}</b></h2>
+<h2> Details de l'Etudiant numéro <b>{{etudiant.identifiant}} : {{etudiant.surname}}</b></h2>
   <hr>
+<div *ngIf="etudiant" class="container">
   <div class="row">
     <table class="table table-hover">
       <thead>
@@ -19,7 +15,7 @@
           <th>Téléphone</th>
           <th>Adresse</th>
           <th>Ville</th>
-          <th>Code Postal.</th>
+          <th>CP</th>
           <th>Sexe</th>
           <th>Classe</th>
           <th>Actions</th>
@@ -28,29 +24,33 @@
       <tbody>
 
 
-          <tr>
-            <td>{{etudiant.identifiant}}</td>
-            <td>{{etudiant.name}}</td>
-            <td>{{etudiant.surname}}</td>
-            <td>{{etudiant.mail}}</td>
-            <td>{{etudiant.identity}}</td>
-            <td>{{etudiant.phone}}</td>
-            <td>{{etudiant.adress}}</td>
-            <td>{{etudiant.city}}</td>
-            <td>{{etudiant.postalCode}}</td>
-            <td>{{etudiant.s}}</td>
-            <td ><span *ngIf="etudiant.classe">{{etudiant.classe.name}}</span></td>
-            <td><button class="btn btn-info" (click)="this.toggle()">Modifier<span *ngIf="!montrerAjout; else elseBlock" ></span> <ng-template #elseBlock>Cacher le formulaire</ng-template></button> </td>       </tr>
+        <tr>
+          <td>{{etudiant.identifiant}}</td>
+          <td>{{etudiant.name}}</td>
+          <td>{{etudiant.surname}}</td>
+          <td>{{etudiant.mail}}</td>
+          <td>{{etudiant.identity}}</td>
+          <td>{{etudiant.phone}}</td>
+          <td>{{etudiant.adress}}</td>
+          <td>{{etudiant.city}}</td>
+          <td>{{etudiant.postalCode}}</td>
+          <td>{{etudiant.s}}</td>
+          <td><span *ngIf="etudiant.classe">{{etudiant.classe.name}}</span></td>
+          <td><button class="btn btn-info" (click)="this.toggle()">Modifier<span
+                *ngIf="!montrerModif; else elseBlock"></span>
+              <ng-template #elseBlock>Cacher le formulaire</ng-template>
+            </button>
+          </td>
+        </tr>
       </tbody>
     </table>
   </div>
   <hr>
-  
-  
 
   <form class="col-lg-3 col-sm-6" *ngIf="montrerModif">
+    <h2> Modifier l'Etudiant numéro <b>{{etudiant.identifiant}} : {{etudiant.surname}}</b></h2>
     <div class="form-group">
-      <h2> Modifier l'Etudiant numéro <b>{{etudiant.identifiant}} : {{etudiant.surname}}</b></h2>
+
       <div>
         <label for="id">Id :</label>
         <input type="text" class="form-control" [(ngModel)]="this.etudiant.identifiant" placeholder="Id" name="id"
@@ -62,59 +62,70 @@
         <input type="text" class="form-control" [(ngModel)]="this.etudiant.name" placeholder="Nom" name="nom" required>
       </div>
       <hr>
-      <div class="form-group">
+      <div>
         <label for="prenom">Prénom :</label>
         <input type="text" class="form-control" [(ngModel)]="this.etudiant.surname" placeholder="Prénom" name="prenom"
           required>
       </div>
       <hr>
-      <div class="form-group">
+      <div>
         <label for="email">Email :</label>
         <input type="email" class="form-control" [(ngModel)]="this.etudiant.mail" placeholder="Enter email" name="email"
           required>
       </div>
       <hr>
-      <div class="form-group">
+      <div>
         <label for="cin">CIN :</label>
         <input type="text" class="form-control" [(ngModel)]="this.etudiant.identity"
           placeholder="Votre num de carte d'identité" name="cin" required>
       </div>
-      <div class="form-group">
+      <div>
         <label for="cin">Téléphone :</label>
         <input type="text" class="form-control" [(ngModel)]="this.etudiant.phone" name="phone" required>
       </div>
-      <div class="form-group">
+      <div>
         <label for="cin">Adresse :</label>
         <input type="text" class="form-control" [(ngModel)]="this.etudiant.adress" name="adresse" required>
       </div>
-      <div class="form-group">
+      <div>
         <label for="cin">Ville :</label>
         <input type="text" class="form-control" [(ngModel)]="this.etudiant.city" name="ville" required>
       </div>
-      <div class="form-group">
+      <div>
         <label for="cin">CP :</label>
         <input type="text" class="form-control" [(ngModel)]="this.etudiant.postalCode" name="cp" required>
       </div>
       <hr>
-      <div class="form-group">
+      <div>
         <label for="sel1">Sexe :</label>
         <select class="form-control" id="sel1" [(ngModel)]="this.etudiant.s" name="sexe">
           <option class="selected">F</option>
           <option>M</option>
           <option>A</option>
         </select>
-
-
-        <hr>
-
-
-
-        <button (click)="goBack()" class="btn btn-info">Go Back</button>
-        <button (click)="save()" class="btn btn-primary">Submit</button>
-        <br>
-        <br>
-
       </div>
+      <hr>
+      <div>
+        <label for="sel2">Classe actuelle : ({{this.etudiant.classe.name}})</label>
+        <select class="form-control" id="sel2" [(ngModel)]="this.etudiant.classe" name="classe">
+          <option *ngFor="let c of this.listeClasse" [ngValue]="c">{{c.name}}</option>
+        </select>
+      </div>
+      <hr>
+
+
+
+      <button (click)="goBack()" class="btn btn-info">Go Back</button>
+      <button (click)="save()" class="btn btn-primary">Submit</button>
+      <br>
+      <br>
+
+
     </div>
   </form>
+
+  <app-note-etudiant [email]="this.etudiant.mail"></app-note-etudiant>
+  <hr>
+  <app-absence-etudiant [email]="this.etudiant.mail"></app-absence-etudiant>
+
 </div>

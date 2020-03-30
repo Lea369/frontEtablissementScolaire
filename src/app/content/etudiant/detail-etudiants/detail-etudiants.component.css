@@ -7,3 +7,8 @@ div {
     
 }
 
+h2 {
+    font-family: 'Times New Roman', Times, serif;
+}
+
+table > thead > tr > th { background-color:thistle;}
