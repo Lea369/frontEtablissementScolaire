@@ -1,26 +1,7 @@
 <div class="container">
     <br><br><br>
-    <form [formGroup]="classForm" (ngSubmit)="this.save()">
-        <input id="name" name="name" class="form-control" required minlength="4"
-        formControlName="name" >
-
-        <button type="submit" [disabled]="classForm.get('name').invalid">Create</button>
-    </form>
-
-    <div *ngIf="classForm.get('name').invalid && (classForm.get('name').dirty || classForm.get('name').touched)" class="alert alert-danger">
-
-        <div *ngIf="classForm.get('name').errors.required">
-            Name is required.
-        </div>
-        <div *ngIf="classForm.get('name').errors.minlength">
-            Name must be at least 4 characters long.
-        </div>
-        <div *ngIf="classForm.get('name').errors.forbiddenName">
-            Name cannot be Bob.
-        </div>
-
-    </div>
     <h2>Liste des classes :</h2>
+    <form [formGroup]="classForm" (ngSubmit)="this.save()">
     <table class="table table-hover">
         <thead>
             <tr>
@@ -41,13 +22,13 @@
             </tr>
             <tr>
                 <td></td>
-                <td><input type="text" class="form-control" [(ngModel)]="this.classe.name"
-                        placeholder="Nom de la classe à ajouter" name="nom" required></td>
-                <td><button type="button" class="btn btn-info" (click)="this.save()">Ajouter</button></td>
+                <td><input id="name" name="name" class="form-control" placeholder="Nom de la classe à ajouter" formControlName="name" required></td>                    
+                <td><button type="submit" class="btn btn-info">Ajouter</button></td>
             </tr>
-        </tbody>
+       </tbody>
     </table>
-    <div class="alert alert-success" *ngIf="messageValidation">{{messageValidation}}</div>
-    <div class="alert alert-danger" *ngIf="messageEchec">{{messageEchec}}</div>
+    </form>
+    <div *ngIf="name.invalid && (name.dirty || name.touched)" class="alert alert-danger">
+        <div *ngIf="name.errors.required">Le champ nom est obligatoire.</div></div>
     <br><br>
 </div>

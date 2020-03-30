@@ -5,6 +5,7 @@ import { ClassesService } from 'src/app/services/classe/classes.service';
 import { EtudiantsService } from 'src/app/services/etudiant/etudiants.service';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-detail-classe',
@@ -21,6 +22,7 @@ export class DetailClasseComponent implements OnInit {
   etudiant: EtudiantUpdateDto;
   emptyliste: boolean = false;
   modification: boolean = false;
+  classForm: FormGroup;
   
   constructor(
     private route: ActivatedRoute,
@@ -34,7 +36,10 @@ export class DetailClasseComponent implements OnInit {
     this.getEtudiantsParClasse();
     this.getEtudiants();
     
+    
   }
+
+  get name() { return this.classForm.get('name'); }
 
   getClasse(): void {
     const id = +this.route.snapshot.paramMap.get('id');
@@ -73,6 +78,9 @@ export class DetailClasseComponent implements OnInit {
 
   afficherModification(): void {
     this.modification = true;
+    this.classForm = new FormGroup({
+      'name': new FormControl(this.classe.name, Validators.required)
+    });
   }
 
   goBack(): void {

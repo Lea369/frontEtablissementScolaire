@@ -20,15 +20,13 @@ export class AllClasseComponent implements OnInit {
   constructor(private service: ClassesService) {}
 
   ngOnInit() {
-    
-  this.classForm = new FormGroup({
-    'name': new FormControl(this.classe.name, [
-      Validators.required,
-      Validators.minLength(4)
-    ])
-  });
-    this.getAll();
+      this.getAll();
+      this.classForm = new FormGroup({
+        'name': new FormControl(this.classe.name, Validators.required)
+      });
   }
+
+  get name() { return this.classForm.get('name'); }
 
   getAll() {
     this.service.getAll().subscribe(
