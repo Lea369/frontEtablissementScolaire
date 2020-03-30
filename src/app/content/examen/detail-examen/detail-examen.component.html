@@ -22,7 +22,7 @@
             <div>ID: {{this.examen.idExam}}</div>
             <div>Matiere: ({{this.examen.matiereExamen.nomMatiere}})
                 <select class="form-control" [(ngModel)]="this.examen.matiereExamen">
-                    <option *ngFor="let m of this.allMatiere" [ngValue]="m" >{{m.nomMatiere}}</option>
+                    <option *ngFor="let m of this.allMatiere" [ngValue]="m">{{m.nomMatiere}}</option>
                 </select>
             </div>
             <div>Date: <input class="form-control" type="date" [(ngModel)]="this.examen.dateExamen"> </div>
@@ -44,10 +44,10 @@
     </ng-template>
 
 
-    <!--
+
 
     <div>
-        Notes:
+        Notes pour cet examen:
         <table class="table table-hover">
             <thead>
                 <tr>
@@ -57,22 +57,30 @@
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let n of this.NotesForExam">
+                <tr *ngIf="this.showCreate">
+                    <td>*</td>
+                    <td>
+                        <input type="text" class="form-control" [(ngModel)]="this.newNote.value">
+                    </td>
+                    <td>
+                        <select class="form-control" [(ngModel)]="this.newNote.etudiant">
+                            <option *ngFor="let e of this.examen.matiereExamen.listeEtudiant" [ngValue]="e">{{e.mail}}</option>
+                        </select>
+                    </td>
+                    <td>
+                        <button class="btn btn-success" (click)="this.create()">Enregistrer</button>
+                    </td>
+                </tr>
+                <tr *ngFor="let n of this.notesForExam">
                     <td>{{n.id}}</td>
                     <td>{{n.value}}</td>
                     <td>{{n.etudiant.mail}}</td>
                     <td>
-                        <a routerLink="/examen/detail/{{e.idExam}}">
-                            <button class="btn btn-info">Details</button>
-                        </a>
-                        <button class="btn btn-danger" (click)="this.delete(e.idExam)">Supprimer</button>
+                        <button class="btn btn-danger" (click)="this.deleteNote(n.id)">Supprimer</button>
                     </td>
                 </tr>
             </tbody>
         </table>
     </div>
-
-    <app-create-note [exam] = "examen"  *ngIf="dispNoteCreate"></app-create-note>
--->
 
 </div>
