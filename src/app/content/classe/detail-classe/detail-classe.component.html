@@ -17,19 +17,13 @@
     <br><br><br>
     <div *ngIf="modification">
     <h2>Mettre à jour le nom ?</h2>
-    <form [formGroup]="classForm" (ngSubmit)="this.update()">
     <label>Nouveau nom :
-        <input id="name" name="name" class="form-control" placeholder="Nouveau nom" formControlName="name" required>
+        <input id="name" name="name" class="form-control" placeholder="Nom de la classe à ajouter" [(ngModel)]="classe.name" #name="ngModel" required>
     </label>
     <br><br>
-    <button class="btn btn-info" type="submit">Valider</button>
+    <button class="btn btn-info" (click)="this.update()">Valider</button>
     &nbsp;&nbsp;
-    <span *ngIf="name.invalid && (name.dirty || name.touched)" class="alert alert-danger">
-        <span *ngIf="name.errors.required">Le champ nom est obligatoire.</span></span>
-    </form>
     <br><br>
-    
-    
     <br><br>
     <h2>Ajouter des étudiants ?</h2>
     <table class="table">

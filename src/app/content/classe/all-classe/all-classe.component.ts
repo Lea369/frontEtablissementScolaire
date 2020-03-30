@@ -17,16 +17,15 @@ export class AllClasseComponent implements OnInit {
   classe = new ClasseCreateDto();
   classForm: FormGroup;
   
+  
   constructor(private service: ClassesService) {}
 
   ngOnInit() {
       this.getAll();
-      this.classForm = new FormGroup({
-        'name': new FormControl(this.classe.name, Validators.required)
-      });
+      
   }
 
-  get name() { return this.classForm.get('name'); }
+  
 
   getAll() {
     this.service.getAll().subscribe(
@@ -51,18 +50,19 @@ export class AllClasseComponent implements OnInit {
   }
 
   save() {
+    console.log(this.classe.name);
     this.service.create(this.classe).subscribe(
       //SUCCESS ==> 200
       (responseDto) => {
         if (!responseDto.error) {
-          this.messageValidation = 'Creation reussie';
+          console.log('Creation reussie');
           document.location.reload();
         }
       },
       //FAIL ==> 400, 404, 500...
       (responseDtoError) => {
         if (responseDtoError.error) {
-          this.messageEchec = 'Erreur de création';
+          console.log('Erreur de création');
           document.location.reload();
         }
       }
