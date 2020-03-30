@@ -28,7 +28,7 @@ import { DetailNoteComponent } from './content/note/detail-note/detail-note.comp
 import { AllAbsenceComponent } from './content/absence/all-absence/all-absence.component';
 import { DetailAbsenceComponent } from './content/absence/detail-absence/detail-absence.component';
 import { CreateAbsenceComponent } from './content/absence/create-absence/create-absence.component';
-import { NoteEtudiantComponent } from './note-etudiant/note-etudiant.component';
+import { NoteEtudiantComponent } from './content/etudiant/note-etudiant/note-etudiant.component';
 
 
 
