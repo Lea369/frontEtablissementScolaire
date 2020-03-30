@@ -40,7 +40,7 @@
         </tr>
        
     </tbody></table>
-    <div *ngIf="montrerAjout;">
+    <div *ngIf="montrerAjout; ">
         <td><select multiple class="form-control" [(ngModel)]="this.listeNewEtudiant" >
             <option *ngFor="let e of this.listeEtudiant"[ngValue]="e">{{e.name}}</option>
           </select></td>
