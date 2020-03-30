@@ -20,6 +20,7 @@
           <th>Code Postal.</th>
           <th>Sexe</th>
           <th>Classe</th>
+          <th>Actions</th>
         </tr>
       </thead>
       <tbody>
@@ -36,7 +37,8 @@
             <td>{{etudiant.city}}</td>
             <td>{{etudiant.postalCode}}</td>
             <td>{{etudiant.s}}</td>
-            <td>{{etudiant.classe}}</td>
+            
+            <td><button class="btn btn-info" (click)="this.toggle()">Modifier<span *ngIf="!montrerModif; else elseBlock" ></span> <ng-template #elseBlock>Cacher le formulaire</ng-template></button></td>
         </tr>
       </tbody>
     </table>
@@ -45,7 +47,7 @@
   <h2> Modifier l'Etudiant numéro <b>{{etudiant.identifiant}} : {{etudiant.surname}}</b></h2>
   
 
-  <form class="col-lg-3 col-sm-6">
+  <form class="col-lg-3 col-sm-6" *ngIf="montrerModif">
     <div class="form-group">
       <div>
         <label for="id">Id :</label>
@@ -99,6 +101,7 @@
           <option>M</option>
           <option>A</option>
         </select>
+        
 
         <hr>
 
