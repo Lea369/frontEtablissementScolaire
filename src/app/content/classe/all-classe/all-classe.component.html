@@ -1,5 +1,6 @@
+<app-navbar-classe></app-navbar-classe>
+
 <div class="container">
-    <br><br><br>
     <h2>Liste des classes :</h2>
     <table class="table table-hover">
         <thead>
@@ -14,17 +15,15 @@
                 <td>{{classe.id}}</td>
                 <td>{{classe.name}}</td>
                 <td>
+                    <a routerLink="/classe/detail/{{classe.id}}" class="btn btn-info" role="button">Afficher les détails</a>
+                    &nbsp;
+                    <a routerLink="/classe/update/{{classe.id}}" class="btn btn-info" role="button">Modifier</a>
+                    &nbsp;
                     <button class="btn btn-danger" (click)="this.delete(classe.id)">Supprimer</button>
                     &nbsp;
-                    <a routerLink="/classe/detail/{{classe.id}}" class="btn btn-info" role="button">Voir details</a>
-                </td>
+               </td>
             </tr>
-            <tr>
-                <td></td>
-                <td><input id="name" name="name" class="form-control" placeholder="Nom de la classe à ajouter" [(ngModel)]="classe.name" #name="ngModel" required></td>                    
-                <td><button type="submit" class="btn btn-info" (click)="this.save()">Ajouter</button></td>
-            </tr>
-       </tbody>
+        </tbody>
     </table>
     <br><br>
 </div>

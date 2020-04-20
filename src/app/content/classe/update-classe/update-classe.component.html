@@ -1,0 +1,87 @@
+<app-navbar-classe></app-navbar-classe>
+
+<div class="container">
+    <h2>Modifier une classe :</h2>
+    <h5>ID : {{classe.id}} </h5>
+    
+    <form [formGroup]='formulaireModif' (ngSubmit) = 'update()'>
+    <div class ="formGroup">
+        <h5><label for="name">Nom* :</label> [{{this.classe.name}}]</h5>
+        <input type="text" class="form-control" [(ngModel)]="this.classe.name" formControlName="name" name="name" placeholder="Nouveau nom de la classe" value="{{this.classe.name}}" required>
+        <br><br>
+            <button type="submit" class="btn btn-info" [disabled]="!this.formulaireModif.valid">Modifier</button>
+        <br><br>
+        <span *ngIf="this.messageSucces.length">
+            <span class="alert alert-success">{{this.messageSucces}}</span>
+        </span>
+        <span *ngIf="this.messageEchec.length">
+            <span class="alert alert-danger">{{this.messageEchec}}</span>
+        </span>
+        <br><br><br>
+    </div>
+    </form>
+    
+    <h5>Liste des etudiants de la classe {{this.classe.name}} : </h5>
+    <p *ngIf = "emptyliste"><i>Il n'y a pas d'etudiants dans cette classe</i></p>
+    <table class="table" *ngIf = "!emptyliste">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nom</th>
+                <th>Prenom</th>
+                <th>CIN</th>
+                <th>Email</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let etudiant of etudiantsParClasse">
+                <td>{{etudiant.identifiant}}</td>
+                <td>{{etudiant.name}}</td>
+                <td>{{etudiant.surname}}</td>
+                <td>{{etudiant.identity}}</td>
+                <td>{{etudiant.mail}}</td>
+                <td><button class="btn btn-info" (click)="this.removeFromClasse(etudiant.identifiant)">Retirer de la classe</button></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h5>Ajouter des étudiants ?</h5>
+    <button class="btn btn-info" (click)="ajoutListeEtudiants()" *ngIf="!listeAllEtudiants">Ajouter des étudiants dans cette classe</button>
+    <table class="table" *ngIf="listeAllEtudiants">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nom</th>
+                <th>Prenom</th>
+                <th>CIN</th>
+                <th>Email</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let etudiant of etudiants">
+                <td>{{etudiant.identifiant}}</td>
+                <td>{{etudiant.name}}</td>
+                <td>{{etudiant.surname}}</td>
+                <td>{{etudiant.identity}}</td>
+                <td>{{etudiant.mail}}</td>
+                <td><button class="btn btn-info" (click)="this.addToClasse(etudiant.identifiant)">Ajouter à la classe</button></td>
+            </tr>
+       </tbody>
+    </table>
+    <br><br>
+    <span *ngIf="this.messageSucces2.length">
+        <span class="alert alert-success">{{this.messageSucces2}}</span>
+    </span>
+    <span *ngIf="this.messageEchec2.length">
+        <span class="alert alert-danger">{{this.messageEchec2}}</span>
+    </span> 
+    <br><br><br>
+    <button class="btn btn-info" (click)="retour()">Retour</button>
+    <br><br>
+</div>
+
+
+
+

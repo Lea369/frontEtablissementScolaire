@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { ClasseUpdateDto } from 'src/app/models/classe-update-dto';
 import { ClassesService } from 'src/app/services/classe/classes.service';
 import { ClasseCreateDto } from 'src/app/models/classe-create-dto';
-import { FormGroup, Validators, FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-all-classe',
@@ -12,11 +11,8 @@ import { FormGroup, Validators, FormControl } from '@angular/forms';
 export class AllClasseComponent implements OnInit {
 
   allClasse = new Array<ClasseUpdateDto>();
-  messageValidation: string;
-  messageEchec: string;
   classe = new ClasseCreateDto();
-  classForm: FormGroup;
-  
+   
   
   constructor(private service: ClassesService) {}
 
@@ -42,32 +38,13 @@ export class AllClasseComponent implements OnInit {
       responseDto => {
         if (!responseDto.error) {
           this.allClasse = this.allClasse.filter(element =>  element.id !== id);
-          this.messageValidation = 'Suppression reussie';
-          document.location.reload();
+          this.getAll();
         }
       }
     );
   }
 
-  save() {
-    console.log(this.classe.name);
-    this.service.create(this.classe).subscribe(
-      //SUCCESS ==> 200
-      (responseDto) => {
-        if (!responseDto.error) {
-          console.log('Creation reussie');
-          document.location.reload();
-        }
-      },
-      //FAIL ==> 400, 404, 500...
-      (responseDtoError) => {
-        if (responseDtoError.error) {
-          console.log('Erreur de création');
-          document.location.reload();
-        }
-      }
-    );
-  }
+  
 
 
 }

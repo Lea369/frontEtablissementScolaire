@@ -31,6 +31,14 @@ import { DetailAbsenceComponent } from './content/absence/detail-absence/detail-
 import { CreateAbsenceComponent } from './content/absence/create-absence/create-absence.component';
 import { NoteEtudiantComponent } from './content/etudiant/note-etudiant/note-etudiant.component';
 import { AbsenceEtudiantComponent } from './content/etudiant/absence-etudiant/absence-etudiant.component';
+import { NavbarClasseComponent } from './content/classe/navbar-classe/navbar-classe.component';
+import { NavbarAbsenceComponent } from './content/absence/navbar-absence/navbar-absence.component';
+import { NavbarEtudiantComponent } from './content/etudiant/navbar-etudiant/navbar-etudiant.component';
+import { NavbarMatiereComponent } from './content/matiere/navbar-matiere/navbar-matiere.component';
+import { NavbarNoteComponent } from './content/note/navbar-note/navbar-note.component';
+import { NavbarExamenComponent } from './content/examen/navbar-examen/navbar-examen.component';
+import { UpdateClasseComponent } from './content/classe/update-classe/update-classe.component';
+import { SearchClasseComponent } from './content/classe/search-classe/search-classe.component';
 
 @NgModule({
   declarations: [
@@ -58,7 +66,15 @@ import { AbsenceEtudiantComponent } from './content/etudiant/absence-etudiant/ab
     DetailAbsenceComponent,
     CreateAbsenceComponent,
     NoteEtudiantComponent,
-    AbsenceEtudiantComponent
+    AbsenceEtudiantComponent,
+    NavbarClasseComponent,
+    NavbarAbsenceComponent,
+    NavbarEtudiantComponent,
+    NavbarMatiereComponent,
+    NavbarNoteComponent,
+    NavbarExamenComponent,
+    UpdateClasseComponent,
+    SearchClasseComponent
   ],
   imports: [
     BrowserModule,

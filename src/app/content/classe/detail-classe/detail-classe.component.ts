@@ -1,11 +1,11 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ClasseUpdateDto } from 'src/app/models/classe-update-dto';
 import { EtudiantUpdateDto } from 'src/app/models/etudiant-update-dto';
 import { ClassesService } from 'src/app/services/classe/classes.service';
 import { EtudiantsService } from 'src/app/services/etudiant/etudiants.service';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+
 
 @Component({
   selector: 'app-detail-classe',
@@ -14,7 +14,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 })
 export class DetailClasseComponent implements OnInit {
 
-  classe: ClasseUpdateDto;
+  classe = new ClasseUpdateDto();
   messageValidation: string;
   messageEchec: string;
   etudiantsParClasse = new Array<EtudiantUpdateDto>();
@@ -34,12 +34,8 @@ export class DetailClasseComponent implements OnInit {
   ngOnInit(): void {
     this.getClasse();
     this.getEtudiantsParClasse();
-    this.getEtudiants();
-    
-    
+     
   }
-
- 
 
   getClasse(): void {
     const id = +this.route.snapshot.paramMap.get('id');
@@ -66,75 +62,13 @@ export class DetailClasseComponent implements OnInit {
     );
   }
 
-  getEtudiants(): void {
-    this.serviceEtudiants.getAll().subscribe(
-      (responseDto) => {
-        if (!responseDto.error) {
-          this.etudiants = responseDto.body;
-        }
-      }
-    )
-  }
-
-  afficherModification(): void {
-    this.modification = true;
-  }
-
   goBack(): void {
     this.location.back();
   }
 
-  addToClasse(identifiant: number): void {
-    this.serviceEtudiants.getEtudiant(identifiant).subscribe(
-      (responseDto) => {
-        if (!responseDto.error) {
-          this.etudiant = responseDto.body;
-          this.etudiant.classe = this.classe;
-          this.serviceEtudiants.updateEtudiant(this.etudiant).subscribe(
-            (responseDto) => {
-              if (!responseDto.error) {
-              document.location.reload();
-              }
-            }
-          );
-        }
-      }
-    );
-  }
+  
+  
 
-  removeFromClasse(identifiant: number): void {
-    this.serviceEtudiants.getEtudiant(identifiant).subscribe(
-      (responseDto) => {
-        if (!responseDto.error) {
-          this.etudiant = responseDto.body;
-          this.etudiant.classe = null;
-          this.serviceEtudiants.updateEtudiant(this.etudiant).subscribe(
-            (responseDto) => {
-              if (!responseDto.error) {
-              document.location.reload();
-              }
-            }
-          );
-        }
-      }
-    );
-  }
-
-  update(): void {
-    this.service.update(this.classe).subscribe(
-      (responseDto) => {
-        if (!responseDto.error) {
-          this.messageValidation = 'Mise à jour reussie';
-          document.location.reload();
-        }
-      },
-      (responseDtoError) => {
-        if (responseDtoError.error) {
-          this.messageEchec = 'Erreur de mise à jour';
-          document.location.reload();
-        }
-      }
-    );
-  }
+  
 
 }

@@ -1,0 +1,57 @@
+<app-navbar-classe></app-navbar-classe>
+
+<div class="container">
+    <h2>Ajouter une classe :</h2>
+    <form [formGroup]='formulaireAjout' (ngSubmit) = 'save()'>
+        <div class ="formGroup">
+            <h5><label for="name">Nom* :</label></h5>
+            <input type="text" class="form-control" [(ngModel)]="this.classeCreate.name" formControlName="name" name="name" placeholder="Nom de la classe à ajouter" required>
+            <br><br>
+            <button type="submit" class="btn btn-info" [disabled]="!this.formulaireAjout.valid">Ajouter</button>
+            <br><br>
+            <span *ngIf="this.messageSucces.length">
+                <span class="alert alert-success">{{this.messageSucces}}</span>
+            </span>
+            <span *ngIf="this.messageEchec.length">
+                <span class="alert alert-danger">{{this.messageEchec}}</span>
+            </span>
+            <br><br>
+        </div>
+    </form>
+    <div *ngIf="tableau">
+    <h2>Ajouter des étudiants à la classe {{this.classe.name}} :</h2>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nom</th>
+                <th>Prenom</th>
+                <th>CIN</th>
+                <th>Email</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let etudiant of etudiants">
+                <td>{{etudiant.identifiant}}</td>
+                <td>{{etudiant.name}}</td>
+                <td>{{etudiant.surname}}</td>
+                <td>{{etudiant.identity}}</td>
+                <td>{{etudiant.mail}}</td>
+                <td>
+                    <button class="btn btn-info" (click)="this.addToClasse(etudiant.identifiant)">Ajouter à la classe</button>
+                </td>
+            </tr>
+       </tbody>
+    </table>
+    <span *ngIf="this.messageSucces2.length">
+        <span class="alert alert-success">{{this.messageSucces2}}</span>
+    </span>
+    <span *ngIf="this.messageEchec2.length">
+        <span class="alert alert-danger">{{this.messageEchec2}}</span>
+    </span> 
+    </div>
+    <br><br><br>
+    <button class="btn btn-info" (click)="retour()">Retour</button>
+    <br><br>
+</div>

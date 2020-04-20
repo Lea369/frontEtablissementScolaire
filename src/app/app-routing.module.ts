@@ -17,21 +17,27 @@ import { DetailEtudiantsComponent } from './content/etudiant/detail-etudiants/de
 import { DetailExamenComponent } from './content/examen/detail-examen/detail-examen.component';
 import { DetailMatiereComponent } from './content/matiere/detail-matiere/detail-matiere.component';
 import { DetailNoteComponent } from './content/note/detail-note/detail-note.component';
+import { CreateClasseComponent } from './content/classe/create-classe/create-classe.component';
+import { UpdateClasseComponent } from './content/classe/update-classe/update-classe.component';
+import { SearchClasseComponent } from './content/classe/search-classe/search-classe.component';
 
 
 const routes: Routes = [
   { path: 'absence', component: AllAbsenceComponent },
-  { path: 'absence/detail/:id', component: DetailAbsenceComponent},
+  { path: 'absence/detail/:id', component: DetailAbsenceComponent },
   { path: 'classe', component: AllClasseComponent },
-  { path: 'classe/detail/:id', component: DetailClasseComponent},
+  { path: 'classe/add', component: CreateClasseComponent },
+  { path: 'classe/detail/:id', component: DetailClasseComponent },
+  { path: 'classe/update/:id', component: UpdateClasseComponent },
+  { path: 'classe/search', component: SearchClasseComponent },
   { path: 'etudiant', component: AllEtudiantComponent },
-  { path: 'etudiant/detail/:id', component: DetailEtudiantsComponent},
+  { path: 'etudiant/detail/:id', component: DetailEtudiantsComponent },
   { path: 'examen', component: AllExamenComponent },
-  { path: 'examen/detail/:id', component: DetailExamenComponent},
+  { path: 'examen/detail/:id', component: DetailExamenComponent },
   { path: 'matiere', component: AllMatiereComponent },
-  { path: 'matiere/detail/:id', component: DetailMatiereComponent},
+  { path: 'matiere/detail/:id', component: DetailMatiereComponent },
   { path: 'note', component: AllNoteComponent },
-  { path: 'note/detail/:id', component: DetailNoteComponent},
+  { path: 'note/detail/:id', component: DetailNoteComponent },
   { path: '', component: DashboardComponent }
 ];
 
