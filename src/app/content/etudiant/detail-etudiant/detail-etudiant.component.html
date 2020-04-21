@@ -1,0 +1,78 @@
+<app-navbar-etudiant></app-navbar-etudiant>
+
+<div class="container-fluid">
+    <h2>Détails de l'étudiant :</h2>
+    <h5>ID : {{this.etudiant.identifiant}}</h5>
+    <h5>Prénom : {{this.etudiant.name}} </h5>
+    <h5>Nom : {{this.etudiant.surname}} </h5>
+    <h5>Email : {{this.etudiant.mail}} </h5>
+    <h5>CNI : {{this.etudiant.identity}} </h5>
+    <h5>Téléphone : (+33) {{this.etudiant.phone}} </h5>
+    <h5>Adresse : {{this.etudiant.adress}}</h5>
+    <h5>Code Postal : {{this.etudiant.postalCode}} </h5>
+    <h5>Ville : {{this.etudiant.city}} </h5>
+    <h5>Sexe : {{this.etudiant.s}} </h5>
+    <div *ngIf="this.etudiant.classe">
+    <h5>Classe : {{this.etudiant.classe.name}} </h5>
+    </div>
+    <br><br>
+    <button class="btn btn-info" (click)="afficherAbsences(this.etudiant.mail)">Voir les absences de cet étudiant</button>
+    &nbsp;&nbsp;
+    <button class="btn btn-info" (click)="afficherNotes(this.etudiant.mail)">Voir les notes de cet étudiant</button>
+    &nbsp;&nbsp;
+    <button class="btn btn-info" (click)="retour()">Retour</button>
+    <br><br>
+
+    <div *ngIf="tableauAbsences">
+    <h5>Absences :</h5>
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Date de début</th>
+                <th>Date de fin</th>
+                <th>Decriptif</th> 
+                <th>Justificatif</th> 
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let a of this.allAbsences">
+                <td>{{a.identifiant}}</td>
+                <td>{{a.dateStart}}</td>
+                <td>{{a.dateEnd}}</td>
+                <td>{{a.descript}}</td>
+                <td>{{a.justif}}</td>
+            </tr>
+        </tbody>
+    </table>
+    <h5>{{this.messageAbsences}}</h5>
+    <br><br>
+    </div>
+
+    <div *ngIf="tableauNotes">
+    <h5>Bulletin de notes :</h5>
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>Matière</th>
+                <th>Date</th>
+                <th>Type</th>
+                <th>Coefficient</th>
+                <th>Note</th> 
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let n of this.allNotes">
+                <td>{{n.examen.matiereExamen.nomMatiere}}</td>
+                <td>{{n.examen.dateExamen}}</td>
+                <td>{{n.examen.typeExamen}}</td>
+                <td>{{n.examen.coefExamen}}</td>
+                <td>{{n.value}}</td>
+            </tr>
+        </tbody>  
+    </table>
+    <h5>{{this.messageNotes}}</h5>
+    <br><br>
+    </div>
+
+</div>

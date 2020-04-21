@@ -1,13 +1,13 @@
 <app-navbar-classe></app-navbar-classe>
 
-<div class="container">
+<div class="container-fluid">
     <h2>Modifier une classe :</h2>
     <h5>ID : {{classe.id}} </h5>
     
     <form [formGroup]='formulaireModif' (ngSubmit) = 'update()'>
     <div class ="formGroup">
         <h5><label for="name">Nom* :</label> [{{this.classe.name}}]</h5>
-        <input type="text" class="form-control" [(ngModel)]="this.classe.name" formControlName="name" name="name" placeholder="Nouveau nom de la classe" value="{{this.classe.name}}" required>
+        <input type="text" class="form-control" [(ngModel)]="this.classe.name" formControlName="name" name="name" required>
         <br><br>
             <button type="submit" class="btn btn-info" [disabled]="!this.formulaireModif.valid">Modifier</button>
         <br><br>
@@ -21,7 +21,7 @@
     </div>
     </form>
     
-    <h5>Liste des etudiants de la classe {{this.classe.name}} : </h5>
+    <h4>Liste des etudiants de la classe {{this.classe.name}} : </h4>
     <p *ngIf = "emptyliste"><i>Il n'y a pas d'etudiants dans cette classe</i></p>
     <table class="table" *ngIf = "!emptyliste">
         <thead>

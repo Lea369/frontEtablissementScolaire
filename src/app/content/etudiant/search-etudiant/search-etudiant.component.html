@@ -1,0 +1,169 @@
+<app-navbar-etudiant></app-navbar-etudiant>
+
+<div class="container-fluid">
+    <h2>Rechercher un étudiant par ID :</h2>
+    <h5><label for="search-box1">ID :</label></h5>
+    <input type="number" [(ngModel)]="this.numero"/>
+    <br><br>
+    <button class="btn btn-info" (click)="this.getSingle1(this.numero)">Rechercher</button>
+    <br><br>
+    <span><h5>{{this.message1}}</h5></span>
+    <br><br>
+
+    <h2>Rechercher un étudiant par email :</h2>
+    <h5><label for="search-box2">Email :</label></h5>
+    <input type="text" [(ngModel)]="this.email"/>
+    <br><br>
+    <button class="btn btn-info" (click)="this.getSingle2(this.email)">Rechercher</button>
+    <br><br>
+    <span><h5>{{this.message2}}</h5></span>
+    <br><br>
+
+    <h2>Rechercher un étudiant par CNI :</h2>
+    <h5><label for="search-box3">CNI :</label></h5>
+    <input type="text" [(ngModel)]="this.cni"/>
+    <br><br>
+    <button class="btn btn-info" (click)="this.getSingle3(this.cni)">Rechercher</button>
+    <br><br>
+    <span><h5>{{this.message3}}</h5></span>
+    <br><br>
+
+    <br><br>
+    <div *ngIf="single1">
+    <h5>Liste des étudiants :</h5>
+    <table class="table table-hover">
+       <thead>
+            <tr>
+                <th>ID</th>
+                <th>Prénom</th>
+                <th>Nom</th>
+                <th>Email</th>
+                <th>CNI</th>
+                <th>Téléphone</th>
+                <th>Adresse</th>
+                <th>Code Postal</th>
+                <th>Ville</th>
+                <th>Sexe</th>
+                <th>Classe</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>{{this.etudiant1.identifiant}}</td>
+                <td>{{this.etudiant1.name}}</td>
+                <td>{{this.etudiant1.surname}}</td>
+                <td>{{this.etudiant1.mail}}</td>
+                <td>{{this.etudiant1.identity}}</td>
+                <td>{{this.etudiant1.phone}}</td>
+                <td>{{this.etudiant1.adress}}</td>
+                <td>{{this.etudiant1.postalCode}}</td>
+                <td>{{this.etudiant1.city}}</td>
+                <td>{{this.etudiant1.s}}</td>
+                <td><span *ngIf="this.etudiant1.classe">{{this.etudiant1.classe.name}}</span></td>
+                <td>
+                    <a routerLink="/etudiant/detail/{{this.etudiant1.identifiant}}" class="btn btn-info" role="button">Afficher les détails</a>
+                    &nbsp;
+                    <a routerLink="/etudiant/update/{{this.etudiant1.identifiant}}" class="btn btn-info" role="button">Modifier</a>
+                    &nbsp;
+                    <button class="btn btn-danger" (click)="this.delete(this.etudiant1.identifiant)">Supprimer</button>
+                    &nbsp;
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <br><br>
+    </div>
+
+    <div *ngIf="single2">
+    <h5>Liste des étudiants :</h5>
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Prénom</th>
+                <th>Nom</th>
+                <th>Email</th>
+                <th>CNI</th>
+                <th>Téléphone</th>
+                <th>Adresse</th>
+                <th>Code Postal</th>
+                <th>Ville</th>
+                <th>Sexe</th>
+                <th>Classe</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let e of this.allEtudiants22">
+                <td>{{e.identifiant}}</td>
+                <td>{{e.name}}</td>
+                <td>{{e.surname}}</td>
+                <td>{{e.mail}}</td>
+                <td>{{e.identity}}</td>
+                <td>{{e.phone}}</td>
+                <td>{{e.adress}}</td>
+                <td>{{e.postalCode}}</td>
+                <td>{{e.city}}</td>
+                <td>{{e.s}}</td>
+                <td><span *ngIf="e.classe">{{e.classe.name}}</span></td>
+                <td>
+                    <a routerLink="/etudiant/detail/{{e.identifiant}}" class="btn btn-info" role="button">Afficher les détails</a>
+                    &nbsp;
+                    <a routerLink="/etudiant/update/{{e.identifiant}}" class="btn btn-info" role="button">Modifier</a>
+                    &nbsp;
+                    <button class="btn btn-danger" (click)="this.delete(e.identifiant)">Supprimer</button>
+                    &nbsp;
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <br><br>
+    </div>
+
+    <div *ngIf="single3">
+    <h5>Liste des étudiants :</h5>
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Prénom</th>
+                <th>Nom</th>
+                <th>Email</th>
+                <th>CNI</th>
+                <th>Téléphone</th>
+                <th>Adresse</th>
+                <th>Code Postal</th>
+                <th>Ville</th>
+                <th>Sexe</th>
+                <th>Classe</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let e of this.allEtudiants33">
+                <td>{{e.identifiant}}</td>
+                <td>{{e.name}}</td>
+                <td>{{e.surname}}</td>
+                <td>{{e.mail}}</td>
+                <td>{{e.identity}}</td>
+                <td>{{e.phone}}</td>
+                <td>{{e.adress}}</td>
+                <td>{{e.postalCode}}</td>
+                <td>{{e.city}}</td>
+                <td>{{e.s}}</td>
+                <td><span *ngIf="e.classe">{{e.classe.name}}</span></td>
+                <td>
+                    <a routerLink="/etudiant/detail/{{e.identifiant}}" class="btn btn-info" role="button">Afficher les détails</a>
+                    &nbsp;
+                    <a routerLink="/etudiant/update/{{e.identifiant}}" class="btn btn-info" role="button">Modifier</a>
+                    &nbsp;
+                    <button class="btn btn-danger" (click)="this.delete(e.identifiant)">Supprimer</button>
+                    &nbsp;
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <br><br>
+    </div>
+</div>

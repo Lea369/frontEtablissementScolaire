@@ -15,35 +15,19 @@ import { ClassesService } from 'src/app/services/classe/classes.service';
 export class AllEtudiantComponent implements OnInit {
   
   allEtudiant = new Array<EtudiantUpdateDto>();
-
-  etudiant: EtudiantUpdateDto;
-
-  etudiantcreate = new EtudiantCreateDto();
-
   listeClasse = new Array<ClasseUpdateDto>();
 
-  messageValidation: string;
-  messageEchec: string;
-
-  constructor(private service: EtudiantsService, private serviceClasse: ClassesService) { }
+  constructor(
+    private serviceEtudiants: EtudiantsService, 
+    ) { }
 
   ngOnInit() {
     this.getAll();
-    this.getClasse();
-  }
-
-  getClasse(): void{
-    this.serviceClasse.getAll().subscribe(
-      responseDto => {
-        if(!responseDto.error){
-          this.listeClasse = responseDto.body;
-        }
-      }
-    );
+    
   }
 
   getAll() {
-    this.service.getAll().subscribe(
+    this.serviceEtudiants.getAll().subscribe(
       (responseDto) => {
         if (!responseDto.error) {
           this.allEtudiant = responseDto.body;
@@ -53,51 +37,15 @@ export class AllEtudiantComponent implements OnInit {
   }
 
   delete(id: number) {
-    this.service.delete(id).subscribe(
+    this.serviceEtudiants.delete(id).subscribe(
       responseDto => {
         if (!responseDto.error) {
-          this.allEtudiant = this.allEtudiant.filter(
-            element =>  element.identifiant !== id
-          );
-        }
-        console.log('result after delete: ', this.allEtudiant);
-      }
-    );
-  }
-
-  save() {
-    this.service.create(this.etudiantcreate).subscribe(
-      (responseDto) => {
-        if (!responseDto.error) {
-          this.messageValidation = 'Creation reussie';
-          document.location.reload();
-        }
-      },
-      (responseDtoError) => {
-        if (responseDtoError.error) {
-          this.messageEchec = 'Erreur de création';
-          document.location.reload();
+          this.allEtudiant = this.allEtudiant.filter(element =>  element.identifiant !== id);
+          this.getAll();
         }
       }
     );
   }
 
-
-
-
- // TODO: Je ne crois pas que cette fonction est utile dans all-etudiant
- // Potentiellement à supprimer - G
- /*
-  getEtudiant(id: number) {
-    this.service.getEtudiant(id).subscribe(
-      responseDto => {
-        console.log('debug responseDto', ResponseDto);
-        if (!responseDto.error) {
-          this.etudiant = responseDto.body;
-        }
-      }
-    );
-    }
-    */
-
+  
 }

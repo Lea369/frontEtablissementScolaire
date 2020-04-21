@@ -37,11 +37,11 @@ export class EtudiantsService {
     return this.http.put<ResponseDto>(this.URL, etudiant);
   }
 
-  notes(email: string): Observable<ResponseDto> {
+  getNotes(email: string): Observable<ResponseDto> {
     return this.http.get<ResponseDto>(this.URL + '/note?email=' + email);
   }
 
-  abs(email: string) {
+  getAbsences(email: string) {
     return this.http.get<ResponseDto>(this.URL + '/absence?email=' + email);
   }
 }

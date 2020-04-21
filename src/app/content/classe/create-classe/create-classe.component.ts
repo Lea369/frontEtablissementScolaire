@@ -50,8 +50,8 @@ export class CreateClasseComponent implements OnInit {
       (responseDto) => {
         if (!responseDto.error) {
           this.classe = responseDto.body;
-          console.log(this.classe);
           this.messageSucces = 'Création réussie';
+          this.messageEchec = '';
           this.tableau = true;
           this.getEtudiants();
         }
@@ -60,6 +60,7 @@ export class CreateClasseComponent implements OnInit {
       (responseDtoError) => {
         if (responseDtoError.error) {
           this.messageEchec = 'Erreur de création';
+          this.messageSucces = '';
           this.tableau = false;
         }
       }

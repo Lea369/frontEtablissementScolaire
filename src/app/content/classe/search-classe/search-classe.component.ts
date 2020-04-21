@@ -74,17 +74,6 @@ export class SearchClasseComponent implements OnInit {
     )
   }
 
-
-  getAll() {
-    this.serviceClasses.getAll().subscribe(
-      (responseDto) => {
-        if (!responseDto.error) {
-          this.allClasse = responseDto.body;
-        }
-      }
-    );
-  }
-
   delete(id: number) {
     this.serviceClasses.delete(id).subscribe(
       responseDto => {

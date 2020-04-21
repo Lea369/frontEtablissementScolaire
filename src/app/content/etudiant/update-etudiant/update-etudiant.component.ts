@@ -1,37 +1,37 @@
 import { Component, OnInit } from '@angular/core';
-import { EtudiantCreateDto } from 'src/app/models/etudiant-create-dto';
+import { EtudiantUpdateDto } from 'src/app/models/etudiant-update-dto';
 import { EtudiantsService } from 'src/app/services/etudiant/etudiants.service';
-import { ResponseDto } from 'src/app/models/response-dto';
-import { ClasseUpdateDto } from 'src/app/models/classe-update-dto';
+import { ActivatedRoute } from '@angular/router';
+import { Location } from '@angular/common';
 import { FormGroup, Validators, FormControl } from '@angular/forms';
-import { Location } from '@angular/common'
 import { ClassesService } from 'src/app/services/classe/classes.service';
+import { ClasseUpdateDto } from 'src/app/models/classe-update-dto';
 
 @Component({
-  selector: 'app-create-etudiant',
-  templateUrl: './create-etudiant.component.html',
-  styleUrls: ['./create-etudiant.component.css']
+  selector: 'app-update-etudiant',
+  templateUrl: './update-etudiant.component.html',
+  styleUrls: ['./update-etudiant.component.css']
 })
-export class CreateEtudiantComponent implements OnInit {
+export class UpdateEtudiantComponent implements OnInit {
 
-  formulaireAjout: FormGroup;
-  etudiant = new EtudiantCreateDto();
+  etudiant = new EtudiantUpdateDto();
+  formulaireModif: FormGroup;
   allClasses = new Array<ClasseUpdateDto>();
   emptyListe: boolean;
-  messageSucces = '';
-  messageEchec = '';
+  messageSucces='';
+  messageEchec='';
   
-
-
   constructor(
     private serviceEtudiants: EtudiantsService,
     private serviceClasses: ClassesService,
-    private location: Location) { }
+    private route: ActivatedRoute,
+    private location: Location
+  ) { }
 
-  ngOnInit() {
-    this.emptyListe = true;
+  ngOnInit(): void {
+    this.getEtudiant();
     this.getClasses();
-    this.formulaireAjout = new FormGroup({
+    this.formulaireModif = new FormGroup({
       name: new FormControl(this.etudiant.name, Validators.required),
       surname: new FormControl(this.etudiant.surname, Validators.required),
       mail: new FormControl(this.etudiant.mail, [Validators.required, Validators.email]),
@@ -42,7 +42,18 @@ export class CreateEtudiantComponent implements OnInit {
       city: new FormControl(this.etudiant.city),
       s: new FormControl(this.etudiant.s, Validators.required),
       classe: new FormControl(this.etudiant.classe)
-    });
+    })
+  }
+
+  getEtudiant() {
+    const id = +this.route.snapshot.paramMap.get('id');
+    this.serviceEtudiants.getEtudiant(id).subscribe(
+      (responseDto) => {
+        if (!responseDto.error) {
+          this.etudiant = responseDto.body;
+        }
+      }
+    )
   }
 
   getClasses() {
@@ -61,26 +72,22 @@ export class CreateEtudiantComponent implements OnInit {
     )
   }
 
-  save() {
-    this.serviceEtudiants.create(this.etudiant).subscribe(
+  update() {
+    this.serviceEtudiants.updateEtudiant(this.etudiant).subscribe(
       (responseDto) => {
         if (!responseDto.error) {
-          this.messageEchec = '';
-          this.messageSucces = 'Création reussie';
-          console.log(this.etudiant);
+          this.messageSucces = 'Modification réussie';
         }
       },
-      (responseDtoError) => {
-        if (responseDtoError.error) {
-          this.messageSucces = '';
-          this.messageEchec = 'Erreur de création : cet email ou ce CNI est déjà utilisé';
+      (responseDto) => {
+        if (responseDto.error) {
+          this.messageEchec = 'Erreur lors de la modification : cet email ou cet CIN existe déjà'
         }
       }
-    );
+    )
   }
 
   retour(): void {
     this.location.back();
   }
-
 }

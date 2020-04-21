@@ -100,6 +100,7 @@ export class UpdateClasseComponent implements OnInit {
             (responseDto) => {
               if (!responseDto.error) {
                 this.messageSucces = '';
+                this.messageEchec = '';
                 this.messageSucces2 = 'Ajout de l\'etudiant ' +this.etudiant.identifiant+ ' à la classe ' +this.classe.name;
                 this.getEtudiantsParClasse();
               }
@@ -107,6 +108,7 @@ export class UpdateClasseComponent implements OnInit {
             (responseDto) => {
               if (responseDto.error) {
                 this.messageSucces = '';
+                this.messageEchec = '';
                 this.messageEchec2 = 'Erreur : l\'etudiant n\'a pas été ajouté à la classe';
                 this.getEtudiantsParClasse();
               }
@@ -149,12 +151,14 @@ export class UpdateClasseComponent implements OnInit {
       (responseDto) => {
         if (!responseDto.error) {
           this.messageSucces = 'Mise à jour reussie';
+          this.messageEchec = '';
           this.getClasse();
         }
       },
       (responseDtoError) => {
         if (responseDtoError.error) {
           this.messageEchec = 'Erreur de mise à jour';
+          this.messageSucces = '';
           this.getClasse();
         }
       }

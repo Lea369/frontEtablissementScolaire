@@ -14,6 +14,7 @@ export class AbsencesService {
   private URL = environment.baseUrl + 'absence';
 
   constructor(private http: HttpClient) { }
+  
   getAll(): Observable<ResponseDto> {
     return this.http.get<ResponseDto>(this.URL + '/all');
   }

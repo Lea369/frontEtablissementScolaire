@@ -13,13 +13,16 @@ import { AllNoteComponent } from './content/note/all-note/all-note.component'
 
 import { DetailAbsenceComponent } from './content/absence/detail-absence/detail-absence.component';
 import { DetailClasseComponent } from './content/classe/detail-classe/detail-classe.component';
-import { DetailEtudiantsComponent } from './content/etudiant/detail-etudiants/detail-etudiants.component';
 import { DetailExamenComponent } from './content/examen/detail-examen/detail-examen.component';
 import { DetailMatiereComponent } from './content/matiere/detail-matiere/detail-matiere.component';
 import { DetailNoteComponent } from './content/note/detail-note/detail-note.component';
 import { CreateClasseComponent } from './content/classe/create-classe/create-classe.component';
 import { UpdateClasseComponent } from './content/classe/update-classe/update-classe.component';
 import { SearchClasseComponent } from './content/classe/search-classe/search-classe.component';
+import { CreateEtudiantComponent } from './content/etudiant/create-etudiant/create-etudiant.component';
+import { SearchEtudiantComponent } from './content/etudiant/search-etudiant/search-etudiant.component';
+import { DetailEtudiantComponent } from './content/etudiant/detail-etudiant/detail-etudiant.component';
+import { UpdateEtudiantComponent } from './content/etudiant/update-etudiant/update-etudiant.component';
 
 
 const routes: Routes = [
@@ -31,7 +34,10 @@ const routes: Routes = [
   { path: 'classe/update/:id', component: UpdateClasseComponent },
   { path: 'classe/search', component: SearchClasseComponent },
   { path: 'etudiant', component: AllEtudiantComponent },
-  { path: 'etudiant/detail/:id', component: DetailEtudiantsComponent },
+  { path: 'etudiant/add', component: CreateEtudiantComponent},
+  { path: 'etudiant/detail/:id', component: DetailEtudiantComponent },
+  { path: 'etudiant/update/:id', component: UpdateEtudiantComponent },
+  { path: 'etudiant/search', component: SearchEtudiantComponent },
   { path: 'examen', component: AllExamenComponent },
   { path: 'examen/detail/:id', component: DetailExamenComponent },
   { path: 'matiere', component: AllMatiereComponent },

@@ -1,8 +1,8 @@
 <app-navbar-classe></app-navbar-classe>
 
-<div class="container">
+<div class="container-fluid">
     <h2>Rechercher une classe par ID :</h2>
-    <h5><label for="search-box">ID :</label></h5>
+    <h5><label for="search-box1">ID :</label></h5>
     <input type="number" [(ngModel)]="this.numero"/>
     <br><br>
     <button class="btn btn-info" (click)="this.getSingle1(this.numero)">Rechercher</button>
@@ -10,7 +10,7 @@
     <span><h5>{{this.message1}}</h5></span>
     <br><br>
     <h2>Rechercher une classe par nom :</h2>
-    <h5><label for="search-box">Nom :</label></h5>
+    <h5><label for="search-box2">Nom :</label></h5>
     <input type="text" [(ngModel)]="this.nom"/>
     <br><br>
     <button class="btn btn-info" (click)="this.getSingle2(this.nom)">Rechercher</button>

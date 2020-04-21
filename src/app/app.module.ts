@@ -13,7 +13,6 @@ import { CreateEtudiantComponent } from './content/etudiant/create-etudiant/crea
 import { AppRoutingModule } from './app-routing.module';
 import { DashboardComponent } from './content/dashboard/dashboard.component';
 
-import { DetailEtudiantsComponent } from './content/etudiant/detail-etudiants/detail-etudiants.component';
 import { AllNoteComponent } from './content/note/all-note/all-note.component';
 import { CreateNoteComponent } from './content/note/create-note/create-note.component';
 import { AllMatiereComponent } from './content/matiere/all-matiere/all-matiere.component';
@@ -29,8 +28,6 @@ import { DetailNoteComponent } from './content/note/detail-note/detail-note.comp
 import { AllAbsenceComponent } from './content/absence/all-absence/all-absence.component';
 import { DetailAbsenceComponent } from './content/absence/detail-absence/detail-absence.component';
 import { CreateAbsenceComponent } from './content/absence/create-absence/create-absence.component';
-import { NoteEtudiantComponent } from './content/etudiant/note-etudiant/note-etudiant.component';
-import { AbsenceEtudiantComponent } from './content/etudiant/absence-etudiant/absence-etudiant.component';
 import { NavbarClasseComponent } from './content/classe/navbar-classe/navbar-classe.component';
 import { NavbarAbsenceComponent } from './content/absence/navbar-absence/navbar-absence.component';
 import { NavbarEtudiantComponent } from './content/etudiant/navbar-etudiant/navbar-etudiant.component';
@@ -39,6 +36,9 @@ import { NavbarNoteComponent } from './content/note/navbar-note/navbar-note.comp
 import { NavbarExamenComponent } from './content/examen/navbar-examen/navbar-examen.component';
 import { UpdateClasseComponent } from './content/classe/update-classe/update-classe.component';
 import { SearchClasseComponent } from './content/classe/search-classe/search-classe.component';
+import { DetailEtudiantComponent } from './content/etudiant/detail-etudiant/detail-etudiant.component';
+import { SearchEtudiantComponent } from './content/etudiant/search-etudiant/search-etudiant.component';
+import { UpdateEtudiantComponent } from './content/etudiant/update-etudiant/update-etudiant.component';
 
 @NgModule({
   declarations: [
@@ -49,7 +49,6 @@ import { SearchClasseComponent } from './content/classe/search-classe/search-cla
     AllEtudiantComponent,
     CreateEtudiantComponent,
     DashboardComponent,
-    DetailEtudiantsComponent,
     AllNoteComponent,
     CreateNoteComponent,
     AllMatiereComponent,
@@ -65,8 +64,6 @@ import { SearchClasseComponent } from './content/classe/search-classe/search-cla
     AllAbsenceComponent,
     DetailAbsenceComponent,
     CreateAbsenceComponent,
-    NoteEtudiantComponent,
-    AbsenceEtudiantComponent,
     NavbarClasseComponent,
     NavbarAbsenceComponent,
     NavbarEtudiantComponent,
@@ -74,7 +71,10 @@ import { SearchClasseComponent } from './content/classe/search-classe/search-cla
     NavbarNoteComponent,
     NavbarExamenComponent,
     UpdateClasseComponent,
-    SearchClasseComponent
+    SearchClasseComponent,
+    DetailEtudiantComponent,
+    SearchEtudiantComponent,
+    UpdateEtudiantComponent
   ],
   imports: [
     BrowserModule,

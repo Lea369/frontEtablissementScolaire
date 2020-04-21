@@ -11,10 +11,11 @@ import { ClasseCreateDto } from 'src/app/models/classe-create-dto';
 export class AllClasseComponent implements OnInit {
 
   allClasse = new Array<ClasseUpdateDto>();
-  classe = new ClasseCreateDto();
-   
+     
   
-  constructor(private service: ClassesService) {}
+  constructor(
+    private serviceClasses: ClassesService
+    ) {}
 
   ngOnInit() {
       this.getAll();
@@ -24,7 +25,7 @@ export class AllClasseComponent implements OnInit {
   
 
   getAll() {
-    this.service.getAll().subscribe(
+    this.serviceClasses.getAll().subscribe(
       (responseDto) => {
         if (!responseDto.error) {
           this.allClasse = responseDto.body;
@@ -34,7 +35,7 @@ export class AllClasseComponent implements OnInit {
   }
 
   delete(id: number) {
-    this.service.delete(id).subscribe(
+    this.serviceClasses.delete(id).subscribe(
       responseDto => {
         if (!responseDto.error) {
           this.allClasse = this.allClasse.filter(element =>  element.id !== id);

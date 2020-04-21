@@ -1,53 +1,50 @@
 <app-navbar-etudiant></app-navbar-etudiant>
 
-
-    <h2 id="titre">Ajouter un Etudiant </h2>
-    <hr>
-    <div id="form">
-    <form class="col-lg-3 col-sm-6" [formGroup]="etuForm">
+<div class="container">
+    <h2>Ajouter un étudiant :</h2>
+    <form [formGroup]='formulaireAjout' (ngSubmit) = 'save()'>
         <div class="form-group">
-            <label for="nom">Nom :</label>
-            <input id="name" name="name" class="form-control" placeholder="Nom" formControlName="name"
-                required>
-        </div>
-        <hr>
-        <div class="form-group">
-            <label for="prenom">Prénom :</label>
-            <input type="text" class="form-control" [(ngModel)]="this.etudiant.surname" placeholder="Prénom"
-                name="prenom" required>
-        </div>
-        <hr>
-        <div class="form-group">
-            <label for="email">Email :</label>
-            <input type="email" class="form-control" [(ngModel)]="this.etudiant.mail" placeholder="Email"
-                name="email" required>
-        </div>
-        <hr>
-        <div class="form-group">
-            <label for="cin">CIN :</label>
-            <input type="text" class="form-control" [(ngModel)]="this.etudiant.identity"
-                placeholder="Votre num de carte d'identité" name="cin" required>
-        </div>
-        <hr>
-        <div class="form-group">
-            <label for="sel1">Sexe :</label>
-            <select class="form-control" id="sel1" [(ngModel)]="this.etudiant.s" name="sexe">
+            <h5><label for="name">Prénom* :</label></h5>
+            <input type="text" class="form-control" [(ngModel)]="this.etudiant.name" formControlName="name" name="name" placeholder="Prénom de l'étudiant à ajouter" required>
+            <h5><label for="surname">Nom* :</label></h5>
+            <input type="text" class="form-control" [(ngModel)]="this.etudiant.surname" formControlName="surname" name="surname" placeholder="Nom de l'étudiant à ajouter" required>
+            <h5><label for="mail">Email* :</label></h5>
+            <input type="email" class="form-control" [(ngModel)]="this.etudiant.mail" formControlName="mail" name="mail" placeholder="Email de l'étudiant à ajouter" required>
+            <h5><label for="identity">CNI* :</label></h5>
+            <input type="number" class="form-control" [(ngModel)]="this.etudiant.identity" formControlName="identity" name="identity" placeholder="CNI de l'étudiant à ajouter (6 caractères minimum)" pattern=".{6,}" required>
+            <h5><label for="phone">Telephone* : (+33) </label></h5>
+            <input type="number" class="form-control" [(ngModel)]="this.etudiant.phone" formControlName="phone" name="phone" placeholder="Téléphone de l'étudiant à ajouter (9 caractères minimum)" pattern=".{9,}" required>
+            <h5><label for="adress">Adresse :</label></h5>
+            <input type="text" class="form-control" [(ngModel)]="this.etudiant.adress" formControlName="adress" name="adress" placeholder="Adresse de l'étudiant à ajouter">
+            <h5><label for="postalCode">Code postal :</label></h5>
+            <input type="number" class="form-control" [(ngModel)]="this.etudiant.postalCode" formControlName="postalCode" name="postalCode" placeholder="Code postal de l'étudiant à ajouter">
+            <h5><label for="city">Ville :</label></h5>
+            <input type="text" class="form-control" [(ngModel)]="this.etudiant.city" formControlName="city" name="city" placeholder="Ville de l'étudiant à ajouter">
+            <h5><label for="s">Sexe* :</label></h5>
+            <select class="form-control" [(ngModel)]="this.etudiant.s" formControlName="s" name="s">
                 <option class="selected">F</option>
                 <option>M</option>
                 <option>A</option>
             </select>
+            <div *ngIf="!emptyListe">
+            <h5><label for="classe">Classe :</label></h5>
+            <select class="form-control" [(ngModel)]="this.etudiant.classe" formControlName="classe" name="classe">
+                <option *ngFor="let c of this.allClasses" [ngValue]="c">{{c.name}}</option>
+            </select>
+            </div>
+            <br><br>
+            <button type="submit" class="btn btn-info" [disabled]="!this.formulaireAjout.valid">Ajouter</button>
+            <br><br>
+            <span *ngIf="this.messageSucces.length">
+                <span class="alert alert-success">{{this.messageSucces}}</span>
+            </span>
+            <span *ngIf="this.messageEchec.length">
+                <span class="alert alert-danger">{{this.messageEchec}}</span>
+            </span>
+            <br><br>
         </div>
-        <hr>
-        <button type="button" class="btn btn-primary" (click)="this.save()">Submit</button>
-        <br>
-        <br>
-        <div class="alert alert-success" *ngIf="messageValidation">{{messageValidation}}</div>
-        <div class="alert alert-danger" *ngIf="messageEchec">{{messageEchec}}</div>
-
     </form>
-    <div *ngIf="name.invalid && (name.dirty || name.touched)" class="alert alert-danger">
-        <div *ngIf="name.errors.required">Le champ nom est obligatoire.</div></div>
+    <br><br><br>
+    <button class="btn btn-info" (click)="retour()">Retour</button>
+    <br><br>
 </div>
-<br>
-<br>
-<hr>
