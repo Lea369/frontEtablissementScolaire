@@ -23,11 +23,17 @@ import { CreateEtudiantComponent } from './content/etudiant/create-etudiant/crea
 import { SearchEtudiantComponent } from './content/etudiant/search-etudiant/search-etudiant.component';
 import { DetailEtudiantComponent } from './content/etudiant/detail-etudiant/detail-etudiant.component';
 import { UpdateEtudiantComponent } from './content/etudiant/update-etudiant/update-etudiant.component';
+import { CreateAbsenceComponent } from './content/absence/create-absence/create-absence.component';
+import { UpdateAbsenceComponent } from './content/absence/update-absence/update-absence.component';
+import { SearchAbsenceComponent } from './content/absence/search-absence/search-absence.component';
 
 
 const routes: Routes = [
   { path: 'absence', component: AllAbsenceComponent },
+  { path: 'absence/add', component: CreateAbsenceComponent },
   { path: 'absence/detail/:id', component: DetailAbsenceComponent },
+  { path: 'absence/update/:id', component: UpdateAbsenceComponent },
+  { path: 'absence/search', component: SearchAbsenceComponent },
   { path: 'classe', component: AllClasseComponent },
   { path: 'classe/add', component: CreateClasseComponent },
   { path: 'classe/detail/:id', component: DetailClasseComponent },

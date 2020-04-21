@@ -39,6 +39,8 @@ import { SearchClasseComponent } from './content/classe/search-classe/search-cla
 import { DetailEtudiantComponent } from './content/etudiant/detail-etudiant/detail-etudiant.component';
 import { SearchEtudiantComponent } from './content/etudiant/search-etudiant/search-etudiant.component';
 import { UpdateEtudiantComponent } from './content/etudiant/update-etudiant/update-etudiant.component';
+import { SearchAbsenceComponent } from './content/absence/search-absence/search-absence.component';
+import { UpdateAbsenceComponent } from './content/absence/update-absence/update-absence.component';
 
 @NgModule({
   declarations: [
@@ -74,7 +76,9 @@ import { UpdateEtudiantComponent } from './content/etudiant/update-etudiant/upda
     SearchClasseComponent,
     DetailEtudiantComponent,
     SearchEtudiantComponent,
-    UpdateEtudiantComponent
+    UpdateEtudiantComponent,
+    SearchAbsenceComponent,
+    UpdateAbsenceComponent
   ],
   imports: [
     BrowserModule,

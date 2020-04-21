@@ -150,14 +150,14 @@ export class UpdateClasseComponent implements OnInit {
     this.serviceClasses.update(this.classe).subscribe(
       (responseDto) => {
         if (!responseDto.error) {
-          this.messageSucces = 'Mise à jour reussie';
+          this.messageSucces = 'Modification reussie';
           this.messageEchec = '';
           this.getClasse();
         }
       },
       (responseDtoError) => {
         if (responseDtoError.error) {
-          this.messageEchec = 'Erreur de mise à jour';
+          this.messageEchec = 'Erreur lors de la modification';
           this.messageSucces = '';
           this.getClasse();
         }

@@ -73,7 +73,7 @@ export class CreateEtudiantComponent implements OnInit {
       (responseDtoError) => {
         if (responseDtoError.error) {
           this.messageSucces = '';
-          this.messageEchec = 'Erreur de création : cet email ou ce CNI est déjà utilisé';
+          this.messageEchec = 'Erreur lors de la création : cet email ou ce CNI est déjà utilisé';
         }
       }
     );

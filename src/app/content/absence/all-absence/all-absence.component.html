@@ -1,23 +1,7 @@
 <app-navbar-absence></app-navbar-absence>
 
-<div class="container">
-    <div class="alert alert-danger" *ngIf="messageEchec">{{messageEchec}}</div>
-
+<div class="container-fluid">
     <h2>Liste des absences :</h2>
-
-
-    <div *ngIf="absenceForm.get('descript').invalid && (absenceForm.get('descript').dirty || absenceForm.get('descript').touched)" class="
-        alert alert-danger">
-
-        <div *ngIf="absenceForm.get('descript').errors.required">
-            Name is required.
-        </div>
-        <div *ngIf="absenceForm.get('descript').errors.minlength">
-            Name must be at least 4 characters long.
-        </div>
-
-    </div>
-    <form [formGroup]="absenceForm" (ngSubmit)="this.create()">
     <table class="table table-hover">
         <thead>
             <tr>
@@ -27,61 +11,27 @@
                 <th>Justification</th>
                 <th>Description</th>
                 <th>Etudiant</th>
-                <th><button class="btn btn-info" (click)="this.toggle()"><span
-                            *ngIf="!this.showCreate; else elseBlock">Ajouter une absence</span>
-                        <ng-template #elseBlock>Cacher le formulaire</ng-template>
-                    </button></th>
+                <th>Actions</th>
             </tr>
         </thead>
         <tbody>
-            
-                <tr *ngIf="this.showCreate">
-                    <td>*</td>
-
-                    <td>
-                        <input class="form-control" type="date" formControlName="dateStart" name="dateStart" required>
-                    </td>
-                    <td>
-                        <input class="form-control" type="date" formControlName="dateEnd" name="dateEnd" required>
-                    </td>
-                    <td>
-                        <input class="form-control" type="text" formControlName="justif" style="width: 3rem;"
-                            name="justif" required>
-                    </td>
-                    <td>
-                        <input class="form-control" type="text" formControlName="descript" style="width: 3rem;"
-                            name="descript" required>
-                    </td>
-                    <td>
-                        <select class="form-control" formControlName="etudiant" name="etudiant">
-                            <option *ngFor="let m of this.allEtudiant" [ngValue]="m">{{m.name}}</option>
-                        </select>
-                    </td>
-                    <td>
-                        <button class="btn btn-success" type="submit">Enregistrer</button>
-                    </td>
-                </tr>
-            
-            <tr *ngFor="let e of this.allAbsence">
-                <td>{{e.identifiant}}</td>
-                <td>{{e.dateStart}}</td>
-                <td>{{e.dateEnd}}</td>
-                <td>{{e.justif}}</td>
-                <td>{{e.descript}}</td>
-                <td *ngIf="e.etudiant.name !== null; else elseBlock"><a
-                        routerLink="/etudiant/detail/{{e.etudiant.identifiant}}">{{e.etudiant.name}}</a>
-                </td>
-                <ng-template #elseBlock>
-                    <td>AUCUNE!</td>
-                </ng-template>
+            <tr *ngFor="let a of this.allAbsence">
+                <td>{{a.identifiant}}</td>
+                <td>{{a.dateStart}}</td>
+                <td>{{a.dateEnd}}</td>
+                <td>{{a.justif}}</td>
+                <td>{{a.descript}}</td>
+                <td>{{a.etudiant.name}} {{a.etudiant.surname}}</td>                
                 <td>
-                    <a routerLink="/absence/detail/{{e.identifiant}}">
-                        <button class="btn btn-info">Details</button>
-                    </a>
-                    <button class="btn btn-danger" (click)="this.delete(e.identifiant)">Supprimer</button>
+                    <a routerLink="/absence/detail/{{a.identifiant}}" class="btn btn-info" role="button">Afficher les détails</a>
+                    &nbsp;
+                    <a routerLink="/absence/update/{{a.identifiant}}" class="btn btn-info" role="button">Modifier</a>
+                    &nbsp;
+                    <button class="btn btn-danger" (click)="this.delete(a.identifiant)">Supprimer</button>
+                    &nbsp;
                 </td>
             </tr>
         </tbody>
     </table>
-</form>
+    <br><br>
 </div>

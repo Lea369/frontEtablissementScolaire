@@ -59,7 +59,7 @@ export class CreateClasseComponent implements OnInit {
       //FAIL ==> 400, 404, 500...
       (responseDtoError) => {
         if (responseDtoError.error) {
-          this.messageEchec = 'Erreur de création';
+          this.messageEchec = 'Erreur lors de la création';
           this.messageSucces = '';
           this.tableau = false;
         }

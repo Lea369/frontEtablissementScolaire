@@ -1,41 +1,18 @@
 <app-navbar-absence></app-navbar-absence>
 
-<div class="alert alert-danger" *ngIf="errMessage">{{errMessage}}</div>
-<div class="container" *ngIf="this.absence">
-    <h2>Details de l'absence'"</h2>
-
-    <div *ngIf="!editMode; else editBlock">
-        <div>ID: {{this.absence.identifiant}}</div>
-
-        <div>Date de début : {{this.absence.dateStart}}</div>
-        <div>Date de fin : {{this.absence.dateEnd}}</div>
-        <div>Justificatif : {{this.absence.justif}}</div>
-        <div>Coefficient : {{this.absence.descript}}</div>
-        <div>Etudiant : <a
-                routerLink="/etudiant/detail/{{this.absence.etudiant.identifiant}}">{{this.absence.etudiant.name}}</a>
-        </div>
-        <div><button class="btn btn-primary" style="margin-top: 1rem; margin-bottom: 1rem;"
-                (click)="toggle()">Modifier</button></div>
-    </div>
-    <ng-template #editBlock>
-        <div *ngIf="editMode" class="col-lg-3 col-sm-6">
-            <div>ID: {{this.absence.identifiant}}</div>
-
-        </div>
-        <div>Date de début : <input class="form-control" type="date" [(ngModel)]="this.absence.dateStart"> </div>
-        <div>Date de fin : <input class="form-control" type="date" [(ngModel)]="this.absence.dateEnd"> </div>
-        <div>Justificatif: <input type="text" class="form-control" [(ngModel)]="this.absence.justif"
-                style="width: 3rem;"></div>
-        <div>Description: <input type="text" class="form-control" [(ngModel)]="this.absence.descript"
-                style="width: 3rem;"></div>
-        <div>Matiere: ({{this.absence.etudiant.name}})
-            <select class="form-control" [(ngModel)]="this.absence.etudiant">
-                <option *ngFor="let m of this.allEtudiant" [ngValue]="m">{{m.name}}</option>
-            </select>
-            <div><button class="btn btn-success" style="margin-top: 1rem; margin-bottom: 1rem; margin-right: 1rem;"
-                    (click)="update()">Enregistrer</button>
-                <button class="btn btn-primary" style="margin-top: 1rem; margin-bottom: 1rem;"
-                    (click)="toggle()">Annuler</button></div>
-        </div>
-    </ng-template>
+<div class="container">
+    <h2>Détails de l'absence :</h2>
+    <h5>ID: {{this.absence.identifiant}}</h5>
+    <h5>Date de début : {{this.absence.dateStart}}</h5>
+    <h5>Date de fin : {{this.absence.dateEnd}}</h5>
+    <h5>Justificatif : {{this.absence.justif}}</h5>
+    <h5>Description : {{this.absence.descript}}</h5>
+    <h5>Etudiant : 
+        <a routerLink="/etudiant/detail/{{this.absence.etudiant.identifiant}}">
+            {{this.absence.etudiant.name}} {{this.absence.etudiant.surname}}</a>
+    </h5>
+    <br><br><br>
+    <button class="btn btn-info" (click)="retour()">Retour</button>
+    <br><br>
+    
 </div>

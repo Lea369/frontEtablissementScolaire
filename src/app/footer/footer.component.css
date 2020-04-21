@@ -1,8 +1,8 @@
-div {
-    border: 1px solid black;
-    background-color: black;
+footer {
+    background-color: rgb(64, 64, 65);
 }
 
 p {
     text-align: center;
+    color: rgb(255, 255, 255)
 }

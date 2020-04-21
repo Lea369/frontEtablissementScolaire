@@ -1,10 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AbsenceUpdateDto } from 'src/app/models/absence-update-dto';
-import { AbsenceCreateDto } from 'src/app/models/absence-create-dto';
-import { EtudiantsService } from 'src/app/services/etudiant/etudiants.service';
 import { AbsencesService } from 'src/app/services/absence/absences.service';
-import { EtudiantCreateDto } from 'src/app/models/etudiant-create-dto';
-import { FormGroup, Validators, FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-all-absence',
@@ -13,96 +9,37 @@ import { FormGroup, Validators, FormControl } from '@angular/forms';
 })
 export class AllAbsenceComponent implements OnInit {
 
-  showCreate = false;
-  messageEchec: string;
-
   allAbsence = new Array<AbsenceUpdateDto>();
-  allEtudiant = new Array<AbsenceUpdateDto>();
+  
+  constructor(private serviceAbsences: AbsencesService) { }
 
-  newAbsence = new AbsenceCreateDto();
-  newEtudiant = new EtudiantCreateDto();
-
-  absenceForm: FormGroup;
-
-  toggle() {
-    if (this.showCreate) {
-      this.showCreate = false;
-    } else {
-      this.showCreate = true;
-    }
+  ngOnInit(): void {
+    this.getAllAbsence();
+    
   }
 
-  create() {
-
-    if (this.newAbsence.dateStart && this.newAbsence.dateEnd && this.newAbsence.etudiant && this.newAbsence.justif && this.newAbsence.descript) {
-
-      this.service.create(this.newAbsence).subscribe(
-        responseDto => {
-          if (!responseDto.error) {
-            this.getAllAbsences();
-            this.showCreate = false;
-          }
-        },
-
-        responseError => {
-          console.log(responseError);
-          this.messageEchec = "Erreur " + responseError.status + ".";
-
-          if (responseError.status === 400) {
-            this.messageEchec += " Veuillez verifier les valeurs dans le formulaire."
-          }
-
+  getAllAbsence(): void {
+    this.serviceAbsences.getAll().subscribe(
+      (responseDto) => {
+        if (!responseDto.error) {
+          this.allAbsence = responseDto.body;
         }
-      );
-    } else {
-      this.messageEchec = "Veuillez remplir tous les champs pour enregistrer l'absence'."
-    }
-  }
-
-  delete(id: number) {
-    this.service.delete(id).subscribe(
-      responseDto => {
-        this.allAbsence = this.allAbsence.filter(
-          absence => absence.identifiant !== id
-        )
       }
     );
   }
 
-  constructor(private service: AbsencesService, private etuService: EtudiantsService) { }
 
-  ngOnInit(): void {
-    this.absenceForm = new FormGroup({
-      'descript': new FormControl(this.newAbsence.descript, [
-        Validators.required
-      ]),
-      'dateStart': new FormControl(this.newAbsence.dateStart, [
-        Validators.required
-      ]),
-      'dateEnd': new FormControl(this.newAbsence.dateEnd, [
-        Validators.required
-      ]),
-      'justif': new FormControl(this.newAbsence.justif, [
-        Validators.required
-      ]),
-      'etudiant': new FormControl(this.newAbsence.etudiant, [
-        Validators.required
-      ]),
-    });
-    this.getAllAbsences();
-    this.getAllEtudiants();
-  }
-
-  private getAllAbsences(): void {
-    this.service.getAll().subscribe(
-      responseDto => this.allAbsence = responseDto.body
+     
+  delete(id: number) {
+    this.serviceAbsences.delete(id).subscribe(
+      (responseDto) => {
+        if (!responseDto.error) {
+          this.getAllAbsence();
+        } 
+      }
     );
   }
 
-  private getAllEtudiants(): void {
-    this.etuService.getAll().subscribe(
-      responseDto => this.allEtudiant = responseDto.body
-    );
-  }
-
+  
+  
 }
