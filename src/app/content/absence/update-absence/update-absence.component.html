@@ -1,1 +1,38 @@
-<p>update-absence works!</p>
+<app-navbar-absence></app-navbar-absence>
+
+<div class="container">
+    <h2>Modifier une absence :</h2>
+    <h5>ID : {{this.absence.identifiant}}</h5>
+    <form [formGroup]='formulaireModif' (ngSubmit) = 'update()'>
+        <div class="formGroup">
+            <h5><label for="dateStart">Date de début* :</label> [{{this.absence.dateStart}}]</h5>
+            <input type="date" class="form-control" [(ngModel)]="this.absence.dateStart" formControlName="dateStart" name="dateStart" required>
+            <h5><label for="dateEnd">Date de fin* :</label> [{{this.absence.dateEnd}}] </h5>
+            <input type="date" class="form-control" [(ngModel)]="this.absence.dateEnd" formControlName="dateEnd" name="dateEnd" required>
+            <h5><label for="justif">Justification* :</label> [{{this.absence.justif}}]</h5>
+            <textarea class="form-control" [(ngModel)]="this.absence.justif" formControlName="justif" name="justif"  placeholder="Justification de l'absence" rows="5" required></textarea>
+            <h5><label for="descript">Description* :</label> [{{this.absence.descript}}] </h5>
+            <textarea class="form-control" [(ngModel)]="this.absence.descript" formControlName="descript" name="descript" placeholder="Description de l'absence" rows="5" required></textarea>
+            <h5><label for="numero">ID Etudiant* : </label> [{{this.absence.etudiant.identifiant}}] </h5>
+            <input type="number" class="form-control" [(ngModel)]="this.numero" formControlName="numero" name="numero" placeholder="ID de l'étudiant" required>
+            <br>
+            <h5><i>Liste des étudiants :</i></h5>
+            <ul class="list-group" *ngFor="let e of this.allEtudiant">
+                <li class="list-group-item">ID : {{e.identifiant}}  -  Prénom : {{e.name}}  -  Nom : {{e.surname}}  -  Email : {{e.mail}}  -  CNI : {{e.identity}} </li>
+            </ul>
+            <br><br>
+            <button type="submit" class="btn btn-info" [disabled]="!this.formulaireModif.valid">Modifier</button>
+            <br><br>
+            <span *ngIf="this.messageSucces.length">
+                <span class="alert alert-success">{{this.messageSucces}}</span>
+            </span>
+            <span *ngIf="this.messageEchec.length">
+                <span class="alert alert-danger">{{this.messageEchec}}</span>
+            </span>
+            <br><br>
+        </div>
+    </form>
+    <br><br><br>
+    <button class="btn btn-info" (click)="retour()">Retour</button>
+    <br><br>
+</div>

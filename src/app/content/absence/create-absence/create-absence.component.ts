@@ -71,7 +71,8 @@ export class CreateAbsenceComponent implements OnInit {
       },
       (responseDto) => {
         if (responseDto.error) {
-          this.messageEchec = 'Erreur lors de la création : cet ID n\'existe pas';
+          this.messageEchec = 'Erreur lors de la création : cet étudiant n\'existe pas';
+          this.messageSucces = '';
         }
       }
     )

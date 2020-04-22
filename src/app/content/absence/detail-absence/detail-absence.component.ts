@@ -11,7 +11,7 @@ import { Location } from '@angular/common';
 })
 export class DetailAbsenceComponent implements OnInit {
 
-  absence: AbsenceUpdateDto;
+  absence = new AbsenceUpdateDto();
 
   constructor(
     private route: ActivatedRoute,

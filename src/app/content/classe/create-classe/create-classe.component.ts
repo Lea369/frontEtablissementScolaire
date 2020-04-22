@@ -88,6 +88,7 @@ export class CreateClasseComponent implements OnInit {
             (responseDto) => {
               if (!responseDto.error) {
               this.messageSucces = '';
+              this.messageEchec2 = '';
               this.messageSucces2 = 'Ajout de l\'etudiant ' +this.etudiant.identifiant+ ' à la classe ' +this.classe.name;
             }
             },
@@ -95,6 +96,7 @@ export class CreateClasseComponent implements OnInit {
               if (responseDto.error) {
                 this.messageSucces = '';
                 this.messageEchec2 = 'Erreur : l\'etudiant n\'a pas été ajouté à la classe';
+                this.messageSucces2 = '';
               }
             }
           );

@@ -1,1 +1,92 @@
-<p>search-absence works!</p>
+<app-navbar-absence></app-navbar-absence>
+
+<div class="container-fluid">
+    <h2>Rechercher une absence par ID :</h2>
+    <h5><label for="search-box1">ID :</label></h5>
+    <input type="number" [(ngModel)]="this.numero1"/>
+    <br><br>
+    <button class="btn btn-info" (click)="this.getSingle1(this.numero1)">Rechercher</button>
+    <br><br>
+    <span><h5>{{this.message1}}</h5></span>
+    <br><br>
+
+    <h2>Rechercher une absence par étudiant :</h2>
+    <h5><label for="search-box1">ID Etudiant :</label></h5>
+    <input type="number" [(ngModel)]="this.numero2"/>
+    <br><br>
+    <button class="btn btn-info" (click)="this.getSingle2(this.numero2)">Rechercher</button>
+    <br><br>
+    <span><h5>{{this.message2}}</h5></span>
+    <br><br>
+
+    <div *ngIf="single1">
+    <h5>Liste des absences :</h5>
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Date de début</th>
+                <th>Date de fin</th>
+                <th>Justification</th>
+                <th>Description</th>
+                <th>Etudiant</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>{{absence1.identifiant}}</td>
+                <td>{{absence1.dateStart}}</td>
+                <td>{{absence1.dateEnd}}</td>
+                <td>{{absence1.justif}}</td>
+                <td>{{absence1.descript}}</td>
+                <td>ID : {{absence1.etudiant.identifiant}} - {{absence1.etudiant.name}} {{absence1.etudiant.surname}}</td>                
+                <td>
+                    <a routerLink="/absence/detail/{{absence1.identifiant}}" class="btn btn-info" role="button">Afficher les détails</a>
+                    &nbsp;
+                    <a routerLink="/absence/update/{{absence1.identifiant}}" class="btn btn-info" role="button">Modifier</a>
+                    &nbsp;
+                    <button class="btn btn-danger" (click)="this.delete(absence1.identifiant)">Supprimer</button>
+                    &nbsp;
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    </div>
+
+    <div *ngIf="single2">
+    <h5>Liste des absences :</h5>
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Date de début</th>
+                <th>Date de fin</th>
+                <th>Justification</th>
+                <th>Description</th>
+                <th>Etudiant</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor='let a of this.allAbsence22'>
+                <td>{{a.identifiant}}</td>
+                <td>{{a.dateStart}}</td>
+                <td>{{a.dateEnd}}</td>
+                <td>{{a.justif}}</td>
+                <td>{{a.descript}}</td>
+                <td>ID : {{a.etudiant.identifiant}} - {{a.etudiant.name}} {{a.etudiant.surname}}</td>                
+                <td>
+                    <a routerLink="/absence/detail/{{a.identifiant}}" class="btn btn-info" role="button">Afficher les détails</a>
+                    &nbsp;
+                    <a routerLink="/absence/update/{{a.identifiant}}" class="btn btn-info" role="button">Modifier</a>
+                    &nbsp;
+                    <button class="btn btn-danger" (click)="this.delete(a.identifiant)">Supprimer</button>
+                    &nbsp;
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    </div>
+    <br><br>
+</div>

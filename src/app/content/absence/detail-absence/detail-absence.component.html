@@ -7,10 +7,12 @@
     <h5>Date de fin : {{this.absence.dateEnd}}</h5>
     <h5>Justificatif : {{this.absence.justif}}</h5>
     <h5>Description : {{this.absence.descript}}</h5>
+    <div *ngIf="this.absence.etudiant">
     <h5>Etudiant : 
         <a routerLink="/etudiant/detail/{{this.absence.etudiant.identifiant}}">
             {{this.absence.etudiant.name}} {{this.absence.etudiant.surname}}</a>
     </h5>
+    </div>
     <br><br><br>
     <button class="btn btn-info" (click)="retour()">Retour</button>
     <br><br>
