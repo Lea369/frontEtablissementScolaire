@@ -1,1 +1,58 @@
 <app-navbar-matiere></app-navbar-matiere>
+
+<div class="container">
+    <h2>Ajouter une matière :</h2>
+    <form [formGroup]='formulaireAjout' (ngSubmit) = 'save()'>
+        <div class ="formGroup">
+            <h5><label for="nomMatiere">Nom* :</label></h5>
+            <input type="text" class="form-control" [(ngModel)]="this.matiereCreate.nomMatiere" formControlName="nomMatiere" name="nomMatiere" placeholder="Nom de la matière à ajouter" required>
+            <br><br>
+            <button type="submit" class="btn btn-info" [disabled]="!this.formulaireAjout.valid">Ajouter</button>
+            <br><br>
+            <span *ngIf="this.messageSucces.length">
+                <span class="alert alert-success">{{this.messageSucces}}</span>
+            </span>
+            <span *ngIf="this.messageEchec.length">
+                <span class="alert alert-danger">{{this.messageEchec}}</span>
+            </span>
+            <br><br>
+        </div>
+    </form>
+    <div *ngIf="tableau && !emptyListe">
+        <h2>Inscrire des étudiants à la matière {{this.matiere.nomMatiere}} :</h2>
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nom</th>
+                    <th>Prenom</th>
+                    <th>CIN</th>
+                    <th>Email</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let etudiant of allEtudiants">
+                    <td>{{etudiant.identifiant}}</td>
+                    <td>{{etudiant.name}}</td>
+                    <td>{{etudiant.surname}}</td>
+                    <td>{{etudiant.identity}}</td>
+                    <td>{{etudiant.mail}}</td>
+                    <td>
+                        <button class="btn btn-info" (click)="this.addToMatiere(etudiant)">Inscrire</button>
+                    </td>
+                </tr>
+           </tbody>
+        </table>
+        <br>
+        <span *ngIf="this.messageSucces2.length">
+            <span class="alert alert-success">{{this.messageSucces2}}</span>
+        </span>
+        <span *ngIf="this.messageEchec2.length">
+            <span class="alert alert-danger">{{this.messageEchec2}}</span>
+        </span> 
+        </div>
+        <br><br><br>
+        <button class="btn btn-info" (click)="retour()">Retour</button>
+        <br><br>
+</div>

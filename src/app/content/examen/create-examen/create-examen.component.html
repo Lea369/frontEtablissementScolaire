@@ -1,1 +1,38 @@
 <app-navbar-examen></app-navbar-examen>
+
+<div class="container">
+    <h2>Ajouter un examen :</h2>
+    <form [formGroup]="formulaireAjout" (ngSubmit)="save()">
+        <p *ngIf="emptyListe"><i>Désolé, aucune matière n'est enregistrée. Vous ne pouvez pas ajouter d'examens.</i></p>
+        <div class="form-group" *ngIf="!emptyListe">
+            <h5><label for="matiereExamen">Matière* :</label></h5>
+            <select class="form-control" [(ngModel)]="this.examen.matiereExamen" formControlName="matiereExamen" name="matiereExamen" required>
+                <option *ngFor="let m of this.allMatiere" [ngValue]="m">{{m.nomMatiere}}</option>
+            </select>
+            <h5><label for="dateExamen">Date* :</label></h5>
+            <input type="date" class="form-control" [(ngModel)]="this.examen.dateExamen" formControlName="dateExamen" name="dateExamen" required>
+            <h5><label for="typeExamen">Type* :</label></h5>
+            <select class="form-control" [(ngModel)]="this.examen.typeExamen" formControlName="typeExamen" name="typeExamen" required>
+                <option value="CC">Contrôle continu </option>
+                <option value="DS">Devoir surveillé </option>
+                <option value="TEST">Test</option>
+                <option value="EXAMEN">Examen</option>
+            </select>
+            <h5><label for="coefExamen">Coefficient* :</label></h5>
+            <input type="number" class="form-control" [(ngModel)]="this.examen.coefExamen" formControlName="coefExamen" name="coefExamen" required>
+            <br><br>
+            <button type="submit" class="btn btn-info" [disabled]="!this.formulaireAjout.valid">Ajouter</button>
+            <br><br>
+            <span *ngIf="this.messageSucces.length">
+                <span class="alert alert-success">{{this.messageSucces}}</span>
+            </span>
+            <span *ngIf="this.messageEchec.length">
+                <span class="alert alert-danger">{{this.messageEchec}}</span>
+            </span>
+            <br><br>
+        </div>
+    </form>
+    <br><br><br>
+    <button class="btn btn-info" (click)="retour()">Retour</button>
+    <br><br>
+</div>

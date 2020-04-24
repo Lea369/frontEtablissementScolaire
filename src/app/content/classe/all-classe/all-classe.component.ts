@@ -38,7 +38,6 @@ export class AllClasseComponent implements OnInit {
     this.serviceClasses.delete(id).subscribe(
       responseDto => {
         if (!responseDto.error) {
-          this.allClasse = this.allClasse.filter(element =>  element.id !== id);
           this.getAll();
         }
       }

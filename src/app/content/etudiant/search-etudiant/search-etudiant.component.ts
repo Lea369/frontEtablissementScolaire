@@ -11,17 +11,20 @@ export class SearchEtudiantComponent implements OnInit {
 
   numero: number;
   etudiant1 = new EtudiantUpdateDto();
-  message1 = '';
+  messageSucces1 = '';
+  messageEchec1 = '';
   single1: boolean;
   email: string;
   allEtudiants2 = new Array<EtudiantUpdateDto>();
   allEtudiants22 = new Array<EtudiantUpdateDto>();
-  message2 = '';
+  messageSucces2 = '';
+  messageEchec2 = '';
   single2: boolean;
   cni: number;
   allEtudiants3 = new Array<EtudiantUpdateDto>();
   allEtudiants33 = new Array<EtudiantUpdateDto>();
-  message3 = '';
+  messageSucces3 = '';
+  messageEchec3 = '';
   single3: boolean;
 
 
@@ -38,30 +41,36 @@ export class SearchEtudiantComponent implements OnInit {
       (responseDto) => {
         if (!responseDto.error) {
           this.single3 = false;
-          this.message3 = '';
+          this.messageSucces3 = '';
+          this.messageEchec3 = '';
           this.allEtudiants3 = [];
           this.allEtudiants33 = [];
           this.single2 = false;
-          this.message2 = '';
+          this.messageSucces2 = '';
+          this.messageEchec2 = '';
           this.allEtudiants2 = [];
           this.allEtudiants22 = [];
           this.single1 = true;
-          this.message1 = '';
+          this.messageSucces1 = '1 étudiant(s) trouvé(s).';
+          this.messageEchec1 = '';
           this.etudiant1 = responseDto.body;
         }
       },
       (responseDto) => {
         if (responseDto.error) {
           this.single3 = false;
-          this.message3 = '';
+          this.messageSucces3 = '';
+          this.messageEchec3 = '';
           this.allEtudiants3 = [];
           this.allEtudiants33 = [];
           this.single2 = false;
-          this.message2 = '';
+          this.messageSucces2 = '';
+          this.messageEchec2 = '';
           this.allEtudiants2 = [];
           this.allEtudiants22 = [];
           this.single1 = false;
-          this.message1 = 'Aucun étudiant n\'existe avec cet ID';
+          this.messageSucces1 = '';
+          this.messageEchec1 = 'Aucun étudiant trouvé.';
           this.etudiant1 = null;
         }
       }
@@ -75,25 +84,31 @@ export class SearchEtudiantComponent implements OnInit {
           this.allEtudiants2 = responseDto.body;
           this.allEtudiants22 = this.allEtudiants2.filter(element =>  element.mail == email);
           if (this.allEtudiants22.length == 0) {
-            this.message1 = '';
+            this.messageSucces1 = '';
+            this.messageEchec1 = '';
             this.etudiant1 = null;
             this.single1 = false;
             this.single3 = false;
-            this.message3 = '';
+            this.messageSucces3 = '';
+            this.messageEchec3 = '';
             this.allEtudiants3 = [];
             this.allEtudiants33 = [];
-            this.message2 = 'Aucun étudiant n\'existe avec cet email';
+            this.messageSucces2 = '';
+            this.messageEchec2 = 'Aucun étudiant trouvé.';
             this.single2 = false;
           }
           else {
-            this.message1 = '';
+            this.messageSucces1 = '';
+            this.messageEchec1 = '';
             this.etudiant1 = null;
             this.single1 = false;
             this.single3 = false;
-            this.message3 = '';
+            this.messageSucces3 = '';
+            this.messageEchec3 = '';
             this.allEtudiants3 = [];
             this.allEtudiants33 = [];
-            this.message2 = '';
+            this.messageSucces2 = this.allEtudiants22.length+ ' étudiant(s) trouvé(s).';
+            this.messageEchec2 = '';
             this.single2 = true;
           }
         }
@@ -108,25 +123,31 @@ export class SearchEtudiantComponent implements OnInit {
           this.allEtudiants3 = responseDto.body;
           this.allEtudiants33 = this.allEtudiants3.filter(element =>  element.identity == cni);
           if (this.allEtudiants33.length == 0) {
-            this.message1 = '';
+            this.messageSucces1 = '';
+            this.messageEchec1 = '';
             this.etudiant1 = null;
             this.single1 = false;
-            this.message2 = '';
+            this.messageSucces2 = '';
+            this.messageEchec2 = '';
             this.allEtudiants2 = [];
             this.allEtudiants22 = [];
             this.single2 = false;
-            this.message3 = 'Aucun étudiant n\'existe avec ce CNI';
+            this.messageSucces3 = '';
+            this.messageEchec3 = 'Aucun étudiant trouvé.';
             this.single3 = false;
           }
           else {
-            this.message1 = '';
+            this.messageSucces1 = '';
+            this.messageEchec1 = '';
             this.etudiant1 = null;
             this.single1 = false;
-            this.message2 = '';
+            this.messageSucces2 = '';
+            this.messageEchec2 = '';
             this.allEtudiants2 = [];
             this.allEtudiants22 = [];
             this.single2 = false;
-            this.message3 = '';
+            this.messageSucces3 = this.allEtudiants33.length+ ' étudiant(s) trouvé(s).';
+            this.messageEchec3 = '';
             this.single3 = true;
           }
         }

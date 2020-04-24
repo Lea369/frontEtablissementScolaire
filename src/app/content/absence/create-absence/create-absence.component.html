@@ -3,22 +3,20 @@
 <div class="container">
     <h2>Ajouter une absence :</h2>
     <form [formGroup]='formulaireAjout' (ngSubmit) = 'save()'>
-        <div class="formGroup">
+        <p *ngIf="this.emptyListeAllEtudiants"><i>Désolé, aucun étudiant n'est enregistré. Vous ne pouvez pas ajouter d'absence.</i></p>
+        <div class="formGroup" *ngIf="!this.emptyListeAllEtudiants">
+            <h5><label for="etudiant">Etudiant* : </label></h5>
+            <select class="form-control" [(ngModel)]="this.absence.etudiant" formControlName="etudiant" name="etudiant" required>
+                <option *ngFor="let e of this.allEtudiant" [ngValue]="e">{{e.name}} {{e.surname}}</option>
+            </select>
             <h5><label for="dateStart">Date de début* :</label></h5>
             <input type="date" class="form-control" [(ngModel)]="this.absence.dateStart" formControlName="dateStart" name="dateStart" required>
             <h5><label for="dateEnd">Date de fin* :</label></h5>
             <input type="date" class="form-control" [(ngModel)]="this.absence.dateEnd" formControlName="dateEnd" name="dateEnd" required>
             <h5><label for="justif">Justification* :</label></h5>
-            <textarea class="form-control" [(ngModel)]="this.absence.justif" formControlName="justif" name="justif"  placeholder="Justification de l'absence" rows="5" required></textarea>
+            <textarea class="form-control" [(ngModel)]="this.absence.justif" formControlName="justif" name="justif" rows="5" required></textarea>
             <h5><label for="descript">Description* :</label></h5>
-            <textarea class="form-control" [(ngModel)]="this.absence.descript" formControlName="descript" name="descript" placeholder="Description de l'absence" rows="5" required></textarea>
-            <h5><label for="id">ID Etudiant* : </label></h5>
-            <input type="number" class="form-control" [(ngModel)]="this.id" formControlName="id" name="id" placeholder="ID de l'étudiant" required>
-            <br>
-            <h5><i>Liste des étudiants :</i></h5>
-            <ul class="list-group" *ngFor="let e of this.allEtudiant">
-                <li class="list-group-item">ID : {{e.identifiant}}  -  Prénom : {{e.name}}  -  Nom : {{e.surname}}  -  Email : {{e.mail}}  -  CNI : {{e.identity}} </li>
-            </ul>
+            <textarea class="form-control" [(ngModel)]="this.absence.descript" formControlName="descript" name="descript" rows="5" required></textarea>
             <br><br>
             <button type="submit" class="btn btn-info" [disabled]="!this.formulaireAjout.valid">Ajouter</button>
             <br><br>

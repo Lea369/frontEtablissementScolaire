@@ -7,7 +7,12 @@
     <br><br>
     <button class="btn btn-info" (click)="this.getSingle1(this.numero)">Rechercher</button>
     <br><br>
-    <span><h5>{{this.message1}}</h5></span>
+    <span *ngIf="this.messageSucces1.length">
+        <span class="alert alert-success">{{this.messageSucces1}}</span>
+    </span>
+    <span *ngIf="this.messageEchec1.length">
+        <span class="alert alert-danger">{{this.messageEchec1}}</span>
+    </span> 
     <br><br>
 
     <h2>Rechercher un étudiant par email :</h2>
@@ -16,7 +21,12 @@
     <br><br>
     <button class="btn btn-info" (click)="this.getSingle2(this.email)">Rechercher</button>
     <br><br>
-    <span><h5>{{this.message2}}</h5></span>
+    <span *ngIf="this.messageSucces2.length">
+        <span class="alert alert-success">{{this.messageSucces2}}</span>
+    </span>
+    <span *ngIf="this.messageEchec2.length">
+        <span class="alert alert-danger">{{this.messageEchec2}}</span>
+    </span> 
     <br><br>
 
     <h2>Rechercher un étudiant par CNI :</h2>
@@ -25,10 +35,15 @@
     <br><br>
     <button class="btn btn-info" (click)="this.getSingle3(this.cni)">Rechercher</button>
     <br><br>
-    <span><h5>{{this.message3}}</h5></span>
+    <span *ngIf="this.messageSucces3.length">
+        <span class="alert alert-success">{{this.messageSucces3}}</span>
+    </span>
+    <span *ngIf="this.messageEchec3.length">
+        <span class="alert alert-danger">{{this.messageEchec3}}</span>
+    </span> 
     <br><br>
 
-    <br><br>
+    
     <div *ngIf="single1">
     <h5>Liste des étudiants :</h5>
     <table class="table table-hover">

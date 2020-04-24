@@ -3,14 +3,14 @@ import { HttpClient } from '@angular/common/http';
 import { ResponseDto } from 'src/app/models/response-dto';
 import { Observable } from 'rxjs';
 import { MatiereCreateDto } from 'src/app/models/matiere-create-dto';
-import {environment} from 'src/environments/environment';
+import { environment } from 'src/environments/environment';
 import { MatiereUpdateDto } from 'src/app/models/matiere-update-dto';
 
 
 @Injectable({
   providedIn: 'root'
 })
-export class MatiereService {
+export class MatieresService {
 
   private URL = environment.baseUrl + 'matiere';
 
@@ -35,4 +35,9 @@ export class MatiereService {
   update(matiere: MatiereUpdateDto): Observable<ResponseDto>{
     return this.http.put<ResponseDto>(this.URL , matiere);
   }
+
+  getExamens(nom: string): Observable<ResponseDto> {
+    return this.http.get<ResponseDto>(this.URL + '/examens?nom=' + nom);
+  }
+  
 }

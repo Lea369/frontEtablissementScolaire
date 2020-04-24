@@ -1,0 +1,88 @@
+<app-navbar-matiere></app-navbar-matiere>
+
+<div class="container-fluid">
+    <h2>Rechercher une matière par ID :</h2>
+    <h5><label for="search-box1">ID :</label></h5>
+    <input type="number" [(ngModel)]="this.numero"/>
+    <br><br>
+    <button class="btn btn-info" (click)="this.getSingle1(this.numero)">Rechercher</button>
+    <br><br>
+    <span *ngIf="this.messageSucces1.length">
+        <span class="alert alert-success">{{this.messageSucces1}}</span>
+    </span>
+    <span *ngIf="this.messageEchec1.length">
+        <span class="alert alert-danger">{{this.messageEchec1}}</span>
+    </span> 
+    <br><br>
+    <h2>Rechercher une matière par nom :</h2>
+    <h5><label for="search-box2">Nom :</label></h5>
+    <input type="text" [(ngModel)]="this.nom"/>
+    <br><br>
+    <button class="btn btn-info" (click)="this.getSingle2(this.nom)">Rechercher</button>
+    <br><br>
+    <span *ngIf="this.messageSucces2.length">
+        <span class="alert alert-success">{{this.messageSucces2}}</span>
+    </span>
+    <span *ngIf="this.messageEchec2.length">
+        <span class="alert alert-danger">{{this.messageEchec2}}</span>
+    </span> 
+    <br><br>
+    <div *ngIf="single1">
+    <h5>Liste des matières :</h5>
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nom</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>{{matiere1.idMatiere}}</td>
+                <td>{{matiere1.nomMatiere}}</td>
+                <td>
+                    <a routerLink="/matiere/detail/{{matiere1.idMatiere}}" class="btn btn-info" role="button">Afficher les détails</a>
+                    &nbsp;
+                    <a routerLink="/matiere/update/{{matiere1.idMatiere}}" class="btn btn-info" role="button">Modifier</a>
+                    &nbsp;
+                    <button class="btn btn-danger" (click)="this.delete(matiere1.idMatiere)">Supprimer</button>
+                    &nbsp;
+               </td>
+            </tr>
+        </tbody>
+    </table>
+    </div>
+    
+    <div *ngIf="single2">
+    <h5>Liste des matières :</h5>
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nom</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let matiere of this.allMatiere22">
+                <td>{{matiere.idMatiere}}</td>
+                <td>{{matiere.nomMatiere}}</td>
+                <td>
+                    <a routerLink="/matiere/detail/{{matiere.idMatiere}}" class="btn btn-info" role="button">Afficher les détails</a>
+                    &nbsp;
+                    <a routerLink="/matiere/update/{{matiere.idMatiere}}" class="btn btn-info" role="button">Modifier</a>
+                    &nbsp;
+                    <button class="btn btn-danger" (click)="this.delete(matiere.idMatiere)">Supprimer</button>
+                    &nbsp;
+               </td>
+            </tr>
+        </tbody>
+    </table>
+    </div>
+    <br><br>
+
+
+
+</div>
+

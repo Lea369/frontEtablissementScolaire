@@ -15,7 +15,7 @@ import { ClassesService } from 'src/app/services/classe/classes.service';
 export class AllEtudiantComponent implements OnInit {
   
   allEtudiant = new Array<EtudiantUpdateDto>();
-  listeClasse = new Array<ClasseUpdateDto>();
+  
 
   constructor(
     private serviceEtudiants: EtudiantsService, 
@@ -40,7 +40,6 @@ export class AllEtudiantComponent implements OnInit {
     this.serviceEtudiants.delete(id).subscribe(
       responseDto => {
         if (!responseDto.error) {
-          this.allEtudiant = this.allEtudiant.filter(element =>  element.identifiant !== id);
           this.getAll();
         }
       }

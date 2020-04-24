@@ -29,9 +29,10 @@
             <option>A</option>
         </select>
         <div *ngIf="!emptyListe">
-        <h5><label for="classe">Classe : </label> <span *ngIf="this.etudiant.classe">[{{this.etudiant.classe.name}}]</span></h5>
+        <h5><label for="classe">Classe : </label> <span *ngIf="this.etudiant.classe">[{{this.etudiant.classe.name}}]</span><span *ngIf="this.etudiant.classe == null"> [Aucune]</span></h5>
         <select class="form-control" [(ngModel)]="this.etudiant.classe" formControlName="classe" name="classe">
             <option *ngFor="let c of this.allClasses" [ngValue]="c">{{c.name}}</option>
+            <option [ngValue]=null>Aucune classe</option>
         </select>
         </div>
         <br><br>

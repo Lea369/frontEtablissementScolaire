@@ -3,7 +3,7 @@
 <div class="container-fluid">
     <h2>Liste des étudiants :</h2>
     <table class="table table-hover">
-       <thead>
+        <thead>
             <tr>
                 <th>ID</th>
                 <th>Prénom</th>
@@ -31,7 +31,7 @@
                 <td>{{etudiant.postalCode}}</td>
                 <td>{{etudiant.city}}</td>
                 <td>{{etudiant.s}}</td>
-                <td ><span *ngIf="etudiant.classe">{{etudiant.classe.name}}</span></td>
+                <td><span *ngIf="etudiant.classe">{{etudiant.classe.name}}</span><span *ngIf="etudiant.classe == null">Aucune</span></td>
                 <td>
                     <a routerLink="/etudiant/detail/{{etudiant.identifiant}}" class="btn btn-info" role="button">Afficher les détails</a>
                     &nbsp;

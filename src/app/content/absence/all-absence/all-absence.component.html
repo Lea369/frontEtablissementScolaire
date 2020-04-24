@@ -6,22 +6,22 @@
         <thead>
             <tr>
                 <th>ID</th>
+                <th>Etudiant</th>
                 <th>Date de début</th>
                 <th>Date de fin</th>
                 <th>Justification</th>
                 <th>Description</th>
-                <th>Etudiant</th>
                 <th>Actions</th>
             </tr>
         </thead>
         <tbody>
             <tr *ngFor="let a of this.allAbsence">
                 <td>{{a.identifiant}}</td>
+                <td>{{a.etudiant.name}} {{a.etudiant.surname}}</td>
                 <td>{{a.dateStart}}</td>
                 <td>{{a.dateEnd}}</td>
                 <td>{{a.justif}}</td>
-                <td>{{a.descript}}</td>
-                <td>ID : {{a.etudiant.identifiant}} - {{a.etudiant.name}} {{a.etudiant.surname}}</td>                
+                <td>{{a.descript}}</td>         
                 <td>
                     <a routerLink="/absence/detail/{{a.identifiant}}" class="btn btn-info" role="button">Afficher les détails</a>
                     &nbsp;

@@ -3,7 +3,6 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
-
 import { AppComponent } from './app.component';
 import { ContentComponent } from './content/content.component';
 import { FooterComponent } from './footer/footer.component';
@@ -12,7 +11,6 @@ import { AllEtudiantComponent } from './content/etudiant/all-etudiant/all-etudia
 import { CreateEtudiantComponent } from './content/etudiant/create-etudiant/create-etudiant.component';
 import { AppRoutingModule } from './app-routing.module';
 import { DashboardComponent } from './content/dashboard/dashboard.component';
-
 import { AllNoteComponent } from './content/note/all-note/all-note.component';
 import { CreateNoteComponent } from './content/note/create-note/create-note.component';
 import { AllMatiereComponent } from './content/matiere/all-matiere/all-matiere.component';
@@ -41,6 +39,10 @@ import { SearchEtudiantComponent } from './content/etudiant/search-etudiant/sear
 import { UpdateEtudiantComponent } from './content/etudiant/update-etudiant/update-etudiant.component';
 import { SearchAbsenceComponent } from './content/absence/search-absence/search-absence.component';
 import { UpdateAbsenceComponent } from './content/absence/update-absence/update-absence.component';
+import { UpdateExamenComponent } from './content/examen/update-examen/update-examen.component';
+import { SearchExamenComponent } from './content/examen/search-examen/search-examen.component';
+import { UpdateMatiereComponent } from './content/matiere/update-matiere/update-matiere.component';
+import { SearchMatiereComponent } from './content/matiere/search-matiere/search-matiere.component';
 
 @NgModule({
   declarations: [
@@ -78,7 +80,11 @@ import { UpdateAbsenceComponent } from './content/absence/update-absence/update-
     SearchEtudiantComponent,
     UpdateEtudiantComponent,
     SearchAbsenceComponent,
-    UpdateAbsenceComponent
+    UpdateAbsenceComponent,
+    UpdateExamenComponent,
+    SearchExamenComponent,
+    UpdateMatiereComponent,
+    SearchMatiereComponent
   ],
   imports: [
     BrowserModule,

@@ -19,7 +19,8 @@ export class UpdateClasseComponent implements OnInit {
   etudiantsParClasse = new Array<EtudiantUpdateDto>();
   etudiants = new Array<EtudiantUpdateDto>();
   etudiant = new EtudiantUpdateDto();
-  emptyliste: boolean;
+  emptyListe: boolean;
+  emptyListeAllEtudiants: boolean;
   listeAllEtudiants: boolean;
   messageSucces='';
   messageSucces2='';
@@ -36,6 +37,9 @@ export class UpdateClasseComponent implements OnInit {
   ngOnInit(): void {
     this.getClasse();
     this.getEtudiantsParClasse();
+    this.getEtudiants();
+    this.emptyListe = false;
+    this.emptyListeAllEtudiants = false;
     this.listeAllEtudiants = false;
     this.formulaireModif = new FormGroup({
       name: new FormControl(this.classe.name, Validators.required),
@@ -65,19 +69,14 @@ export class UpdateClasseComponent implements OnInit {
         if (!responseDto.error) {
           this.etudiantsParClasse = responseDto.body.filter(element => (element.classe !== null && element.classe.id == id));
           if (this.etudiantsParClasse.length==0) {
-            this.emptyliste = true;
+            this.emptyListe = true;
           }
           else {
-            this.emptyliste = false;
+            this.emptyListe = false;
           }
         }
       }
     );
-  }
-
-  ajoutListeEtudiants(): void {
-    this.listeAllEtudiants = true;
-    this.getEtudiants();
   }
 
   getEtudiants(): void {
@@ -85,9 +84,21 @@ export class UpdateClasseComponent implements OnInit {
       (responseDto) => {
         if (!responseDto.error) {
           this.etudiants = responseDto.body;
+          if (this.etudiants.length == 0) {
+            this.emptyListeAllEtudiants = true;
+            
+          }
+          else {
+            this.emptyListeAllEtudiants = false;
+            
+          }
         }
       }
     )
+  }
+
+  afficherListeEtudiants() {
+    this.listeAllEtudiants = true;
   }
 
   addToClasse(identifiant: number): void {
@@ -101,7 +112,7 @@ export class UpdateClasseComponent implements OnInit {
               if (!responseDto.error) {
                 this.messageSucces = '';
                 this.messageEchec = '';
-                this.messageSucces2 = 'Ajout de l\'etudiant ' +this.etudiant.identifiant+ ' à la classe ' +this.classe.name;
+                this.messageSucces2 = 'Ajout de l\'etudiant ' +this.etudiant.name+ ' ' +this.etudiant.surname+ ' à la classe ' +this.classe.name;
                 this.getEtudiantsParClasse();
               }
             },
@@ -109,7 +120,7 @@ export class UpdateClasseComponent implements OnInit {
               if (responseDto.error) {
                 this.messageSucces = '';
                 this.messageEchec = '';
-                this.messageEchec2 = 'Erreur : l\'etudiant n\'a pas été ajouté à la classe';
+                this.messageEchec2 = 'Erreur : l\'etudiant ' +this.etudiant.name+ ' ' +this.etudiant.surname+ ' n\'a pas été ajouté à la classe';
                 this.getEtudiantsParClasse();
               }
             }
@@ -129,14 +140,14 @@ export class UpdateClasseComponent implements OnInit {
             (responseDto) => {
               if (!responseDto.error) {
               this.messageSucces = '';
-              this.messageSucces2 = 'Retrait de l\'etudiant ' +this.etudiant.identifiant+ ' de la classe ' +this.classe.name;
+              this.messageSucces2 = 'Retrait de l\'etudiant ' +this.etudiant.name+ ' ' +this.etudiant.surname+ ' de la classe ' +this.classe.name+ '.';
               this.getEtudiantsParClasse();
             }
             },
             (responseDto) => {
               if (responseDto.error) {
                 this.messageSucces = '';
-                this.messageEchec2 = 'Erreur : l\'etudiant n\'a pas été retiré de la classe';
+                this.messageEchec2 = 'Erreur : l\'etudiant ' +this.etudiant.name+ ' ' +this.etudiant.surname+ ' n\'a pas été retiré.';
                 this.getEtudiantsParClasse();
               }
             }
@@ -150,14 +161,14 @@ export class UpdateClasseComponent implements OnInit {
     this.serviceClasses.update(this.classe).subscribe(
       (responseDto) => {
         if (!responseDto.error) {
-          this.messageSucces = 'Modification reussie';
+          this.messageSucces = 'Modification réussie.';
           this.messageEchec = '';
           this.getClasse();
         }
       },
       (responseDtoError) => {
         if (responseDtoError.error) {
-          this.messageEchec = 'Erreur lors de la modification';
+          this.messageEchec = 'Erreur lors de la modification.';
           this.messageSucces = '';
           this.getClasse();
         }

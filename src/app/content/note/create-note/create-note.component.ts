@@ -1,5 +1,5 @@
 import { Component, OnInit} from '@angular/core';
-import { NoteService } from 'src/app/services/note/note.service';
+import { NotesService } from 'src/app/services/note/notes.service';
 import { NoteCreateDto } from 'src/app/models/note-create-dto';
 import { ExamenUpdateDto } from 'src/app/models/examen-update-dto';
 
@@ -13,7 +13,7 @@ export class CreateNoteComponent implements OnInit {
   note = new NoteCreateDto();
   messageValidation: string;
 
-  constructor(private service: NoteService) { }
+  constructor(private service: NotesService) { }
 
   ngOnInit(): void {
   }

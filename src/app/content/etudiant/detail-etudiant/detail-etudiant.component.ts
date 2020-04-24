@@ -5,6 +5,8 @@ import { EtudiantsService } from 'src/app/services/etudiant/etudiants.service';
 import { Location } from '@angular/common'
 import { AbsenceUpdateDto } from 'src/app/models/absence-update-dto';
 import { NoteUpdateDto } from 'src/app/models/note-update-dto';
+import { MatieresService } from 'src/app/services/matiere/matieres.service';
+import { MatiereUpdateDto } from 'src/app/models/matiere-update-dto';
 
 @Component({
   selector: 'app-detail-etudiant',
@@ -16,14 +18,19 @@ export class DetailEtudiantComponent implements OnInit {
   etudiant = new EtudiantUpdateDto();
   tableauNotes: boolean;
   tableauAbsences: boolean;
+  tableauMatieres: boolean;
   allAbsences = new Array<AbsenceUpdateDto>();
   allNotes = new Array<NoteUpdateDto>();
+  allMatieres = new Array<MatiereUpdateDto>();
+  allMatieresParEtudiant = new Array<MatiereUpdateDto>();
   messageAbsences = '';
   messageNotes = '';
+  messageMatieres = '';
   
   constructor(
     private route: ActivatedRoute,
     private serviceEtudiants: EtudiantsService,
+    private serviceMatieres: MatieresService,
     private location: Location
   ) { }
 
@@ -48,6 +55,8 @@ export class DetailEtudiantComponent implements OnInit {
     this.tableauAbsences = true;
     this.tableauNotes = false;
     this.messageNotes = '';
+    this.tableauMatieres = false;
+    this.messageMatieres = '';
     this.getAbsences(email);
   }
 
@@ -62,7 +71,7 @@ export class DetailEtudiantComponent implements OnInit {
       (responseDto) => {
         if (responseDto.body == null) {
           this.allAbsences = [];
-          this.messageAbsences = 'Cet etudiant n\'a aucune absence enregistrée';
+          this.messageAbsences = 'Aucune absence n\'est enregistrée pour cet étudiant.';
         }
       }
     )
@@ -72,6 +81,8 @@ export class DetailEtudiantComponent implements OnInit {
     this.tableauNotes = true;
     this.tableauAbsences = false;
     this.messageAbsences = '';
+    this.tableauMatieres = false;
+    this.messageMatieres = '';
     this.getNotes(email);
   }
 
@@ -86,7 +97,37 @@ export class DetailEtudiantComponent implements OnInit {
       (responseDto) => {
         if (responseDto.body == null) {
           this.allNotes = [];
-          this.messageNotes = 'Cet etudiant n\'a aucune note enregistrée';
+          this.messageNotes = 'Aucune note n\'est enregistrée pour cet étudiant.';
+        }
+      }
+    );
+  }
+
+  afficherMatieres(email: string) {
+    this.tableauMatieres = true;
+    this.tableauNotes = false;
+    this.tableauAbsences = false;
+    this.messageNotes = '';
+    this.messageAbsences = '';
+    this.getMatieres(email);
+  }
+
+  getMatieres(email: string) {
+    this.serviceMatieres.getAll().subscribe(
+      (responseDto) => {
+        if (!responseDto.error) {
+          this.allMatieres = responseDto.body;
+          this.allMatieresParEtudiant = this.allMatieres.filter( 
+            (element) => element.listeEtudiant.find(
+              (element) => element.mail === email)
+            );
+          if (this.allMatieresParEtudiant.length == 0) {
+            this.allMatieresParEtudiant = [];
+            this.messageMatieres = 'Aucune matière n\'est enregistrée pour cet étudiant.';
+          } else {
+            this.messageMatieres = '';
+          }
+          
         }
       }
     );

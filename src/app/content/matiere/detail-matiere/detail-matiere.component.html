@@ -1,60 +1,62 @@
 <app-navbar-matiere></app-navbar-matiere>
 
-<div *ngIf="this.matiere" class="container">
-    <br><br><br>
+<div class="container-fluid">
     <h2>Détails de la matière :</h2>
-    <div><span>ID : </span>{{matiere.idMatiere}}</div>
-    <div><span>Nom : </span>{{matiere.nomMatiere}} 
-        <button class="btn btn-info" (click)="this.toggleNom()">
-            <span *ngIf="!modifNom; else elseBlock" > Modifier le nom
-            </span> 
-            <ng-template #elseBlock>Mettre à jour</ng-template>
-        </button>
-        <div *ngIf="modifNom">
-            <label>Nouveau nom :
-                <input [(ngModel)]="matiere.nomMatiere" placeholder="Nouveau nom"/>
-            </label>
-            </div>
-    </div> 
-    <div><span>Elèves : 
-    <button class="btn btn-info" (click)="this.toggle()"><span *ngIf="!montrerAjout; else elseBlock" > Ajouter des étudiants</span> <ng-template #elseBlock>Cacher le formulaire</ng-template></button>
-    
-    </span>
-        <p *ngIf="emptyListe;">Aucun étudiant n'est inscrit à cette matière</p>
-        <table *ngIf="!emptyListe;"><thead>
-        <tr>
-            <th>ID</th>
-            <th>Nom</th>
-            <th>Prénom</th>
-            <th>Email</th>
-            
-        </tr>
-    </thead>
-    <tbody>
-        <tr *ngFor="let e of this.matiere.listeEtudiant">
-            <td>{{e.identifiant}}</td>
-            <td>{{e.name}}</td>
-            <td>{{e.surname}}</td>
-            <td>{{e.mail}}</td>
-            <td>
-                <button class="btn btn-danger" (click)="this.desinscrit(e)">Désinscrire</button>
-            </td>
-        </tr>
-       
-    </tbody></table>
-    <div *ngIf="montrerAjout; ">
-        <td><select multiple class="form-control" [(ngModel)]="this.listeNewEtudiant" >
-            <option *ngFor="let e of this.listeEtudiant"[ngValue]="e">{{e.name}}</option>
-          </select></td>
-        <td>
-            <button class="btn btn-danger" (click)="ajoutEtudiant()">Ajouter</button>
-        </td>
-    </div>
-</div>
+    <h5>ID : {{this.matiere.idMatiere}}</h5>
+    <h5>Nom : {{this.matiere.nomMatiere}} </h5>
+    <h5>Liste des étudiants inscrits à la matière {{this.matiere.nomMatiere}} :</h5> 
+    <p *ngIf="emptyListe"><i>Il n'y a pas d'étudiants inscrits à cette matière</i></p>
+    <table class="table table-hover" *ngIf = "!emptyListe">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Prénom</th>
+                <th>Nom</th>
+                <th>CNI</th>
+                <th>Email</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let e of this.matiere.listeEtudiant">
+                <td>{{e.identifiant}}</td>
+                <td><a routerLink="/etudiant/detail/{{this.e.identifiant}}">
+                    {{this.e.name}} </a></td>
+                <td>{{e.surname}}</td>
+                <td>{{e.identity}}</td>
+                <td>{{e.mail}}</td>
+            </tr>
+        </tbody>
+    </table>
     <br>
-    <button class="btn btn-info" (click)="goBack()">Retour</button>
- 
-    <span class="alert alert-success" *ngIf = "messageValidation">{{messageValidation}}</span>
-    <span class="alert alert-danger" *ngIf = "messageEchec">{{messageEchec}}</span>
-    <br><br><br>
+    <button class="btn btn-info" (click)="afficherExamens(this.matiere.nomMatiere)">Voir les examens de cette matière</button>
+    &nbsp;&nbsp;
+    <button class="btn btn-info" (click)="retour()">Retour</button>
+    <br><br>
+
+    <div *ngIf="tableauExamens">
+        <h5>Examens :</h5>
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Date </th>
+                    <th>Type </th>
+                    <th>Coefficient</th> 
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let examen of this.allExamens">
+                    <td>{{examen.idExam}}</td>
+                    <td>{{examen.dateExamen}}</td>
+                    <td><a routerLink="/examen/detail/{{examen.idExam}}">
+                        {{examen.typeExamen}} </a></td>
+                    <td>{{examen.coefExamen}}</td>
+                </tr>
+            </tbody>
+        </table>
+        <p><i>{{this.messageExamens}}</i></p>
+        <br><br>
+    </div>
+    
+    
 </div>

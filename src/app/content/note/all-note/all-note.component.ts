@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { EtudiantUpdateDto } from 'src/app/models/etudiant-update-dto';
 import { NoteUpdateDto } from 'src/app/models/note-update-dto';
-import { NoteService } from 'src/app/services/note/note.service';
+import { NotesService } from 'src/app/services/note/notes.service';
 
 @Component({
   selector: 'app-all-note',
@@ -11,7 +11,7 @@ import { NoteService } from 'src/app/services/note/note.service';
 export class AllNoteComponent implements OnInit {
   allNote = new Array<NoteUpdateDto>();
 
-  constructor(private service: NoteService) { }
+  constructor(private service: NotesService) { }
 
   ngOnInit() {
     this.getAll();

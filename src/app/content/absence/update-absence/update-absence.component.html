@@ -4,22 +4,20 @@
     <h2>Modifier une absence :</h2>
     <h5>ID : {{this.absence.identifiant}}</h5>
     <form [formGroup]='formulaireModif' (ngSubmit) = 'update()'>
-        <div class="formGroup">
+        <p *ngIf="this.emptyListeAllEtudiant"><i>Désolé, aucun étudiant n'est enregistré. Vous ne pouvez pas modifier d'absence.</i></p>
+        <div class="formGroup" *ngIf="!this.emptyListeAllEtudiant">
+            <h5><label for="etudiant">Etudiant* : </label> <span *ngIf="this.absence.etudiant"> [{{this.absence.etudiant.name}} {{this.absence.etudiant.surname}}] </span></h5>
+            <select class="form-control" [(ngModel)]="this.absence.etudiant" formControlName="etudiant" name="etudiant" required>
+                <option *ngFor="let e of this.allEtudiant" [ngValue]="e">{{e.name}} {{e.surname}}</option>
+            </select>
             <h5><label for="dateStart">Date de début* :</label> [{{this.absence.dateStart}}]</h5>
             <input type="date" class="form-control" [(ngModel)]="this.absence.dateStart" formControlName="dateStart" name="dateStart" required>
             <h5><label for="dateEnd">Date de fin* :</label> [{{this.absence.dateEnd}}] </h5>
             <input type="date" class="form-control" [(ngModel)]="this.absence.dateEnd" formControlName="dateEnd" name="dateEnd" required>
             <h5><label for="justif">Justification* :</label> [{{this.absence.justif}}]</h5>
-            <textarea class="form-control" [(ngModel)]="this.absence.justif" formControlName="justif" name="justif"  placeholder="Justification de l'absence" rows="5" required></textarea>
+            <textarea class="form-control" [(ngModel)]="this.absence.justif" formControlName="justif" name="justif" rows="5" required></textarea>
             <h5><label for="descript">Description* :</label> [{{this.absence.descript}}] </h5>
-            <textarea class="form-control" [(ngModel)]="this.absence.descript" formControlName="descript" name="descript" placeholder="Description de l'absence" rows="5" required></textarea>
-            <h5><label for="numero">ID Etudiant* : </label> [{{this.absence.etudiant.identifiant}}] </h5>
-            <input type="number" class="form-control" [(ngModel)]="this.numero" formControlName="numero" name="numero" placeholder="ID de l'étudiant" required>
-            <br>
-            <h5><i>Liste des étudiants :</i></h5>
-            <ul class="list-group" *ngFor="let e of this.allEtudiant">
-                <li class="list-group-item">ID : {{e.identifiant}}  -  Prénom : {{e.name}}  -  Nom : {{e.surname}}  -  Email : {{e.mail}}  -  CNI : {{e.identity}} </li>
-            </ul>
+            <textarea class="form-control" [(ngModel)]="this.absence.descript" formControlName="descript" name="descript" rows="5" required></textarea>
             <br><br>
             <button type="submit" class="btn btn-info" [disabled]="!this.formulaireModif.valid">Modifier</button>
             <br><br>

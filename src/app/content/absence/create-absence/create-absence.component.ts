@@ -20,6 +20,8 @@ export class CreateAbsenceComponent implements OnInit {
   messageEchec='';
   formulaireAjout: FormGroup;
   id: number;
+  emptyListeAllEtudiants: boolean;
+  afficheListe: boolean;
 
   constructor(
     private serviceAbsences: AbsencesService,
@@ -29,12 +31,14 @@ export class CreateAbsenceComponent implements OnInit {
 
   ngOnInit(): void {
     this.getEtudiants();
+    this.emptyListeAllEtudiants = true;
     this.formulaireAjout = new FormGroup({
+      etudiant: new FormControl(this.absence.etudiant, Validators.required),
       dateStart: new FormControl(this.absence.dateStart, Validators.required),
       dateEnd: new FormControl(this.absence.dateEnd, Validators.required),
       justif: new FormControl(this.absence.justif, Validators.required),
       descript: new FormControl(this.absence.descript, Validators.required),
-      id: new FormControl(this.id, Validators.required)
+      
     })
   }
 
@@ -43,39 +47,29 @@ export class CreateAbsenceComponent implements OnInit {
       (responseDto) => {
         if (!responseDto.error) {
           this.allEtudiant = responseDto.body;
+           if (this.allEtudiant.length == 0) {
+             this.emptyListeAllEtudiants = true;
+           } else {
+             this.emptyListeAllEtudiants = false;
+           }
         }
       }
     )
   }
 
   save() {
-    this.serviceEtudiants.getEtudiant(this.id).subscribe(
+    this.serviceAbsences.create(this.absence).subscribe(
       (responseDto) => {
-        if (!responseDto.error) {
-          this.etudiant = responseDto.body;
-          this.absence.etudiant = this.etudiant;
-          this.serviceAbsences.create(this.absence).subscribe(
-            (responseDto) => {
-              if (!responseDto.error) {
-                this.messageSucces = 'Création réussie';
-              }
-            },
-            (responseDto) => {
-              if (responseDto.error) {
-                this.messageEchec = 'Erreur lors de la création';
-              }
-            }
-          )
-        }
-        
+          if (!responseDto.error) {
+            this.messageSucces = 'Création réussie';
+          }
       },
       (responseDto) => {
-        if (responseDto.error) {
-          this.messageEchec = 'Erreur lors de la création : cet étudiant n\'existe pas';
-          this.messageSucces = '';
-        }
+          if (responseDto.error) {
+              this.messageEchec = 'Erreur lors de la création';
+          }
       }
-    )
+    );
     
   }
 

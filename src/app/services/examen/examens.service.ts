@@ -11,7 +11,7 @@ import { ExamenUpdateDto } from 'src/app/models/examen-update-dto';
 @Injectable({
   providedIn: 'root'
 })
-export class ExamenService {
+export class ExamensService {
 
   private URL = environment.baseUrl + 'examen';
 

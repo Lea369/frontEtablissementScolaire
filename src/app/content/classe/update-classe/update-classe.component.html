@@ -2,7 +2,7 @@
 
 <div class="container-fluid">
     <h2>Modifier une classe :</h2>
-    <h5>ID : {{classe.id}} </h5>
+    <h5>ID : {{this.classe.id}} </h5>
     
     <form [formGroup]='formulaireModif' (ngSubmit) = 'update()'>
     <div class ="formGroup">
@@ -21,15 +21,15 @@
     </div>
     </form>
     
-    <h4>Liste des etudiants de la classe {{this.classe.name}} : </h4>
-    <p *ngIf = "emptyliste"><i>Il n'y a pas d'etudiants dans cette classe</i></p>
-    <table class="table" *ngIf = "!emptyliste">
+    <h4>Liste des étudiants de la classe {{this.classe.name}} : </h4>
+    <p *ngIf = "emptyListe"><i>Il n'y a pas d'etudiants dans cette classe.</i></p>
+    <table class="table table-hover" *ngIf = "!emptyListe">
         <thead>
             <tr>
                 <th>ID</th>
                 <th>Nom</th>
                 <th>Prenom</th>
-                <th>CIN</th>
+                <th>CNI</th>
                 <th>Email</th>
                 <th>Actions</th>
             </tr>
@@ -41,20 +41,20 @@
                 <td>{{etudiant.surname}}</td>
                 <td>{{etudiant.identity}}</td>
                 <td>{{etudiant.mail}}</td>
-                <td><button class="btn btn-info" (click)="this.removeFromClasse(etudiant.identifiant)">Retirer de la classe</button></td>
+                <td><button class="btn btn-info" (click)="this.removeFromClasse(etudiant.identifiant)">Retirer</button></td>
             </tr>
         </tbody>
     </table>
 
     <h5>Ajouter des étudiants ?</h5>
-    <button class="btn btn-info" (click)="ajoutListeEtudiants()" *ngIf="!listeAllEtudiants">Ajouter des étudiants dans cette classe</button>
-    <table class="table" *ngIf="listeAllEtudiants">
+    <button class="btn btn-info" (click)="afficherListeEtudiants()" *ngIf="!listeAllEtudiants">Ajouter des étudiants à cette classe</button>
+    <table class="table table-hover" *ngIf="listeAllEtudiants && !emptyListeAllEtudiants">
         <thead>
             <tr>
                 <th>ID</th>
                 <th>Nom</th>
                 <th>Prenom</th>
-                <th>CIN</th>
+                <th>CNI</th>
                 <th>Email</th>
                 <th>Actions</th>
             </tr>
@@ -66,10 +66,11 @@
                 <td>{{etudiant.surname}}</td>
                 <td>{{etudiant.identity}}</td>
                 <td>{{etudiant.mail}}</td>
-                <td><button class="btn btn-info" (click)="this.addToClasse(etudiant.identifiant)">Ajouter à la classe</button></td>
+                <td><button class="btn btn-info" (click)="this.addToClasse(etudiant.identifiant)">Ajouter</button></td>
             </tr>
        </tbody>
     </table>
+    <p *ngIf="listeAllEtudiants && emptyListeAllEtudiants"><i>Désolé, aucun étudiant n'est enregistré.</i></p>
     <br><br>
     <span *ngIf="this.messageSucces2.length">
         <span class="alert alert-success">{{this.messageSucces2}}</span>

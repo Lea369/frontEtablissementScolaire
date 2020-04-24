@@ -1,0 +1,152 @@
+<app-navbar-examen></app-navbar-examen>
+
+<div class="container-fluid">
+    <h2>Rechercher un examen par ID :</h2>
+    <h5><label for="search-box1">ID :</label></h5>
+    <input type="number" [(ngModel)]="this.numero"/>
+    <br><br>
+    <button class="btn btn-info" (click)="this.getSingle1(this.numero)">Rechercher</button>
+    <br><br>
+    <span *ngIf="this.messageSucces1.length">
+        <span class="alert alert-success">{{this.messageSucces1}}</span>
+    </span>
+    <span *ngIf="this.messageEchec1.length">
+        <span class="alert alert-danger">{{this.messageEchec1}}</span>
+    </span> 
+    <br><br>
+    <h2>Rechercher un examen par matière :</h2>
+    <h5><label for="search-box2">Nom :</label></h5>
+    <input type="text" [(ngModel)]="this.nom"/>
+    <br><br>
+    <button class="btn btn-info" (click)="this.getSingle2(this.nom)">Rechercher</button>
+    <br><br>
+    <span *ngIf="this.messageSucces2.length">
+        <span class="alert alert-success">{{this.messageSucces2}}</span>
+    </span>
+    <span *ngIf="this.messageEchec2.length">
+        <span class="alert alert-danger">{{this.messageEchec2}}</span>
+    </span> 
+    <br><br>
+    <h2>Rechercher un examen par type :</h2>
+    <h5><label for="search-box3">Type :</label></h5>
+    <select [(ngModel)]="this.type" >
+        <option value="CC">Contrôle continu</option>
+        <option value="DS">Devoir surveillé</option>
+        <option value="TEST">Test</option>
+        <option value="EXAMEN">Examen</option>
+    </select>
+    <br><br>
+    <button class="btn btn-info" (click)="this.getSingle3(this.type)">Rechercher</button>
+    <br><br>
+    <span *ngIf="this.messageSucces3.length">
+        <span class="alert alert-success">{{this.messageSucces3}}</span>
+    </span>
+    <span *ngIf="this.messageEchec3.length">
+        <span class="alert alert-danger">{{this.messageEchec3}}</span>
+    </span> 
+    <br><br>
+    <div *ngIf="single1">
+    <h5>Liste des examens :</h5>
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Matière</th>
+                <th>Date</th>
+                <th>Type</th>
+                <th>Coefficient</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>{{examen1.idExam}}</td>
+                <td>{{examen1.matiereExamen.nomMatiere}}</td>
+                <td>{{examen1.dateExamen}}</td>
+                <td>{{examen1.typeExamen}}</td>
+                <td>{{examen1.coefExamen}}</td>
+                <td>
+                    <a routerLink="/examen/detail/{{examen1.idExam}}" class="btn btn-info" role="button">Afficher les détails</a>
+                    &nbsp;
+                    <a routerLink="/examen/update/{{examen1.idExam}}" class="btn btn-info" role="button">Modifier</a>
+                    &nbsp;
+                    <button class="btn btn-danger" (click)="this.delete(examen1.idExam)">Supprimer</button>
+                    &nbsp;
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    </div>
+    
+    <div *ngIf="single2">
+    <h5>Liste des examens :</h5>
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Matière</th>
+                <th>Date</th>
+                <th>Type</th>
+                <th>Coefficient</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let e of this.allExamen22">
+                <td>{{e.idExam}}</td>
+                <td>{{e.matiereExamen.nomMatiere}}</td>
+                <td>{{e.dateExamen}}</td>
+                <td>{{e.typeExamen}}</td>
+                <td>{{e.coefExamen}}</td>
+                <td>
+                    <a routerLink="/examen/detail/{{e.idExam}}" class="btn btn-info" role="button">Afficher les détails</a>
+                    &nbsp;
+                    <a routerLink="/examen/update/{{e.idExam}}" class="btn btn-info" role="button">Modifier</a>
+                    &nbsp;
+                    <button class="btn btn-danger" (click)="this.delete(e.idExam)">Supprimer</button>
+                    &nbsp;
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    </div>
+
+    <div *ngIf="single3">
+        <h5>Liste des examens :</h5>
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Matière</th>
+                    <th>Date</th>
+                    <th>Type</th>
+                    <th>Coefficient</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let e of this.allExamen33">
+                    <td>{{e.idExam}}</td>
+                    <td>{{e.matiereExamen.nomMatiere}}</td>
+                    <td>{{e.dateExamen}}</td>
+                    <td>{{e.typeExamen}}</td>
+                    <td>{{e.coefExamen}}</td>
+                    <td>
+                        <a routerLink="/examen/detail/{{e.idExam}}" class="btn btn-info" role="button">Afficher les détails</a>
+                        &nbsp;
+                        <a routerLink="/examen/update/{{e.idExam}}" class="btn btn-info" role="button">Modifier</a>
+                        &nbsp;
+                        <button class="btn btn-danger" (click)="this.delete(e.idExam)">Supprimer</button>
+                        &nbsp;
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        </div>
+    <br><br>
+
+
+
+</div>
+
+

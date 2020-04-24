@@ -12,13 +12,18 @@
     <h5>Code Postal : {{this.etudiant.postalCode}} </h5>
     <h5>Ville : {{this.etudiant.city}} </h5>
     <h5>Sexe : {{this.etudiant.s}} </h5>
-    <div *ngIf="this.etudiant.classe">
-    <h5>Classe : {{this.etudiant.classe.name}} </h5>
+    <div *ngIf="this.etudiant.classe"><h5>Classe : 
+        <a routerLink="/classe/detail/{{this.etudiant.classe.id}}">
+            {{this.etudiant.classe.name}} </a></h5></div>
+    <div *ngIf="this.etudiant.classe == null">
+        <h5>Classe : Aucune </h5>
     </div>
     <br><br>
     <button class="btn btn-info" (click)="afficherAbsences(this.etudiant.mail)">Voir les absences de cet étudiant</button>
     &nbsp;&nbsp;
     <button class="btn btn-info" (click)="afficherNotes(this.etudiant.mail)">Voir les notes de cet étudiant</button>
+    &nbsp;&nbsp;
+    <button class="btn btn-info" (click)="afficherMatieres(this.etudiant.mail)">Voir les matières de cet étudiant</button>
     &nbsp;&nbsp;
     <button class="btn btn-info" (click)="retour()">Retour</button>
     <br><br>
@@ -45,7 +50,7 @@
             </tr>
         </tbody>
     </table>
-    <h5>{{this.messageAbsences}}</h5>
+    <p><i>{{this.messageAbsences}}</i></p>
     <br><br>
     </div>
 
@@ -54,6 +59,7 @@
     <table class="table table-hover">
         <thead>
             <tr>
+                <th>ID</th>
                 <th>Matière</th>
                 <th>Date</th>
                 <th>Type</th>
@@ -63,6 +69,7 @@
         </thead>
         <tbody>
             <tr *ngFor="let n of this.allNotes">
+                <td>{{n.id}}</td>
                 <td>{{n.examen.matiereExamen.nomMatiere}}</td>
                 <td>{{n.examen.dateExamen}}</td>
                 <td>{{n.examen.typeExamen}}</td>
@@ -71,7 +78,27 @@
             </tr>
         </tbody>  
     </table>
-    <h5>{{this.messageNotes}}</h5>
+    <p><i>{{this.messageNotes}}</i></p>
+    <br><br>
+    </div>
+
+    <div *ngIf="tableauMatieres">
+    <h5>Matières :</h5>
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Matière</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let m of this.allMatieresParEtudiant">
+                    <td>{{m.idMatiere}}</td>
+                    <td>{{m.nomMatiere}}</td>    
+            </tr>
+        </tbody>  
+    </table>
+    <p><i>{{this.messageMatieres}}</i></p>
     <br><br>
     </div>
 

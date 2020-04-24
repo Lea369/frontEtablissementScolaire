@@ -8,7 +8,7 @@ import { NoteCreateDto } from 'src/app/models/note-create-dto';
 @Injectable({
   providedIn: 'root'
 })
-export class NoteService {
+export class NotesService {
 
   private URL = environment.baseUrl + 'note';
 

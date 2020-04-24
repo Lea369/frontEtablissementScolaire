@@ -16,8 +16,10 @@ export class SearchClasseComponent implements OnInit {
   classe1: ClasseUpdateDto;
   allClasse = new Array<ClasseUpdateDto>();
   allClasse2 = new Array<ClasseUpdateDto>();
-  message1 = '';
-  message2 = '';
+  messageSucces1 = '';
+  messageEchec1 = '';
+  messageSucces2 = '';
+  messageEchec2 = '';
 
   constructor(
     private serviceClasses: ClassesService
@@ -33,19 +35,23 @@ export class SearchClasseComponent implements OnInit {
       (responseDto) => {
         if (!responseDto.error) {
           this.classe1 = responseDto.body;
-          this.message1 = '';
+          this.messageSucces1 = '1 classe(s) trouvée(s).';
+          this.messageEchec1 = '';
           this.single1 = true;
           this.single2 = false;
-          this.message2 = '';
+          this.messageSucces2 = '';
+          this.messageEchec2 = '';
         }
       },
       (responseDto) => {
         if (responseDto.error) {
-          this.message1 = 'Aucune classe n\'existe avec cet ID';
+          this.messageEchec1 = 'Aucune classe trouvée.';
+          this.messageSucces1 = '';
           this.single1 = false;
           this.classe1 = null;
           this.single2 = false;
-          this.message2 = '';
+          this.messageSucces2 = '';
+          this.messageEchec2 = '';
         }
       }
     )
@@ -58,15 +64,19 @@ export class SearchClasseComponent implements OnInit {
           this.allClasse = responseDto.body;
           this.allClasse2 = this.allClasse.filter(element =>  element.name == nom);
           if (this.allClasse2.length == 0) {
-            this.message1 = '';
+            this.messageSucces1 = '';
+            this.messageEchec1 = '';
             this.single1 = false;
-            this.message2 = 'Aucune classe n\'existe avec ce nom';
+            this.messageSucces2 = '';
+            this.messageEchec2 = 'Aucune classe trouvée.';
             this.single2 = false;
           }
           else {
-            this.message1 = '';
+            this.messageSucces1 = '';
+            this.messageEchec1 = '';
             this.single1 = false;
-            this.message2= '';
+            this.messageSucces2 = this.allClasse2.length + ' classe(s) trouvée(s).';
+            this.messageEchec2 = '';
             this.single2 = true;
           }
         }

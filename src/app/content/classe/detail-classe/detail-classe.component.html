@@ -6,20 +6,21 @@
     <h5>Nom : {{this.classe.name}}</h5>
     <h5>Liste des etudiants de la classe {{this.classe.name}} : </h5>
     <p *ngIf = "emptyliste"><i>Il n'y a pas d'etudiants dans cette classe</i></p>
-    <table class="table" *ngIf = "!emptyliste">
+    <table class="table table-hover" *ngIf = "!emptyliste">
         <thead>
             <tr>
                 <th>ID</th>
+                <th>Prénom</th>
                 <th>Nom</th>
-                <th>Prenom</th>
-                <th>CIN</th>
+                <th>CNI</th>
                 <th>Email</th>
             </tr>
         </thead>
         <tbody>
             <tr *ngFor="let etudiant of etudiantsParClasse">
                 <td>{{etudiant.identifiant}}</td>
-                <td>{{etudiant.name}}</td>
+                <td><a routerLink="/etudiant/detail/{{this.etudiant.identifiant}}">
+                        {{this.etudiant.name}} </a></td>
                 <td>{{etudiant.surname}}</td>
                 <td>{{etudiant.identity}}</td>
                 <td>{{etudiant.mail}}</td>

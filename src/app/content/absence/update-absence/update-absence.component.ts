@@ -22,6 +22,7 @@ export class UpdateAbsenceComponent implements OnInit {
   allEtudiant = new Array<EtudiantUpdateDto>();
   messageSucces='';
   messageEchec='';
+  emptyListeAllEtudiant: boolean;
 
   constructor(
     private serviceEtudiants: EtudiantsService,
@@ -34,11 +35,12 @@ export class UpdateAbsenceComponent implements OnInit {
     this.getAbsence();
     this.getAllEtudiant();
     this.formulaireModif = new FormGroup({
+      etudiant: new FormControl(this.absence.etudiant, Validators.required),
       dateStart: new FormControl(this.absence.dateStart, Validators.required),
       dateEnd: new FormControl(this.absence.dateEnd, Validators.required),
       justif: new FormControl(this.absence.justif, Validators.required),
       descript: new FormControl(this.absence.descript, Validators.required),
-      numero: new FormControl(this.numero, Validators.required)
+      
     })
   }
 
@@ -48,7 +50,7 @@ export class UpdateAbsenceComponent implements OnInit {
       (responseDto) => {
         if (!responseDto.error) {
           this.absence = responseDto.body;
-          console.log(this.absence);
+          
         }
       }
     );
@@ -59,6 +61,11 @@ export class UpdateAbsenceComponent implements OnInit {
       (responseDto) => {
         if (!responseDto.error) {
           this.allEtudiant = responseDto.body;
+          if (this.allEtudiant.length == 0) {
+            this.emptyListeAllEtudiant = true;
+          } else {
+            this.emptyListeAllEtudiant = false;
+          }
         }
       }
     );
@@ -69,34 +76,21 @@ export class UpdateAbsenceComponent implements OnInit {
   }
 
   update() {
-    this.serviceEtudiants.getEtudiant(this.numero).subscribe(
+    this.serviceAbsences.updateAbsence(this.absence).subscribe(
       (responseDto) => {
-        if (!responseDto.error) {
-          this.etudiant = responseDto.body;
-          this.absence.etudiant = this.etudiant;
-          console.log(this.absence);
-          this.serviceAbsences.updateAbsence(this.absence).subscribe(
-            (responseDto) => {
-              if (!responseDto.error) {
-                this.messageSucces = 'Modification réussie';
-                this.messageEchec = '';
-              }
-            },
-            (responseDto) => {
-              if (responseDto.error) {
-                this.messageEchec = 'Erreur lors de la modification';
-                this.messageSucces = '';
-              }
-            }
-          )
-        }
+          if (!responseDto.error) {
+            this.messageSucces = 'Modification réussie';
+            this.messageEchec = '';
+          }
       },
       (responseDto) => {
-        if (responseDto.error) {
-          this.messageEchec = 'Erreur lors de la modification : cet étudiant n\'existe pas';
-          this.messageSucces = '';
-        }
+          if (responseDto.error) {
+            this.messageEchec = 'Erreur lors de la modification';
+            this.messageSucces = '';
+          }
       }
-    )
+    );
   }
+
+
 }

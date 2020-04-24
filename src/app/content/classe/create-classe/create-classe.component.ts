@@ -25,6 +25,7 @@ export class CreateClasseComponent implements OnInit {
   messageEchec='';
   messageEchec2='';
   tableau: boolean;
+  emptyListe: boolean;
  
   
   constructor(
@@ -34,6 +35,7 @@ export class CreateClasseComponent implements OnInit {
 
   ngOnInit(): void {
     this.tableau = false;
+    this.emptyListe = true;
     this.formulaireAjout = new FormGroup({
       name: new FormControl(this.classeCreate.name, Validators.required),
     });
@@ -72,7 +74,12 @@ export class CreateClasseComponent implements OnInit {
       (responseDto) => {
         if (!responseDto.error) {
           this.etudiants = responseDto.body;
-          console.log(this.etudiants);
+          if (this.etudiants.length == 0) {
+            this.emptyListe = true;
+          }
+          else {
+            this.emptyListe = false;
+          }
         }
       }
     )
@@ -89,13 +96,13 @@ export class CreateClasseComponent implements OnInit {
               if (!responseDto.error) {
               this.messageSucces = '';
               this.messageEchec2 = '';
-              this.messageSucces2 = 'Ajout de l\'etudiant ' +this.etudiant.identifiant+ ' à la classe ' +this.classe.name;
-            }
+              this.messageSucces2 = 'Ajout de l\'etudiant ' +this.etudiant.name+ ' ' +this.etudiant.surname+ ' à la classe ' +this.classe.name+ '.';
+              }
             },
             (responseDto) => {
               if (responseDto.error) {
                 this.messageSucces = '';
-                this.messageEchec2 = 'Erreur : l\'etudiant n\'a pas été ajouté à la classe';
+                this.messageEchec2 = 'Erreur : l\'etudiant ' +this.etudiant.name+ ' ' +this.etudiant.surname+ ' n\'a pas été ajouté.';
                 this.messageSucces2 = '';
               }
             }

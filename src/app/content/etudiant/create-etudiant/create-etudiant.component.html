@@ -22,7 +22,7 @@
             <input type="text" class="form-control" [(ngModel)]="this.etudiant.city" formControlName="city" name="city" placeholder="Ville de l'étudiant à ajouter">
             <h5><label for="s">Sexe* :</label></h5>
             <select class="form-control" [(ngModel)]="this.etudiant.s" formControlName="s" name="s">
-                <option class="selected">F</option>
+                <option>F</option>
                 <option>M</option>
                 <option>A</option>
             </select>
@@ -30,6 +30,7 @@
             <h5><label for="classe">Classe :</label></h5>
             <select class="form-control" [(ngModel)]="this.etudiant.classe" formControlName="classe" name="classe">
                 <option *ngFor="let c of this.allClasses" [ngValue]="c">{{c.name}}</option>
+                <option [ngValue]=null>Aucune classe</option>
             </select>
             </div>
             <br><br>
