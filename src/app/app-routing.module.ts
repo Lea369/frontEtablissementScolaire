@@ -16,6 +16,7 @@ import { CreateClasseComponent } from './content/classe/create-classe/create-cla
 import { CreateEtudiantComponent } from './content/etudiant/create-etudiant/create-etudiant.component';
 import { CreateExamenComponent } from './content/examen/create-examen/create-examen.component';
 import { CreateMatiereComponent } from './content/matiere/create-matiere/create-matiere.component';
+import { CreateNoteComponent } from './content/note/create-note/create-note.component';
 
 import { DetailAbsenceComponent } from './content/absence/detail-absence/detail-absence.component';
 import { DetailClasseComponent } from './content/classe/detail-classe/detail-classe.component';
@@ -29,12 +30,14 @@ import { UpdateClasseComponent } from './content/classe/update-classe/update-cla
 import { UpdateEtudiantComponent } from './content/etudiant/update-etudiant/update-etudiant.component';
 import { UpdateExamenComponent } from './content/examen/update-examen/update-examen.component';
 import { UpdateMatiereComponent } from './content/matiere/update-matiere/update-matiere.component';
+import { UpdateNoteComponent } from './content/note/update-note/update-note.component';
 
 import { SearchAbsenceComponent } from './content/absence/search-absence/search-absence.component';
 import { SearchClasseComponent } from './content/classe/search-classe/search-classe.component';
 import { SearchEtudiantComponent } from './content/etudiant/search-etudiant/search-etudiant.component';
 import { SearchExamenComponent } from './content/examen/search-examen/search-examen.component';
 import { SearchMatiereComponent } from './content/matiere/search-matiere/search-matiere.component';
+import { SearchNoteComponent } from './content/note/search-note/search-note.component';
 
 
 
@@ -65,7 +68,10 @@ const routes: Routes = [
   { path: 'matiere/update/:id', component: UpdateMatiereComponent },
   { path: 'matiere/search', component: SearchMatiereComponent },
   { path: 'note', component: AllNoteComponent },
+  { path: 'note/add', component: CreateNoteComponent },
   { path: 'note/detail/:id', component: DetailNoteComponent },
+  { path: 'note/update/:id', component: UpdateNoteComponent },
+  { path: 'note/search', component: SearchNoteComponent },
   { path: '', component: DashboardComponent }
 ];
 

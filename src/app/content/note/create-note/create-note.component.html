@@ -1,29 +1,26 @@
 <app-navbar-note></app-navbar-note>
 
-<div>
+<div class="container">
+    <h2>Ajouter une note :</h2>
 
-    <form class="col-lg-3 col-sm-6">
-        <div class="form-group">
-            <label for="valeur">Valeur :</label>
-            <input type="text" class="form-control" [(ngModel)]="this.note.value" placeholder="Valeur" name="valeur" required>
-        </div>
-        <div class="form-group">
-            <label for="examen">Examen :</label>
-            <input type="text" class="form-control" [(ngModel)]="this.note.examen" placeholder="examen" name="examen" required>
-        </div>
-        <div class="form-group">
-            <label for="sel1">Etudiant :</label>
-            <select class="form-control" id="sel1" [(ngModel)]="this.note.etudiant" name="etudiant">
-              <option *ngFor></option>
-            </select>
-        </div>
+    <p *ngIf="emptyListeEtudiant && !emptyListeExamen"><i>Désolé, aucun étudiant n'est enregistré. Vous ne pouvez pas ajouter de notes.</i></p>
+    <p *ngIf="!emptyListeEtudiant && emptyListeExamen"><i>Désolé, aucun examen n'est enregistré. Vous ne pouvez pas ajouter de notes.</i></p>
+    <p *ngIf="emptyListeEtudiant && emptyListeExamen"><i>Désolé, ni étudiant ni examen ne sont enregistrés. Vous ne pouvez pas ajouter de notes.</i></p>
 
-        <button type="button" class="btn btn-primary" (click)="this.save()">Submit</button>
-
-        <div class="alert alert-success">
-            <strong>Success!</strong> {{this.messageValidation}}
-        </div>
-
-    </form>
-
+    <div *ngIf="!emptyListeEtudiant && !emptyListeExamen">
+    <h5><label for="matiere">Matière* : </label></h5>
+    <select [(ngModel)]="this.matiere">
+        <option *ngFor="let e of this.allExamenBis" [ngValue]="e.matiereExamen">{{e.matiereExamen.nomMatiere}}</option>
+    </select>
+    <br><br>
+    <button class="btn btn-info" (click)="this.chooseMatiere(this.matiere)">Choisir</button>
+    </div>
+    <br>
+    <p *ngIf="emptyListeEtudiantParMatiere && !emptyListeExamenParMatiere"><i>Désolé, aucun étudiant n'est inscrit à cette matière. Vous ne pouvez pas ajouter de notes.</i></p>
+    
+    <div *ngIf="!emptyListeEtudiantParMatiere && !emptyListeExamenParMatiere">
+        Vous pouvez ajouter une note !
+    </div>
+    
+    <br><br>
 </div>

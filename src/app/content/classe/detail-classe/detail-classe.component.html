@@ -4,7 +4,7 @@
     <h2>Détails de la classe :</h2>
     <h5>ID : {{this.classe.id}}</h5>
     <h5>Nom : {{this.classe.name}}</h5>
-    <h5>Liste des etudiants de la classe {{this.classe.name}} : </h5>
+    <h5>Liste des étudiants de la classe {{this.classe.name}} : </h5>
     <p *ngIf = "emptyliste"><i>Il n'y a pas d'etudiants dans cette classe</i></p>
     <table class="table table-hover" *ngIf = "!emptyliste">
         <thead>

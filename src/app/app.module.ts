@@ -43,6 +43,8 @@ import { UpdateExamenComponent } from './content/examen/update-examen/update-exa
 import { SearchExamenComponent } from './content/examen/search-examen/search-examen.component';
 import { UpdateMatiereComponent } from './content/matiere/update-matiere/update-matiere.component';
 import { SearchMatiereComponent } from './content/matiere/search-matiere/search-matiere.component';
+import { UpdateNoteComponent } from './content/note/update-note/update-note.component';
+import { SearchNoteComponent } from './content/note/search-note/search-note.component';
 
 @NgModule({
   declarations: [
@@ -84,7 +86,9 @@ import { SearchMatiereComponent } from './content/matiere/search-matiere/search-
     UpdateExamenComponent,
     SearchExamenComponent,
     UpdateMatiereComponent,
-    SearchMatiereComponent
+    SearchMatiereComponent,
+    UpdateNoteComponent,
+    SearchNoteComponent
   ],
   imports: [
     BrowserModule,

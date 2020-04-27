@@ -9,18 +9,18 @@ import { NotesService } from 'src/app/services/note/notes.service';
   styleUrls: ['./all-note.component.css']
 })
 export class AllNoteComponent implements OnInit {
+
   allNote = new Array<NoteUpdateDto>();
 
-  constructor(private service: NotesService) { }
+  constructor(private serviceNotes: NotesService) { }
 
   ngOnInit() {
     this.getAll();
   }
 
   getAll() {
-    this.service.getAll().subscribe(
+    this.serviceNotes.getAll().subscribe(
       (responseDto) => {
-        console.log('debug responseDto : ', responseDto);
         if (!responseDto.error) {
           this.allNote = responseDto.body;
         }
@@ -29,15 +29,11 @@ export class AllNoteComponent implements OnInit {
   }
 
   delete(id: number) {
-    this.service.delete(id).subscribe(
-      responseDto => {
-        console.log('debug responseDto : ', responseDto);
+    this.serviceNotes.delete(id).subscribe(
+      (responseDto) => {
         if (!responseDto.error) {
-          this.allNote = this.allNote.filter(
-            element =>  element.id !== id
-          );
+         this.getAll();
         }
-        console.log('result after delete: ', this.allNote);
       }
     );
   }

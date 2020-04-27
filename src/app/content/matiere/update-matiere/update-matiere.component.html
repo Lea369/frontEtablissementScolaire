@@ -45,6 +45,7 @@
             </tr>
         </tbody>
     </table>
+    <br><br>
     <h5>Inscrire des étudiants ?</h5>
     <button class="btn btn-info" (click)="afficherListeEtudiants()" *ngIf="!listeAllEtudiants">Inscrire des étudiants à cette matière</button>
     <table class="table table-hover" *ngIf="listeAllEtudiants && !emptyListeAllEtudiants">

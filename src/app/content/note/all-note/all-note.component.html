@@ -1,26 +1,36 @@
 <app-navbar-note></app-navbar-note>
 
-<div class="container">
+<div class="container-fluid">
     <h2>Liste des notes :</h2>
     <table class="table table-hover">
         <thead>
             <tr>
                 <th>ID</th>
-                <th>Valeur</th>
-                <th>Email etudiant</th>
-                <th>Id matière</th>
+                <th>Etudiant</th>
+                <th>Matière</th>
+                <th>Examen</th>
+                <th>Date</th>
+                <th>Coefficient</th>
+                <th>Note</th>
             </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let e of this.allNote">
-                <td>{{e.id}}</td>
-                <td>{{e.value}}</td>
-                <td>{{e.etudiant}}</td>
-                <td>{{e.examen}}</td>
-                <td>
-                    <button class="btn btn-danger" (click)="this.delete(e.id)">Supprimer</button>
+            <tr *ngFor="let note of this.allNote">
+                <td>{{note.id}}</td>
+                <td>{{note.etudiant.name}} {{note.etudiant.surname}}</td>
+                <td>{{note.examen.matiereExamen}}</td>
+                <td>{{note.examen.typeExamen}}</td>
+                <td>{{note.examen.coefExamen}}</td>
+                <td>{{note.value}}</td>
+                <td><a routerLink="/note/detail/{{note.id}}" class="btn btn-info" role="button">Afficher les détails</a>
+                    &nbsp;
+                    <a routerLink="/note/update/{{note.id}}" class="btn btn-info" role="button">Modifier</a>
+                    &nbsp;
+                    <button class="btn btn-danger" (click)="this.delete(note.id)">Supprimer</button>
+                    &nbsp;
                 </td>
             </tr>
         </tbody>
     </table>
+    <br><br>
 </div>
