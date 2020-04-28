@@ -78,13 +78,9 @@ export class UpdateMatiereComponent implements OnInit {
   }
 
   removeFromMatiere(etudiant: EtudiantUpdateDto) {
-    console.log('methode removeFromMatiere pour etudiant ID' ,etudiant.identifiant)
     const index = +this.matiere.listeEtudiant.indexOf(etudiant);
-    console.log('listeEtudiant initial' ,this.matiere.listeEtudiant);
-    console.log('index :' ,index);
-        if (index !== -1) {
+      if (index !== -1) {
         this.matiere.listeEtudiant.splice(index, 1);
-        console.log('listeEtudiant final' ,this.matiere.listeEtudiant);
         this.serviceMatieres.update(this.matiere).subscribe(
           (responseDto) => {
             if (!responseDto.error) {
@@ -92,7 +88,6 @@ export class UpdateMatiereComponent implements OnInit {
               this.messageEchec = '';
               this.messageSucces2 = 'Désinscription de l\'étudiant ' +etudiant.name+ ' ' +etudiant.surname+ ' de la matière ' +this.matiere.nomMatiere+ '.';
               this.messageEchec2 = '';
-              console.log(this.matiere);
               if (this.matiere.listeEtudiant.length == 0) {
                 this.emptyListe = true;
               } else {
@@ -135,13 +130,16 @@ export class UpdateMatiereComponent implements OnInit {
   }
 
   addToMatiere(etudiant: EtudiantUpdateDto) {
-    console.log('methode addToMatiere pour etudiant ID' ,etudiant.identifiant)
-    const index = +this.matiere.listeEtudiant.indexOf(etudiant);
-    console.log('listeEtudiant initial' ,this.matiere.listeEtudiant);
-    console.log('index :' +index);
+    let index = -1;
+    this.matiere.listeEtudiant.forEach(
+      (elem) => {
+        if(JSON.stringify(elem) === JSON.stringify(etudiant)) {
+          index = 1;
+        }
+      }
+    );
     if (index === -1) {
       this.matiere.listeEtudiant.push(etudiant);
-      console.log('listeEtudiant final' ,this.matiere.listeEtudiant);
       this.serviceMatieres.update(this.matiere).subscribe(
       (responseDto) => {
           if (!responseDto.error) {

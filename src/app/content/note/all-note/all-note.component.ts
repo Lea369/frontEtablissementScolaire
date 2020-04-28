@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { EtudiantUpdateDto } from 'src/app/models/etudiant-update-dto';
 import { NoteUpdateDto } from 'src/app/models/note-update-dto';
 import { NotesService } from 'src/app/services/note/notes.service';
 

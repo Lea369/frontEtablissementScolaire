@@ -62,7 +62,7 @@
             <tr>
                 <td>{{examen1.idExam}}</td>
                 <td>{{examen1.matiereExamen.nomMatiere}}</td>
-                <td>{{examen1.dateExamen}}</td>
+                <td>{{examen1.dateExamen | date:"dd/MM/yyyy"}}</td>
                 <td>{{examen1.typeExamen}}</td>
                 <td>{{examen1.coefExamen}}</td>
                 <td>
@@ -95,7 +95,7 @@
             <tr *ngFor="let e of this.allExamen22">
                 <td>{{e.idExam}}</td>
                 <td>{{e.matiereExamen.nomMatiere}}</td>
-                <td>{{e.dateExamen}}</td>
+                <td>{{e.dateExamen | date:"dd/MM/yyyy"}}</td>
                 <td>{{e.typeExamen}}</td>
                 <td>{{e.coefExamen}}</td>
                 <td>
@@ -128,7 +128,7 @@
                 <tr *ngFor="let e of this.allExamen33">
                     <td>{{e.idExam}}</td>
                     <td>{{e.matiereExamen.nomMatiere}}</td>
-                    <td>{{e.dateExamen}}</td>
+                    <td>{{e.dateExamen | date:"dd/MM/yyyy"}}</td>
                     <td>{{e.typeExamen}}</td>
                     <td>{{e.coefExamen}}</td>
                     <td>

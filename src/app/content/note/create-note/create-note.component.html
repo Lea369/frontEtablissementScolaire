@@ -7,20 +7,47 @@
     <p *ngIf="!emptyListeEtudiant && emptyListeExamen"><i>Désolé, aucun examen n'est enregistré. Vous ne pouvez pas ajouter de notes.</i></p>
     <p *ngIf="emptyListeEtudiant && emptyListeExamen"><i>Désolé, ni étudiant ni examen ne sont enregistrés. Vous ne pouvez pas ajouter de notes.</i></p>
 
-    <div *ngIf="!emptyListeEtudiant && !emptyListeExamen">
+    <div *ngIf="!emptyListeEtudiant && !emptyListeExamen && boutonMatiere">
     <h5><label for="matiere">Matière* : </label></h5>
     <select [(ngModel)]="this.matiere">
         <option *ngFor="let e of this.allExamenBis" [ngValue]="e.matiereExamen">{{e.matiereExamen.nomMatiere}}</option>
     </select>
-    <br><br>
-    <button class="btn btn-info" (click)="this.chooseMatiere(this.matiere)">Choisir</button>
+    <p>(* champs obligatoires)</p>
+    <button class="btn btn-info" [disabled]="!this.matiere" (click)="this.chooseMatiere(this.matiere)">Choisir</button>
     </div>
     <br>
     <p *ngIf="emptyListeEtudiantParMatiere && !emptyListeExamenParMatiere"><i>Désolé, aucun étudiant n'est inscrit à cette matière. Vous ne pouvez pas ajouter de notes.</i></p>
     
-    <div *ngIf="!emptyListeEtudiantParMatiere && !emptyListeExamenParMatiere">
-        Vous pouvez ajouter une note !
-    </div>
-    
+    <form [formGroup]="formulaireAjout" (ngSubmit)=save()>
+        <div class="form-group"  *ngIf="!emptyListeEtudiantParMatiere && !emptyListeExamenParMatiere">
+            <h5>Matière* : {{this.matiere.nomMatiere}}</h5>
+            <h5><label for="examen">Examen* :</label></h5>
+            <select class="form-control" [(ngModel)]="this.note.examen" formControlName="examen" name="examen" required>
+                <option *ngFor="let examen of this.allExamenParMatiere" [ngValue]="examen">{{examen.typeExamen}} du {{examen.dateExamen | date:"dd/MM/yyyy"}}</option>
+            </select>
+            <h5><label for="etudiant">Etudiant* :</label></h5>
+            <select class="form-control" [(ngModel)]="this.note.etudiant" formControlName="etudiant" name="etudiant" required>
+                <option *ngFor="let etudiant of this.allEtudiantParMatiere" [ngValue]="etudiant">{{etudiant.name}} {{etudiant.surname}}</option>
+            </select>
+            <h5><label for="value">Note* : (/20)</label></h5>
+            <input type="number" class="form-control" [(ngModel)]="this.note.value" formControlName="value" name="value" required>
+            <p>(* champs obligatoires)</p>
+            <br><br>
+            <button type="submit" class="btn btn-info" [disabled]="!this.formulaireAjout.valid">Ajouter</button>
+            &nbsp;&nbsp;
+            <button type="reset" class="btn btn-info" (click)="autreMatiere()">Choisir une autre matière</button>
+            <br><br>
+            <span *ngIf="this.messageSucces.length">
+                <span class="alert alert-success">{{this.messageSucces}}</span>
+            </span>
+            <span *ngIf="this.messageEchec.length">
+                <span class="alert alert-danger">{{this.messageEchec}}</span>
+            </span>
+            <br><br>
+        </div>
+    </form>
+    <br><br>
+    <button class="btn btn-info" (click)="retour()">Retour</button>
+    <br><br>
     <br><br>
 </div>

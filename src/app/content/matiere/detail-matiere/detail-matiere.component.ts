@@ -64,7 +64,7 @@ export class DetailMatiereComponent implements OnInit {
       (responseDto) => {
         if (!responseDto.error) {
           this.allExamens = responseDto.body;
-          this.messageExamens = '';
+          this.messageExamens = 'Nombre d\'examens : ' +this.allExamens.length;
           
         }
       },

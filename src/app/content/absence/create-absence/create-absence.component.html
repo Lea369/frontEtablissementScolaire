@@ -17,6 +17,7 @@
             <textarea class="form-control" [(ngModel)]="this.absence.justif" formControlName="justif" name="justif" rows="5" required></textarea>
             <h5><label for="descript">Description* :</label></h5>
             <textarea class="form-control" [(ngModel)]="this.absence.descript" formControlName="descript" name="descript" rows="5" required></textarea>
+            <p>(* champs obligatoires)</p>
             <br><br>
             <button type="submit" class="btn btn-info" [disabled]="!this.formulaireAjout.valid">Ajouter</button>
             <br><br>

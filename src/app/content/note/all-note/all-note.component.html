@@ -6,22 +6,24 @@
         <thead>
             <tr>
                 <th>ID</th>
-                <th>Etudiant</th>
                 <th>Matière</th>
                 <th>Examen</th>
                 <th>Date</th>
                 <th>Coefficient</th>
+                <th>Etudiant</th>
                 <th>Note</th>
+                <th>Actions</th>
             </tr>
         </thead>
         <tbody>
             <tr *ngFor="let note of this.allNote">
                 <td>{{note.id}}</td>
-                <td>{{note.etudiant.name}} {{note.etudiant.surname}}</td>
-                <td>{{note.examen.matiereExamen}}</td>
+                <td>{{note.examen.matiereExamen.nomMatiere}}</td>
                 <td>{{note.examen.typeExamen}}</td>
+                <td>{{note.examen.dateExamen | date:"dd/MM/yyyy"}}</td>
                 <td>{{note.examen.coefExamen}}</td>
-                <td>{{note.value}}</td>
+                <td>{{note.etudiant.name}} {{note.etudiant.surname}}</td>
+                <td>{{note.value}}/20</td>
                 <td><a routerLink="/note/detail/{{note.id}}" class="btn btn-info" role="button">Afficher les détails</a>
                     &nbsp;
                     <a routerLink="/note/update/{{note.id}}" class="btn btn-info" role="button">Modifier</a>

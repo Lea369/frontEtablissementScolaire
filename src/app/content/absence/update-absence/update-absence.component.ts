@@ -79,13 +79,13 @@ export class UpdateAbsenceComponent implements OnInit {
     this.serviceAbsences.updateAbsence(this.absence).subscribe(
       (responseDto) => {
           if (!responseDto.error) {
-            this.messageSucces = 'Modification réussie';
+            this.messageSucces = 'Modification réussie.';
             this.messageEchec = '';
           }
       },
       (responseDto) => {
           if (responseDto.error) {
-            this.messageEchec = 'Erreur lors de la modification';
+            this.messageEchec = 'Erreur lors de la modification.';
             this.messageSucces = '';
           }
       }

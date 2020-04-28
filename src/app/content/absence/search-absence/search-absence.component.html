@@ -33,8 +33,8 @@
             <tr>
                 <td>{{absence1.identifiant}}</td>
                 <td>{{absence1.etudiant.name}} {{absence1.etudiant.surname}}</td>                
-                <td>{{absence1.dateStart}}</td>
-                <td>{{absence1.dateEnd}}</td>
+                <td>{{absence1.dateStart | date:"dd/MM/yyyy"}}</td>
+                <td>{{absence1.dateEnd | date:"dd/MM/yyyy"}}</td>
                 <td>{{absence1.justif}}</td>
                 <td>{{absence1.descript}}</td>
                 <td>

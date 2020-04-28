@@ -6,8 +6,9 @@ import { EtudiantsService } from 'src/app/services/etudiant/etudiants.service';
 import { ExamensService } from 'src/app/services/examen/examens.service';
 import { EtudiantUpdateDto } from 'src/app/models/etudiant-update-dto';
 import { MatieresService } from 'src/app/services/matiere/matieres.service';
-import { FormGroup } from '@angular/forms';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { MatiereUpdateDto } from 'src/app/models/matiere-update-dto';
+import { Location } from '@angular/common'
 
 @Component({
   selector: 'app-create-note',
@@ -28,6 +29,7 @@ export class CreateNoteComponent implements OnInit {
   allEtudiantBis = new Array<EtudiantUpdateDto>();
   allEtudiantParMatiere = new Array<EtudiantUpdateDto>();
   emptyListeEtudiantParMatiere: boolean;
+  boutonMatiere: boolean;
   formulaireAjout: FormGroup;
   messageSucces = '';
   messageEchec = '';
@@ -36,7 +38,8 @@ export class CreateNoteComponent implements OnInit {
     private serviceNotes: NotesService,
     private serviceEtudiants: EtudiantsService,
     private serviceExamens: ExamensService,
-    private serviceMatieres: MatieresService
+    private serviceMatieres: MatieresService,
+    private location: Location
     ) { }
 
   ngOnInit(): void {
@@ -44,9 +47,14 @@ export class CreateNoteComponent implements OnInit {
     this.emptyListeExamen = true;
     this.emptyListeExamenParMatiere = true;
     this.emptyListeEtudiantParMatiere = true;
+    this.boutonMatiere = false;
     this.getAllEtudiant();
     this.getAllExamen();
-    
+    this.formulaireAjout = new FormGroup ({
+      examen: new FormControl(this.note.examen, Validators.required),
+      etudiant: new FormControl(this.note.etudiant, Validators.required),
+      value: new FormControl(this.note.value, [Validators.required, Validators.min(0), Validators.max(20)])
+    })
   }
 
   getAllEtudiant() {
@@ -56,8 +64,10 @@ export class CreateNoteComponent implements OnInit {
           this.allEtudiant = responseDto.body;
           if (this.allEtudiant.length == 0) {
             this.emptyListeEtudiant = true;
+            this.boutonMatiere = false;
           } else {
             this.emptyListeEtudiant = false;
+            this.boutonMatiere = true;
           }
         }
       }
@@ -71,11 +81,12 @@ export class CreateNoteComponent implements OnInit {
           this.allExamen = responseDto.body;
           if (this.allExamen.length == 0) {
             this.emptyListeExamen= true;
+            this.boutonMatiere = false;
           } else {
             this.emptyListeExamen = false;
             this.allExamenBis = this.allExamen.filter(
               (item, i, arr) => arr.findIndex((t) => t.matiereExamen.nomMatiere === item.matiereExamen.nomMatiere) === i);
-            console.log(this.allExamenBis);
+            this.boutonMatiere = true;
           }
         }
       }
@@ -98,6 +109,9 @@ export class CreateNoteComponent implements OnInit {
           } else {
             this.emptyListeEtudiantParMatiere = false;
           }
+          if (!this.emptyListeEtudiantParMatiere && !this.emptyListeExamenParMatiere) {
+            this.boutonMatiere = false;
+          } 
         }
       }
     )
@@ -118,5 +132,12 @@ export class CreateNoteComponent implements OnInit {
     );
   }
 
+  autreMatiere() {
+    document.location.reload();
+  }
+
+  retour() {
+    this.location.back();
+  }
   
 }

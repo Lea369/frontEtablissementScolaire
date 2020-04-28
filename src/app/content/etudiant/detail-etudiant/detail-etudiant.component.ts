@@ -26,7 +26,10 @@ export class DetailEtudiantComponent implements OnInit {
   messageAbsences = '';
   messageNotes = '';
   messageMatieres = '';
-  
+  somme1: number;
+  somme2: number;
+  moyenne: number;
+
   constructor(
     private route: ActivatedRoute,
     private serviceEtudiants: EtudiantsService,
@@ -65,7 +68,7 @@ export class DetailEtudiantComponent implements OnInit {
       (responseDto) => {
         if (!responseDto.error && responseDto.body != null) {
           this.allAbsences = responseDto.body;
-          this.messageAbsences = '';
+          this.messageAbsences = 'Nombre d\'absences : ' +this.allAbsences.length;
         }
       },
       (responseDto) => {
@@ -91,7 +94,14 @@ export class DetailEtudiantComponent implements OnInit {
       (responseDto) => {
         if (!responseDto.error && responseDto.body != null) {
           this.allNotes = responseDto.body;
-          this.messageNotes = '';
+          this.somme1 = 0;
+          this.somme2 = 0;
+          for (var i=0; i < this.allNotes.length; i++) {
+            this.somme1 = this.somme1 + this.allNotes[i].value * this.allNotes[i].examen.coefExamen;
+            this.somme2 = this.somme2 + this.allNotes[i].examen.coefExamen;
+          };
+          this.moyenne = this.somme1/this.somme2;
+          this.messageNotes = 'Moyenne générale de l\'étudiant : ' +this.moyenne+ '/20';
         }
       },
       (responseDto) => {
@@ -125,7 +135,7 @@ export class DetailEtudiantComponent implements OnInit {
             this.allMatieresParEtudiant = [];
             this.messageMatieres = 'Aucune matière n\'est enregistrée pour cet étudiant.';
           } else {
-            this.messageMatieres = '';
+            this.messageMatieres = 'Nombre de matières : ' +this.allMatieresParEtudiant.length;
           }
           
         }

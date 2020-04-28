@@ -27,7 +27,7 @@
             </tr>
         </tbody>
     </table>
-    <br>
+    <br><br>
     <button class="btn btn-info" (click)="afficherExamens(this.matiere.nomMatiere)">Voir les examens de cette matière</button>
     &nbsp;&nbsp;
     <button class="btn btn-info" (click)="retour()">Retour</button>
@@ -47,7 +47,7 @@
             <tbody>
                 <tr *ngFor="let examen of this.allExamens">
                     <td>{{examen.idExam}}</td>
-                    <td>{{examen.dateExamen}}</td>
+                    <td>{{examen.dateExamen | date:"dd/MM/yyyy"}}</td>
                     <td><a routerLink="/examen/detail/{{examen.idExam}}">
                         {{examen.typeExamen}} </a></td>
                     <td>{{examen.coefExamen}}</td>

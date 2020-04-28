@@ -1,1 +1,103 @@
-<p>search-note works!</p>
+<app-navbar-note></app-navbar-note>
+
+<div class="container-fluid">
+    <h2>Rechercher une note par ID :</h2>
+    <h5><label for="search-box1">ID :</label></h5>
+    <input type="number" [(ngModel)]="this.numero1"/>
+    <br><br>
+    <button class="btn btn-info" (click)="this.getSingle1(this.numero1)">Rechercher</button>
+    <br><br>
+    <span *ngIf="this.messageSucces1.length">
+        <span class="alert alert-success">{{this.messageSucces1}}</span>
+    </span>
+    <span *ngIf="this.messageEchec1.length">
+        <span class="alert alert-danger">{{this.messageEchec1}}</span>
+    </span> 
+    <br><br>
+    <h2>Rechercher une note par matière :</h2>
+    <h5><label for="search-box2">Matière :</label></h5>
+    <input type="text" [(ngModel)]="this.matiere2"/>
+    <br><br>
+    <button class="btn btn-info" (click)="this.getSingle2(this.matiere2)">Rechercher</button>
+    <br><br>
+    <span *ngIf="this.messageSucces2.length">
+        <span class="alert alert-success">{{this.messageSucces2}}</span>
+    </span>
+    <span *ngIf="this.messageEchec2.length">
+        <span class="alert alert-danger">{{this.messageEchec2}}</span>
+    </span> 
+    <br><br>
+    <div *ngIf="single1">
+    <h5>Liste des notes :</h5>
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Matière</th>
+                <th>Examen</th>
+                <th>Date</th>
+                <th>Coefficient</th>
+                <th>Etudiant</th>
+                <th>Note</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>{{note1.id}}</td>
+                <td>{{note1.examen.matiereExamen.nomMatiere}} </td>                
+                <td>{{note1.examen.typeExamen}}</td>
+                <td>{{note1.examen.dateExamen | date:"dd/MM/yyyy"}}</td>
+                <td>{{note1.examen.coefExamen}}</td>
+                <td>{{note1.etudiant.name}} {{note1.etudiant.surname}}</td>
+                <td>{{note1.value}}</td>
+                <td>
+                    <a routerLink="/absence/detail/{{note1.id}}" class="btn btn-info" role="button">Afficher les détails</a>
+                    &nbsp;
+                    <a routerLink="/absence/update/{{note1.id}}" class="btn btn-info" role="button">Modifier</a>
+                    &nbsp;
+                    <button class="btn btn-danger" (click)="this.delete(note1.id)">Supprimer</button>
+                    &nbsp;
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    </div>
+
+    <div *ngIf="single2">
+        <h5>Liste des notes :</h5>
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Matière</th>
+                    <th>Examen</th>
+                    <th>Date</th>
+                    <th>Coefficient</th>
+                    <th>Etudiant</th>
+                    <th>Note</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let n of this.allNote22">
+                    <td>{{n.id}}</td>
+                    <td>{{n.examen.matiereExamen.nomMatiere}} </td>                
+                    <td>{{n.examen.typeExamen}}</td>
+                    <td>{{n.examen.dateExamen | date:"dd/MM/yyyy"}}</td>
+                    <td>{{n.examen.coefExamen}}</td>
+                    <td>{{n.etudiant.name}} {{n.etudiant.surname}}</td>
+                    <td>{{n.value}}</td>
+                    <td>
+                        <a routerLink="/absence/detail/{{n.id}}" class="btn btn-info" role="button">Afficher les détails</a>
+                        &nbsp;
+                        <a routerLink="/absence/update/{{n.id}}" class="btn btn-info" role="button">Modifier</a>
+                        &nbsp;
+                        <button class="btn btn-danger" (click)="this.delete(n.id)">Supprimer</button>
+                        &nbsp;
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        </div>
+    <br><br>
+</div>
+

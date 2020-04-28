@@ -76,12 +76,12 @@ export class UpdateEtudiantComponent implements OnInit {
     this.serviceEtudiants.updateEtudiant(this.etudiant).subscribe(
       (responseDto) => {
         if (!responseDto.error) {
-          this.messageSucces = 'Modification réussie';
+          this.messageSucces = 'Modification réussie.';
         }
       },
       (responseDto) => {
         if (responseDto.error) {
-          this.messageEchec = 'Erreur lors de la modification : cet email ou cet CIN existe déjà'
+          this.messageEchec = 'Erreur lors de la modification : cet email ou cet CIN existe déjà.'
         }
       }
     )

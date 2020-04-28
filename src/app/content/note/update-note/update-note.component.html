@@ -1,1 +1,31 @@
-<p>update-note works!</p>
+<app-navbar-note></app-navbar-note>
+
+<div class="container">
+    <h2>Modifier une note :</h2>
+    <h5>ID : {{this.note.id}}</h5>
+    <div *ngIf="this.note.examen"><h5>Matière : {{this.note.examen.matiereExamen.nomMatiere}} </h5></div>
+    <div *ngIf="this.note.examen"><h5>Examen :  {{this.note.examen.typeExamen}} </h5></div>
+    <div *ngIf="this.note.examen"><h5>Date : {{this.note.examen.dateExamen}} </h5></div>
+    <div *ngIf="this.note.examen"><h5>Coefficient : {{this.note.examen.coefExamen}} </h5></div>
+    <div *ngIf="this.note.etudiant"><h5>Etudiant : {{this.note.etudiant.name}} {{this.note.etudiant.surname}} </h5></div>
+    <form [formGroup]="formulaireModif" (ngSubmit)="update()">
+        <div class="form-group">
+            <h5><label for="value">Note* : (/20) [{{this.note.value}}/20]</label></h5>
+            <input type="number" class="form-control" [(ngModel)]="this.note.value" formControlName="value" name="value" required>
+            <p>(* champs obligatoires)</p>
+            <br><br>
+            <button type="submit" class="btn btn-info" [disabled]="!this.formulaireModif.valid">Modifier</button>
+            <br><br>
+            <span *ngIf="this.messageSucces.length">
+            <span class="alert alert-success">{{this.messageSucces}}</span>
+            </span>
+            <span *ngIf="this.messageEchec.length">
+            <span class="alert alert-danger">{{this.messageEchec}}</span>
+            </span>
+            <br><br>
+        </div>
+    </form>
+    <br><br>
+    <button class="btn btn-info" (click)="retour()">Retour</button>
+    <br><br>
+</div>

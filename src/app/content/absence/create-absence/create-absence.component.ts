@@ -61,12 +61,12 @@ export class CreateAbsenceComponent implements OnInit {
     this.serviceAbsences.create(this.absence).subscribe(
       (responseDto) => {
           if (!responseDto.error) {
-            this.messageSucces = 'Création réussie';
+            this.messageSucces = 'Création réussie.';
           }
       },
       (responseDto) => {
           if (responseDto.error) {
-              this.messageEchec = 'Erreur lors de la création';
+              this.messageEchec = 'Erreur lors de la création.';
           }
       }
     );

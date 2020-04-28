@@ -1,1 +1,16 @@
 <app-navbar-note></app-navbar-note>
+
+<div class="container-fluid">
+    <h2>Détails de la note :</h2>
+    <h5>ID : {{this.note.id}}</h5>
+    <div *ngIf="this.note.examen"><h5>Matière : <a routerLink="/matiere/detail/{{this.note.examen.matiereExamen.idMatiere}}"> {{this.note.examen.matiereExamen.nomMatiere}} </a></h5></div>
+    <div *ngIf="this.note.examen"><h5>Examen : <a routerLink="/examen/detail/{{this.note.examen.idExam}}"> {{this.note.examen.typeExamen}} </a></h5></div>
+    <div *ngIf="this.note.examen"><h5>Date : {{this.note.examen.dateExamen | date:"dd/MM/yyyy"}} </h5></div>
+    <div *ngIf="this.note.examen"><h5>Coefficient : {{this.note.examen.coefExamen}} </h5></div>
+    <div *ngIf="this.note.etudiant"><h5>Etudiant : <a routerLink="/etudiant/detail/{{this.note.etudiant.identifiant}}">{{this.note.etudiant.name}} {{this.note.etudiant.surname}} </a></h5></div>
+    <h5>Note : {{this.note.value}}/20 </h5>
+
+    <br><br>
+    <button class="btn btn-info" (click)="retour()">Retour</button>
+    <br><br>
+</div>

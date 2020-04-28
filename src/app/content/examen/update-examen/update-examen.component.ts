@@ -78,7 +78,7 @@ export class UpdateExamenComponent implements OnInit {
       (responseDto) => {
         if (responseDto.error) {
           this.messageSucces = '';
-          this.messageEchec = 'Erreur lors de la modification';
+          this.messageEchec = 'Erreur lors de la modification.';
         }
       }
     )

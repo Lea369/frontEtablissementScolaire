@@ -6,31 +6,29 @@
     <div *ngIf="this.examen.matiereExamen"><h5>Matiere : 
         <a routerLink="/matiere/detail/{{this.examen.matiereExamen.idMatiere}}">
             {{this.examen.matiereExamen.nomMatiere}}</a></h5></div>
-    <h5>Date : {{this.examen.dateExamen}} </h5>
+    <h5>Date : {{this.examen.dateExamen | date:"dd/MM/yyyy"}} </h5>
     <h5>Type : {{this.examen.typeExamen}} </h5>
     <h5>Coefficient : {{this.examen.coefExamen}}</h5>
     <br><br>
-    <button class="btn btn-info" (click)="afficherNotes(this.examen)">Voir les notes de cet examen</button>
+    <button class="btn btn-info" (click)="afficherNotes(this.examen.idExam)">Voir les notes de cet examen</button>
     &nbsp;&nbsp;
     <button class="btn btn-info" (click)="retour()">Retour</button>   
     <br><br>
 
     <div *ngIf="tableauNotes">
-        <h5>Bulletin de notes :</h5>
+        <h5>Notes :</h5>
         <table class="table table-hover">
             <thead>
                 <tr>
                     <th>ID</th>
-                    <th>Prénom</th>
-                    <th>Nom</th>
+                    <th>Etudiant</th>
                     <th>Note</th> 
                 </tr>
             </thead>
             <tbody>
                 <tr *ngFor="let n of this.allNotesParExamen">
                     <td>{{n.id}}</td>
-                    <td>{{n.etudiant.name}}</td>
-                    <td>{{n.etudiant.surname}}</td>
+                    <td><a routerLink="/etudiant/detail/{{this.n.etudiant.identifiant}}">{{n.etudiant.name}} {{n.etudiant.surname}}</a></td>
                     <td>{{n.value}}</td>
                 </tr>
             </tbody>  

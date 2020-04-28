@@ -17,7 +17,7 @@
             <tr *ngFor="let e of this.allExamen">
                 <td>{{e.idExam}}</td>
                 <td>{{e.matiereExamen.nomMatiere}}</td>
-                <td>{{e.dateExamen}}</td>
+                <td>{{e.dateExamen | date:"dd/MM/yyyy"}}</td>
                 <td>{{e.typeExamen}}</td>
                 <td>{{e.coefExamen}}</td>
                 <td>

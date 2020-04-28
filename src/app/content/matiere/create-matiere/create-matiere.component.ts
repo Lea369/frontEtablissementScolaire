@@ -44,7 +44,7 @@ export class CreateMatiereComponent implements OnInit {
       (responseDto) => {
         if (!responseDto.error) {
           this.matiere = responseDto.body;
-          this.messageSucces = 'Création réussie';
+          this.messageSucces = 'Création réussie.';
           this.messageEchec = '';
           this.tableau = true;
           this.getEtudiants();
@@ -55,7 +55,7 @@ export class CreateMatiereComponent implements OnInit {
         if (responseDto.error) {
           this.matiere = null;
           this.messageSucces = '';
-          this.messageEchec = 'Erreur lors de la création';
+          this.messageEchec = 'Erreur lors de la création.';
         }
       }
     )
@@ -86,7 +86,7 @@ export class CreateMatiereComponent implements OnInit {
             this.messageSucces = '';
             this.messageEchec = '';
             this.messageEchec2 = '';
-            this.messageSucces2 = 'Inscription de l\'étudiant ' +etudiant.name+ ' ' +etudiant.surname+ ' à la matière ' +this.matiere.nomMatiere;
+            this.messageSucces2 = 'Inscription de l\'étudiant ' +etudiant.name+ ' ' +etudiant.surname+ ' à la matière ' +this.matiere.nomMatiere+ '.';
           }
       },
       (responseDto) => {
@@ -94,7 +94,7 @@ export class CreateMatiereComponent implements OnInit {
             this.messageEchec = '';
             this.messageSucces = '';
             this.messageSucces2 = '';
-            this.messageEchec2 = 'Erreur lors de l\'inscription de ' +etudiant.name+ ' ' +etudiant.surname;
+            this.messageEchec2 = 'Erreur lors de l\'inscription de ' +etudiant.name+ ' ' +etudiant.surname+ '.';
           }
       }
       );
@@ -102,7 +102,7 @@ export class CreateMatiereComponent implements OnInit {
       this.messageSucces='';
       this.messageEchec='';
       this.messageSucces2= '';
-      this.messageEchec2= 'Erreur : cet étudiant est déjà inscrit';
+      this.messageEchec2= 'Erreur : cet étudiant est déjà inscrit.';
     }
 
   }

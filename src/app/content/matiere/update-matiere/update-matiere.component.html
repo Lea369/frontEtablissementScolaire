@@ -8,6 +8,7 @@
         <div class ="formGroup">
             <h5><label for="nomMatiere">Nom* :</label> [{{this.matiere.nomMatiere}}]</h5>
             <input type="text" class="form-control" [(ngModel)]="this.matiere.nomMatiere" formControlName="nomMatiere" name="nomMatiere" required>
+            <p>(* champs obligatoires)</p>
             <br><br>
                 <button type="submit" class="btn btn-info" [disabled]="!this.formulaireModif.valid">Modifier</button>
             <br><br>
@@ -17,7 +18,7 @@
             <span *ngIf="this.messageEchec.length">
                 <span class="alert alert-danger">{{this.messageEchec}}</span>
             </span>
-            <br><br><br>
+            <br><br>
         </div>
     </form>
 
@@ -78,7 +79,7 @@
     <span *ngIf="this.messageEchec2.length">
         <span class="alert alert-danger">{{this.messageEchec2}}</span>
     </span> 
-    <br><br><br>
+    <br><br>
     <button class="btn btn-info" (click)="retour()">Retour</button>
     <br><br>
 </div>

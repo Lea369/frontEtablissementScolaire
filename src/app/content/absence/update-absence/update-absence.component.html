@@ -10,14 +10,15 @@
             <select class="form-control" [(ngModel)]="this.absence.etudiant" formControlName="etudiant" name="etudiant" required>
                 <option *ngFor="let e of this.allEtudiant" [ngValue]="e">{{e.name}} {{e.surname}}</option>
             </select>
-            <h5><label for="dateStart">Date de début* :</label> [{{this.absence.dateStart}}]</h5>
+            <h5><label for="dateStart">Date de début* :</label> [{{this.absence.dateStart | date:"dd/MM/yyyy"}}]</h5>
             <input type="date" class="form-control" [(ngModel)]="this.absence.dateStart" formControlName="dateStart" name="dateStart" required>
-            <h5><label for="dateEnd">Date de fin* :</label> [{{this.absence.dateEnd}}] </h5>
+            <h5><label for="dateEnd">Date de fin* :</label> [{{this.absence.dateEnd | date:"dd/MM/yyyy"}}] </h5>
             <input type="date" class="form-control" [(ngModel)]="this.absence.dateEnd" formControlName="dateEnd" name="dateEnd" required>
             <h5><label for="justif">Justification* :</label> [{{this.absence.justif}}]</h5>
             <textarea class="form-control" [(ngModel)]="this.absence.justif" formControlName="justif" name="justif" rows="5" required></textarea>
             <h5><label for="descript">Description* :</label> [{{this.absence.descript}}] </h5>
             <textarea class="form-control" [(ngModel)]="this.absence.descript" formControlName="descript" name="descript" rows="5" required></textarea>
+            <p>(* champs obligatoires)</p>
             <br><br>
             <button type="submit" class="btn btn-info" [disabled]="!this.formulaireModif.valid">Modifier</button>
             <br><br>
@@ -30,7 +31,7 @@
             <br><br>
         </div>
     </form>
-    <br><br><br>
+    <br><br>
     <button class="btn btn-info" (click)="retour()">Retour</button>
     <br><br>
 </div>

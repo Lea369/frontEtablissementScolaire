@@ -20,6 +20,7 @@
             </select>
             <h5><label for="coefExamen">Coefficient* :</label></h5>
             <input type="number" class="form-control" [(ngModel)]="this.examen.coefExamen" formControlName="coefExamen" name="coefExamen" required>
+            <p>(* champs obligatoires)</p>
             <br><br>
             <button type="submit" class="btn btn-info" [disabled]="!this.formulaireAjout.valid">Ajouter</button>
             <br><br>
@@ -32,7 +33,7 @@
             <br><br>
         </div>
     </form>
-    <br><br><br>
+    <br><br>
     <button class="btn btn-info" (click)="retour()">Retour</button>
     <br><br>
 </div>

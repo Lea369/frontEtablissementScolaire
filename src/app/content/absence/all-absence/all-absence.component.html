@@ -18,8 +18,8 @@
             <tr *ngFor="let a of this.allAbsence">
                 <td>{{a.identifiant}}</td>
                 <td>{{a.etudiant.name}} {{a.etudiant.surname}}</td>
-                <td>{{a.dateStart}}</td>
-                <td>{{a.dateEnd}}</td>
+                <td>{{a.dateStart | date:"dd/MM/yyyy"}}</td>
+                <td>{{a.dateEnd | date:"dd/MM/yyyy"}}</td>
                 <td>{{a.justif}}</td>
                 <td>{{a.descript}}</td>         
                 <td>

@@ -13,9 +13,9 @@
         <h5><label for="mail">Email* :</label> [{{this.etudiant.mail}}]</h5>
         <input type="email" class="form-control" [(ngModel)]="this.etudiant.mail" formControlName="mail" name="mail" required>
         <h5><label for="identity">CNI* :</label> [{{this.etudiant.identity}}]</h5>
-        <input type="number" class="form-control" [(ngModel)]="this.etudiant.identity" formControlName="identity" name="identity" pattern=".{6,}" required>
+        <input type="number" class="form-control" [(ngModel)]="this.etudiant.identity" formControlName="identity" name="identity" pattern=".{6,}" title="6 caractères minimum" required>
         <h5><label for="phone">Téléphone* : (+33) </label> [{{this.etudiant.phone}}]</h5>
-        <input type="number" class="form-control" [(ngModel)]="this.etudiant.phone" formControlName="phone" name="phone" pattern=".{9,}" required>
+        <input type="number" class="form-control" [(ngModel)]="this.etudiant.phone" formControlName="phone" name="phone" pattern=".{9,}" title="9 caractères minimum" required>
         <h5><label for="adress">Adresse : </label> [{{this.etudiant.adress}}]</h5>
         <input type="text" class="form-control" [(ngModel)]="this.etudiant.adress" formControlName="adress" name="adress">
         <h5><label for="postalCode">Code Postal : </label> [{{this.etudiant.postalCode}}]</h5>
@@ -29,12 +29,13 @@
             <option>A</option>
         </select>
         <div *ngIf="!emptyListe">
-        <h5><label for="classe">Classe : </label> <span *ngIf="this.etudiant.classe">[{{this.etudiant.classe.name}}]</span><span *ngIf="this.etudiant.classe == null"> [Aucune]</span></h5>
+        <h5><label for="classe">Classe : </label> <span *ngIf="this.etudiant.classe"> [{{this.etudiant.classe.name}}]</span><span *ngIf="this.etudiant.classe == null"> [Aucune]</span></h5>
         <select class="form-control" [(ngModel)]="this.etudiant.classe" formControlName="classe" name="classe">
             <option *ngFor="let c of this.allClasses" [ngValue]="c">{{c.name}}</option>
             <option [ngValue]=null>Aucune classe</option>
         </select>
         </div>
+        <p>(* champs obligatoires)</p>
         <br><br>
             <button type="submit" class="btn btn-info" [disabled]="!this.formulaireModif.valid">Modifier</button>
         <br><br>
