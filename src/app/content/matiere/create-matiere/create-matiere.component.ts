@@ -86,7 +86,8 @@ export class CreateMatiereComponent implements OnInit {
             this.messageSucces = '';
             this.messageEchec = '';
             this.messageEchec2 = '';
-            this.messageSucces2 = 'Inscription de l\'étudiant ' +etudiant.name+ ' ' +etudiant.surname+ ' à la matière ' +this.matiere.nomMatiere+ '.';
+            this.messageSucces2 = 'Inscription de l\'étudiant ' +etudiant.name+ ' ' +etudiant.surname+ 
+            ' à la matière ' +this.matiere.nomMatiere+ '.';
           }
       },
       (responseDto) => {
@@ -97,7 +98,7 @@ export class CreateMatiereComponent implements OnInit {
             this.messageEchec2 = 'Erreur lors de l\'inscription de ' +etudiant.name+ ' ' +etudiant.surname+ '.';
           }
       }
-      );
+    );
     } else {
       this.messageSucces='';
       this.messageEchec='';

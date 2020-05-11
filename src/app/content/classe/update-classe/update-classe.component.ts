@@ -44,7 +44,6 @@ export class UpdateClasseComponent implements OnInit {
     this.formulaireModif = new FormGroup({
       name: new FormControl(this.classe.name, Validators.required),
     });
-     
   }
 
   retour(): void {
@@ -59,7 +58,7 @@ export class UpdateClasseComponent implements OnInit {
           this.classe = responseDto.body;
         }
       }
-     );
+    );
   }
  
   getEtudiantsParClasse(): void {
@@ -67,7 +66,8 @@ export class UpdateClasseComponent implements OnInit {
     this.serviceEtudiants.getAll().subscribe(
       (responseDto) => {
         if (!responseDto.error) {
-          this.etudiantsParClasse = responseDto.body.filter(element => (element.classe !== null && element.classe.id == id));
+          this.etudiantsParClasse = responseDto.body.filter(element => 
+            (element.classe !== null && element.classe.id == id));
           if (this.etudiantsParClasse.length==0) {
             this.emptyListe = true;
           }
@@ -112,7 +112,8 @@ export class UpdateClasseComponent implements OnInit {
               if (!responseDto.error) {
                 this.messageSucces = '';
                 this.messageEchec = '';
-                this.messageSucces2 = 'Ajout de l\'etudiant ' +this.etudiant.name+ ' ' +this.etudiant.surname+ ' à la classe ' +this.classe.name+ '.';
+                this.messageSucces2 = 'Ajout de l\'etudiant ' +this.etudiant.name+ ' ' +this.etudiant.surname+
+                 ' à la classe ' +this.classe.name+ '.';
                 this.getEtudiantsParClasse();
               }
             },
@@ -120,7 +121,8 @@ export class UpdateClasseComponent implements OnInit {
               if (responseDto.error) {
                 this.messageSucces = '';
                 this.messageEchec = '';
-                this.messageEchec2 = 'Erreur : l\'etudiant ' +this.etudiant.name+ ' ' +this.etudiant.surname+ ' n\'a pas été ajouté à la classe.';
+                this.messageEchec2 = 'Erreur : l\'etudiant ' +this.etudiant.name+ ' ' +this.etudiant.surname+ 
+                ' n\'a pas été ajouté à la classe.';
                 this.getEtudiantsParClasse();
               }
             }
@@ -140,14 +142,16 @@ export class UpdateClasseComponent implements OnInit {
             (responseDto) => {
               if (!responseDto.error) {
               this.messageSucces = '';
-              this.messageSucces2 = 'Retrait de l\'etudiant ' +this.etudiant.name+ ' ' +this.etudiant.surname+ ' de la classe ' +this.classe.name+ '.';
+              this.messageSucces2 = 'Retrait de l\'etudiant ' +this.etudiant.name+ ' ' 
+              +this.etudiant.surname+ ' de la classe ' +this.classe.name+ '.';
               this.getEtudiantsParClasse();
             }
             },
             (responseDto) => {
               if (responseDto.error) {
                 this.messageSucces = '';
-                this.messageEchec2 = 'Erreur : l\'etudiant ' +this.etudiant.name+ ' ' +this.etudiant.surname+ ' n\'a pas été retiré.';
+                this.messageEchec2 = 'Erreur : l\'etudiant ' +this.etudiant.name+ ' ' 
+                +this.etudiant.surname+ ' n\'a pas été retiré.';
                 this.getEtudiantsParClasse();
               }
             }

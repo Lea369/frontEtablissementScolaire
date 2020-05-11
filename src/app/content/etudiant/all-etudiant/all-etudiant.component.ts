@@ -6,7 +6,6 @@ import { ClasseUpdateDto } from 'src/app/models/classe-update-dto';
 import { EtudiantCreateDto } from 'src/app/models/etudiant-create-dto';
 import { ClassesService } from 'src/app/services/classe/classes.service';
 
-
 @Component({
   selector: 'app-all-etudiant',
   templateUrl: './all-etudiant.component.html',
@@ -16,14 +15,12 @@ export class AllEtudiantComponent implements OnInit {
   
   allEtudiant = new Array<EtudiantUpdateDto>();
   
-
   constructor(
     private serviceEtudiants: EtudiantsService, 
     ) { }
 
   ngOnInit() {
     this.getAll();
-    
   }
 
   getAll() {

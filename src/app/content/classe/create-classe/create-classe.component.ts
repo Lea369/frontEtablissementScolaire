@@ -7,7 +7,6 @@ import { ClasseUpdateDto } from 'src/app/models/classe-update-dto';
 import { ClasseCreateDto } from 'src/app/models/classe-create-dto';
 import { Location } from '@angular/common'
 
-
 @Component({
   selector: 'app-create-classe',
   templateUrl: './create-classe.component.html',
@@ -27,7 +26,6 @@ export class CreateClasseComponent implements OnInit {
   tableau: boolean;
   emptyListe: boolean;
  
-  
   constructor(
     private serviceClasses: ClassesService,
     private serviceEtudiants: EtudiantsService,
@@ -39,7 +37,6 @@ export class CreateClasseComponent implements OnInit {
     this.formulaireAjout = new FormGroup({
       name: new FormControl(this.classeCreate.name, Validators.required),
     });
-    
   }
 
   retour(): void {
@@ -96,13 +93,15 @@ export class CreateClasseComponent implements OnInit {
               if (!responseDto.error) {
               this.messageSucces = '';
               this.messageEchec2 = '';
-              this.messageSucces2 = 'Ajout de l\'etudiant ' +this.etudiant.name+ ' ' +this.etudiant.surname+ ' à la classe ' +this.classe.name+ '.';
+              this.messageSucces2 = 'Ajout de l\'etudiant ' +this.etudiant.name+ ' ' 
+              +this.etudiant.surname+ ' à la classe ' +this.classe.name+ '.';
               }
             },
             (responseDto) => {
               if (responseDto.error) {
                 this.messageSucces = '';
-                this.messageEchec2 = 'Erreur : l\'etudiant ' +this.etudiant.name+ ' ' +this.etudiant.surname+ ' n\'a pas été ajouté.';
+                this.messageEchec2 = 'Erreur : l\'etudiant ' +this.etudiant.name+ ' ' 
+                +this.etudiant.surname+ ' n\'a pas été ajouté.';
                 this.messageSucces2 = '';
               }
             }

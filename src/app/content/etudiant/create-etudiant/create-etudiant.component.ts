@@ -21,8 +21,6 @@ export class CreateEtudiantComponent implements OnInit {
   messageSucces = '';
   messageEchec = '';
   
-
-
   constructor(
     private serviceEtudiants: EtudiantsService,
     private serviceClasses: ClassesService,

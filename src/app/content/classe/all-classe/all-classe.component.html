@@ -15,12 +15,12 @@
                 <td>{{classe.id}}</td>
                 <td>{{classe.name}}</td>
                 <td>
-                    <a routerLink="/classe/detail/{{classe.id}}" class="btn btn-info" role="button">Afficher les détails</a>
-                    &nbsp;
-                    <a routerLink="/classe/update/{{classe.id}}" class="btn btn-info" role="button">Modifier</a>
-                    &nbsp;
-                    <button class="btn btn-danger" (click)="this.delete(classe.id)">Supprimer</button>
-                    &nbsp;
+                <a routerLink="/classe/detail/{{classe.id}}" class="btn btn-info" role="button">Afficher les détails</a>
+                &nbsp;
+                <a routerLink="/classe/update/{{classe.id}}" class="btn btn-info" role="button">Modifier</a>
+                &nbsp;
+                <button class="btn btn-danger" (click)="this.delete(classe.id)">Supprimer</button>
+                &nbsp;
                </td>
             </tr>
         </tbody>

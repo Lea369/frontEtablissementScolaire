@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { ResponseDto } from 'src/app/models/response-dto';
 import { Observable } from 'rxjs';
 import { EtudiantCreateDto } from 'src/app/models/etudiant-create-dto';
-import {environment} from 'src/environments/environment';
+import { environment } from 'src/environments/environment';
 import { EtudiantUpdateDto } from 'src/app/models/etudiant-update-dto';
 
 @Injectable({
@@ -11,8 +11,6 @@ import { EtudiantUpdateDto } from 'src/app/models/etudiant-update-dto';
 })
 export class EtudiantsService {
   
- 
-
   private URL = environment.baseUrl + 'etudiant';
 
   constructor(private http: HttpClient) { }

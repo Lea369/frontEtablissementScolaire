@@ -21,7 +21,6 @@ export class DetailNoteComponent implements OnInit {
 
   ngOnInit(): void {
     this.getNote();
-
   }
 
   getNote() {
@@ -32,7 +31,7 @@ export class DetailNoteComponent implements OnInit {
           this.note = responseDto.body;
         }
       }
-    )
+    );
   }
 
   retour() {

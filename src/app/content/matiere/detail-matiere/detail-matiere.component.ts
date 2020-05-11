@@ -30,7 +30,6 @@ export class DetailMatiereComponent implements OnInit {
     this.getMatiere();
     this.emptyListe = false;
     this.tableauExamens = false;
-  
   }
 
   retour(): void {
@@ -51,7 +50,7 @@ export class DetailMatiereComponent implements OnInit {
           }
         }
       }
-     );
+    );
   }
 
   afficherExamens(nom: string) {

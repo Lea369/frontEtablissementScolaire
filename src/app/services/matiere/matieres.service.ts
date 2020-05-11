@@ -6,7 +6,6 @@ import { MatiereCreateDto } from 'src/app/models/matiere-create-dto';
 import { environment } from 'src/environments/environment';
 import { MatiereUpdateDto } from 'src/app/models/matiere-update-dto';
 
-
 @Injectable({
   providedIn: 'root'
 })

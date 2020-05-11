@@ -15,16 +15,12 @@ export class SearchAbsenceComponent implements OnInit {
   messageEchec1 = '';
   single1:boolean;
   
-
   constructor(
     private serviceAbsences: AbsencesService  ) { }
 
   ngOnInit(): void {
     this.single1 = false;
   }
-
- 
-
 
   getSingle1(numero: number) {
     this.serviceAbsences.getAbsence(numero).subscribe(

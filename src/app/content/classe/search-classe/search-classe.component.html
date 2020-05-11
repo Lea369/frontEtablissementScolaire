@@ -43,12 +43,12 @@
                 <td>{{classe1.id}}</td>
                 <td>{{classe1.name}}</td>
                 <td>
-                    <a routerLink="/classe/detail/{{classe1.id}}" class="btn btn-info" role="button">Afficher les détails</a>
-                    &nbsp;
-                    <a routerLink="/classe/update/{{classe1.id}}" class="btn btn-info" role="button">Modifier</a>
-                    &nbsp;
-                    <button class="btn btn-danger" (click)="this.delete(classe1.id)">Supprimer</button>
-                    &nbsp;
+                <a routerLink="/classe/detail/{{classe1.id}}" class="btn btn-info" role="button">Afficher les détails</a>
+                &nbsp;
+                <a routerLink="/classe/update/{{classe1.id}}" class="btn btn-info" role="button">Modifier</a>
+                &nbsp;
+                <button class="btn btn-danger" (click)="this.delete(classe1.id)">Supprimer</button>
+                &nbsp;
                </td>
             </tr>
         </tbody>
@@ -70,19 +70,16 @@
                 <td>{{classe.id}}</td>
                 <td>{{classe.name}}</td>
                 <td>
-                    <a routerLink="/classe/detail/{{classe.id}}" class="btn btn-info" role="button">Afficher les détails</a>
-                    &nbsp;
-                    <a routerLink="/classe/update/{{classe.id}}" class="btn btn-info" role="button">Modifier</a>
-                    &nbsp;
-                    <button class="btn btn-danger" (click)="this.delete(classe.id)">Supprimer</button>
-                    &nbsp;
+                <a routerLink="/classe/detail/{{classe.id}}" class="btn btn-info" role="button">Afficher les détails</a>
+                &nbsp;
+                <a routerLink="/classe/update/{{classe.id}}" class="btn btn-info" role="button">Modifier</a>
+                &nbsp;
+                <button class="btn btn-danger" (click)="this.delete(classe.id)">Supprimer</button>
+                &nbsp;
                </td>
             </tr>
         </tbody>
     </table>
     </div>
     <br><br>
-
-
-
 </div>

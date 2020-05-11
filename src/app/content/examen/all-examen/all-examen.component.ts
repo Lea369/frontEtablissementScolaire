@@ -13,11 +13,10 @@ export class AllExamenComponent implements OnInit {
  
   constructor(
     private serviceExamens: ExamensService
-    ) { }
+  ) { }
 
   ngOnInit(): void {
     this.getAllExamens();
-    
   }
 
   getAllExamens() {
@@ -29,8 +28,6 @@ export class AllExamenComponent implements OnInit {
       }
     );
   }
-
-  
 
   delete(id: number) {
     this.serviceExamens.delete(id).subscribe(

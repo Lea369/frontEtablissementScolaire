@@ -10,16 +10,13 @@ import { MatieresService } from 'src/app/services/matiere/matieres.service';
 export class AllMatiereComponent implements OnInit {
 
   allMatiere = new Array<MatiereUpdateDto>();
- 
-  
+   
   constructor(
     private service: MatieresService 
-    ) { }
-
+  ) { }
   
   ngOnInit(): void {
-    this.getAll();
-    
+    this.getAll();  
   }
 
   getAll() {

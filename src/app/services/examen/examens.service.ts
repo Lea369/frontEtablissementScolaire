@@ -7,13 +7,14 @@ import { ExamenCreateDto } from 'src/app/models/examen-create-dto';
 import { ResponseDto } from 'src/app/models/response-dto';
 import { ExamenUpdateDto } from 'src/app/models/examen-update-dto';
 
-
 @Injectable({
   providedIn: 'root'
 })
 export class ExamensService {
 
   private URL = environment.baseUrl + 'examen';
+
+  constructor(private http: HttpClient) { }
 
   getAll(): Observable<ResponseDto>{
       return this.http.get<ResponseDto>(this.URL + '/all');
@@ -34,6 +35,5 @@ export class ExamensService {
   update(exam: ExamenUpdateDto): Observable<ResponseDto>{
     return this.http.put<ResponseDto>(this.URL, exam);
   }
-
-  constructor(private http: HttpClient) { }
+ 
 }

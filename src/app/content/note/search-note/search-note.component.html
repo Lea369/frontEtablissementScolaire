@@ -51,12 +51,12 @@
                 <td>{{note1.etudiant.name}} {{note1.etudiant.surname}}</td>
                 <td>{{note1.value}}</td>
                 <td>
-                    <a routerLink="/absence/detail/{{note1.id}}" class="btn btn-info" role="button">Afficher les détails</a>
-                    &nbsp;
-                    <a routerLink="/absence/update/{{note1.id}}" class="btn btn-info" role="button">Modifier</a>
-                    &nbsp;
-                    <button class="btn btn-danger" (click)="this.delete(note1.id)">Supprimer</button>
-                    &nbsp;
+                <a routerLink="/absence/detail/{{note1.id}}" class="btn btn-info" role="button">Afficher les détails</a>
+                &nbsp;
+                <a routerLink="/absence/update/{{note1.id}}" class="btn btn-info" role="button">Modifier</a>
+                &nbsp;
+                <button class="btn btn-danger" (click)="this.delete(note1.id)">Supprimer</button>
+                &nbsp;
                 </td>
             </tr>
         </tbody>
@@ -87,12 +87,12 @@
                     <td>{{n.etudiant.name}} {{n.etudiant.surname}}</td>
                     <td>{{n.value}}</td>
                     <td>
-                        <a routerLink="/absence/detail/{{n.id}}" class="btn btn-info" role="button">Afficher les détails</a>
-                        &nbsp;
-                        <a routerLink="/absence/update/{{n.id}}" class="btn btn-info" role="button">Modifier</a>
-                        &nbsp;
-                        <button class="btn btn-danger" (click)="this.delete(n.id)">Supprimer</button>
-                        &nbsp;
+                    <a routerLink="/absence/detail/{{n.id}}" class="btn btn-info" role="button">Afficher les détails</a>
+                    &nbsp;
+                    <a routerLink="/absence/update/{{n.id}}" class="btn btn-info" role="button">Modifier</a>
+                    &nbsp;
+                    <button class="btn btn-danger" (click)="this.delete(n.id)">Supprimer</button>
+                    &nbsp;
                     </td>
                 </tr>
             </tbody>

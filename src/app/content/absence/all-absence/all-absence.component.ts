@@ -15,7 +15,6 @@ export class AllAbsenceComponent implements OnInit {
 
   ngOnInit(): void {
     this.getAllAbsence();
-    
   }
 
   getAllAbsence(): void {
@@ -27,8 +26,6 @@ export class AllAbsenceComponent implements OnInit {
       }
     );
   }
-
-
      
   delete(id: number) {
     this.serviceAbsences.delete(id).subscribe(

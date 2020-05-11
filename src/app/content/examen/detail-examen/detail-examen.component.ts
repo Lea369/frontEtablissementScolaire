@@ -22,14 +22,11 @@ export class DetailExamenComponent implements OnInit {
   somme: number;
   moyenne: number;
   
-
   constructor(
     private route: ActivatedRoute,
     private location: Location,
     private serviceExamens: ExamensService,
-    private serviceNotes: NotesService,
-    
-    
+    private serviceNotes: NotesService   
   ) { }
 
   ngOnInit(): void {

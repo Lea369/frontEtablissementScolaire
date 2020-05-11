@@ -5,7 +5,8 @@
     <form [formGroup]='formulaireAjout' (ngSubmit) = 'save()'>
         <div class ="formGroup">
             <h5><label for="nomMatiere">Nom* :</label></h5>
-            <input type="text" class="form-control" [(ngModel)]="this.matiereCreate.nomMatiere" formControlName="nomMatiere" name="nomMatiere" required>
+            <input type="text" class="form-control" [(ngModel)]="this.matiereCreate.nomMatiere" 
+            formControlName="nomMatiere" name="nomMatiere" required>
             <p>(* champs obligatoires)</p>
             <br><br>
             <button type="submit" class="btn btn-info" [disabled]="!this.formulaireAjout.valid">Ajouter</button>

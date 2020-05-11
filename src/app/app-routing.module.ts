@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
-
 import { DashboardComponent } from './content/dashboard/dashboard.component';
 
 import { AllAbsenceComponent } from './content/absence/all-absence/all-absence.component';
@@ -38,8 +37,6 @@ import { SearchEtudiantComponent } from './content/etudiant/search-etudiant/sear
 import { SearchExamenComponent } from './content/examen/search-examen/search-examen.component';
 import { SearchMatiereComponent } from './content/matiere/search-matiere/search-matiere.component';
 import { SearchNoteComponent } from './content/note/search-note/search-note.component';
-
-
 
 const routes: Routes = [
   { path: 'absence', component: AllAbsenceComponent },

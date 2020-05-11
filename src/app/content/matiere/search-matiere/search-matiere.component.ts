@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatieresService } from 'src/app/services/matiere/matieres.service';
 import { MatiereUpdateDto } from 'src/app/models/matiere-update-dto';
-import { ResponseDto } from 'src/app/models/response-dto';
-import { ThrowStmt } from '@angular/compiler';
 
 @Component({
   selector: 'app-search-matiere',

@@ -6,7 +6,6 @@ import { EtudiantsService } from 'src/app/services/etudiant/etudiants.service';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 
-
 @Component({
   selector: 'app-detail-classe',
   templateUrl: './detail-classe.component.html',
@@ -23,7 +22,6 @@ export class DetailClasseComponent implements OnInit {
   emptyliste: boolean = false;
   modification: boolean = false;
   
-  
   constructor(
     private route: ActivatedRoute,
     private service: ClassesService,
@@ -34,7 +32,6 @@ export class DetailClasseComponent implements OnInit {
   ngOnInit(): void {
     this.getClasse();
     this.getEtudiantsParClasse();
-     
   }
 
   getClasse(): void {
@@ -45,7 +42,7 @@ export class DetailClasseComponent implements OnInit {
           this.classe = responseDto.body;
         }
       }
-     );
+    );
   }
  
   getEtudiantsParClasse(): void {
@@ -53,7 +50,8 @@ export class DetailClasseComponent implements OnInit {
     this.serviceEtudiants.getAll().subscribe(
       (responseDto) => {
         if (!responseDto.error) {
-          this.etudiantsParClasse = responseDto.body.filter(element => (element.classe !== null && element.classe.id == id));
+          this.etudiantsParClasse = responseDto.body.filter(element => 
+            (element.classe !== null && element.classe.id == id));
           if (this.etudiantsParClasse.length==0) {
             this.emptyliste = true;
           }
@@ -65,10 +63,4 @@ export class DetailClasseComponent implements OnInit {
   retour(): void {
     this.location.back();
   }
-
-  
-  
-
-  
-
 }

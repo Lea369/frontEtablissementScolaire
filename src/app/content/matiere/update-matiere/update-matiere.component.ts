@@ -70,7 +70,7 @@ export class UpdateMatiereComponent implements OnInit {
           this.messageEchec = 'Erreur lors de la modification.';
         }
       }
-    )
+    );
   }
 
   retour() {
@@ -86,7 +86,8 @@ export class UpdateMatiereComponent implements OnInit {
             if (!responseDto.error) {
               this.messageSucces = '';
               this.messageEchec = '';
-              this.messageSucces2 = 'Désinscription de l\'étudiant ' +etudiant.name+ ' ' +etudiant.surname+ ' de la matière ' +this.matiere.nomMatiere+ '.';
+              this.messageSucces2 = 'Désinscription de l\'étudiant ' +etudiant.name+ ' ' +etudiant.surname+ 
+              ' de la matière ' +this.matiere.nomMatiere+ '.';
               this.messageEchec2 = '';
               if (this.matiere.listeEtudiant.length == 0) {
                 this.emptyListe = true;
@@ -146,7 +147,8 @@ export class UpdateMatiereComponent implements OnInit {
             this.messageSucces = '';
             this.messageEchec = '';
             this.messageEchec2 = '';
-            this.messageSucces2 = 'Inscription de l\'étudiant ' +etudiant.name+ ' ' +etudiant.surname+ ' à la matière ' +this.matiere.nomMatiere+ '.';
+            this.messageSucces2 = 'Inscription de l\'étudiant ' +etudiant.name+ ' ' +etudiant.surname+ 
+            ' à la matière ' +this.matiere.nomMatiere+ '.';
             this.emptyListe = false;
           }
       },
@@ -156,7 +158,6 @@ export class UpdateMatiereComponent implements OnInit {
             this.messageSucces = '';
             this.messageSucces2 = '';
             this.messageEchec2 = 'Erreur lors de l\'inscription de ' +etudiant.name+ ' ' +etudiant.surname+ '.';
-            
           }
       }
       );

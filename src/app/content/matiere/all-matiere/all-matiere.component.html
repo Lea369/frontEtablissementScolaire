@@ -14,12 +14,13 @@
             <tr *ngFor="let m of this.allMatiere">
                 <td>{{m.idMatiere}}</td>
                 <td>{{m.nomMatiere}}</td>
-                <td><a routerLink="/matiere/detail/{{m.idMatiere}}" class="btn btn-info" role="button">Afficher les détails</a>
-                    &nbsp;
-                    <a routerLink="/matiere/update/{{m.idMatiere}}" class="btn btn-info" role="button">Modifier</a>
-                    &nbsp;
-                    <button class="btn btn-danger" (click)="this.delete(m.idMatiere)">Supprimer</button>
-                    &nbsp;
+                <td>
+                <a routerLink="/matiere/detail/{{m.idMatiere}}" class="btn btn-info" role="button">Afficher les détails</a>
+                &nbsp;
+                <a routerLink="/matiere/update/{{m.idMatiere}}" class="btn btn-info" role="button">Modifier</a>
+                &nbsp;
+                <button class="btn btn-danger" (click)="this.delete(m.idMatiere)">Supprimer</button>
+                &nbsp;
                 </td>
             </tr>
         </tbody>
